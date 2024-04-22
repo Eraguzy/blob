@@ -10,27 +10,18 @@
     text-align: center;
     width: 100px;
     height: 30px;
+}
 
+.bouton:hover{
+    background-color: #49c04d;
 }
 
 .bandeau{
     background-color: black;
     color: white;
-    padding: 10px 20px;
+    padding: 20px;
     display: flex;
     justify-content: flex-end;
-}
-
-.bouton-connexion{
-    background-color: #3a973d;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.bouton-connexion:hover{
-    background-color: #45a049;
 }
 
 /* Styles pour le contenu */
