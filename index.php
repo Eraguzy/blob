@@ -7,6 +7,8 @@
     <!-- Bandeau de navigation -->
     <nav class="bandeau">
         <input class="bouton" value="Connexion"/>
+        <img src="logo.png" class="img">
+        
     </nav>
     
     <!-- Contenu de la page -->
