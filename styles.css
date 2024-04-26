@@ -33,3 +33,11 @@
     align-items: center;
     text-align: center;
 }
+
+
+.img {
+    width:80px  ;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
