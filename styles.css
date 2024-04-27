@@ -3,28 +3,43 @@
     padding: 0;
 }
 
-.bouton {
-    background-color: #3a973d;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    width: 100px;
-    height: 30px;
-}
-
-.bouton:hover{
-    background-color: #49c04d;
-}
-
 .bandeau{
     background-color: black;
     color: white;
-    padding: 20px;
+    height: 100px;
     display: flex;
-    justify-content: flex-end;
+    align-items: center; /* align vertical*/
+    justify-content: flex-end; /* align vertical*/
 }
 
-/* Styles pour le contenu */
+.bandeau > * { /*séparation entre le bandeau et ses éléments*/
+    margin: 20px;
+}
+
+.bouton{
+    background-color: orange;
+    color: black;
+    border-radius: 5px;
+    vertical-align: center;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: auto;
+    height: auto;
+}
+
+.bouton:hover{
+    background-color: #ffcc00;
+}
+
+.img{
+    width: 80px;
+    position: absolute;
+    left: 0;
+}
+
 .contenu{
     background-size: cover;
     background-position: center;
@@ -34,10 +49,7 @@
     text-align: center;
 }
 
-
-.img {
-    width:80px  ;
-    position: absolute;
-    top: 0;
-    left: 0;
+/*les id commencent ici*/
+#deuxboutons{
+    margin-right: 0px; /*évite l'espacement pas égal si y'a 2 boutons dans le bandeau (les margin s'additionnent*/
 }
