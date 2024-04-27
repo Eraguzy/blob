@@ -3,16 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="page_connexion.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
-    <!-- Bandeau de navigation -->
     <nav class="bandeau">
-        <a href="index.html" class="bouton-connexion">Accueil</a>
+        <input type="button" class="bouton" value="Acceuil" onclick="linkopener('index.php')"/>
     </nav>
 
-    <!-- Contenu de la page -->
     <div class="contenu">
         <form name="connexion" method="post" action="#">
             <fieldset>
@@ -44,6 +42,7 @@
             </fieldset>
         </form>
     </div>
+    <script src="script.js" type="text/javascript"></script>
 </body>
 
 </html>

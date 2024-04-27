@@ -3,6 +3,7 @@
     padding: 0;
 }
 
+/*choses qui contiennent des éléments*/
 .bandeau{
     background-color: black;
     color: white;
@@ -16,6 +17,7 @@
     margin: 20px;
 }
 
+/*éléments eux-mêmes*/
 .bouton{
     background-color: orange;
     color: black;
@@ -40,13 +42,61 @@
     left: 0;
 }
 
-.contenu{
-    background-size: cover;
-    background-position: center;
+form {
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+}
+
+legend {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 21px;
+    background-color: grey;
+    color: white;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+fieldset {
+    height: 50%;
+    width: 50%;
+    border-radius: 10px;
+    border: solid red thick;
+}
+
+.div1, .div2 {
+    margin-left: 10px;
+    display: inline-block;
+    width: 28%;
+    font-size: 21px;
+    box-sizing: border-box;
+}
+
+.div2 {
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    width: 140%;
+    height: 30px;
+}
+
+input[type="submit"] {
+    font-size: 21px;
+    background-color: darkorange;
+    border-radius: 5px;
+    border: solid darkorange medium;
+    padding-right: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 40px;
+    color: white;
+    margin-bottom: 10px;
 }
 
 /*les id commencent ici*/
