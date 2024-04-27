@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /*choses qui contiennent des éléments*/
@@ -36,9 +37,19 @@
     background-color: #ffcc00;
 }
 
+.bandeautitle{
+    font-size: xx-large;
+    color: orange;
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 65px;
+    margin-bottom: 10px;
+    margin-right: auto; /*sert à ramener le titre à gauche*/
+    margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
+}
+
 .img{
     width: 80px;
-    position: absolute;
     left: 0;
 }
 
