@@ -10,6 +10,8 @@
 
 <body>
     <nav class="bandeau">
+        <img src="logo.png" class="img">
+         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau" >Nouveau membre</div>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
     </nav>
