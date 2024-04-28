@@ -25,6 +25,7 @@
     border-radius: 5px;
     vertical-align: center;
     text-align: center;
+    font-size: 18px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 12px;
@@ -33,8 +34,9 @@
     height: auto;
 }
 
-.bouton:hover{
+.bouton:hover, .boutongauche:hover, .boutondroit:hover, input[type="submit"]:hover{
     background-color: #ffcc00;
+    cursor: pointer;
 }
 
 .bandeautitle{
@@ -45,6 +47,17 @@
     font-size: 65px;
     margin-bottom: 10px;
     margin-right: auto; /*sert à ramener le titre à gauche*/
+    margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
+}
+
+.titrebandeau{
+    font-size: xx-large;
+    color: orange;
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 10px;
+    margin-right: 400px; /*sert à ramener le titre à gauche*/
     margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
 }
 
@@ -74,8 +87,7 @@ legend {
 }
 
 fieldset {
-    height: 50%;
-    width: 50%;
+    margin: auto;
     border-radius: 10px;
     border: solid red thick;
 }
@@ -113,4 +125,38 @@ input[type="submit"] {
 /*les id commencent ici*/
 #deuxboutons{
     margin-right: 0px; /*évite l'espacement pas égal si y'a 2 boutons dans le bandeau (les margin s'additionnent*/
+}
+
+.imagelogo {
+    display: flex; /* centrer image au milieu */
+    justify-content: center; 
+    align-items: center; 
+}
+
+h1 { /* centrer le texte*/
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#boutongauche {
+    position: absolute;
+    top: 400px;
+    left: 280px;
+    font-size: 18px;
+}
+
+/*mettre le bouton bien à droite et gauche*/
+#boutondroit {
+    position: absolute;
+    top: 400px;
+    left: 980px;
+    font-size: 18px;
+}
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: -20px;
 }
