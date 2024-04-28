@@ -8,7 +8,7 @@
 
 <body>
     <nav class="bandeau">
-        <input type="button" class="bouton" value="Acceuil" onclick="linkopener('index.php')"/>
+        <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
     </nav>
 
     <div class="contenu">
