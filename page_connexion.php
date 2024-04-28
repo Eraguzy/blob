@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="logo.png">
+    <title>Blob</title>
 </head>
 
 <body>
     <nav class="bandeau">
+        <div class="titrebandeau" >Déjà membre</div>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
     </nav>
 
@@ -16,28 +19,22 @@
             <fieldset>
                 <legend>Connexion</legend>
                 <div class="div1">
-                    Nom :
-                </div>
-                <div class="div2">
-                    <input type="text" name="nom" class="champ" placeholder="Nom"/>
-                </div><br />
-                <div class="div1">
-                    Prénom :
-                </div>
-                <div class="div2">
-                    <input type="text" name="prenom" class="champ" placeholder="Prénom"/>
-                </div><br />
-                <div class="div1">
                     Email :
                 </div>
                 <div class="div2">
                     <input type="text" name="email" class="champ" placeholder="Email"/>
                 </div><br />
                 <div class="div1">
+                    Mot de passe :
+                </div>
+                <div class="div2">
+                    <input type="text" name="mdp" class="champ" placeholder="Mot de passe"/>
+                </div><br />
+                <div class="div1">
 
                 </div>
                 <div class="div2">
-                    <input type="submit" name="connexion" value="Se connecter" class="champ" />
+                <input type="button" class="bouton" value="Connexion" onclick="linkopener('page_connexion.php')"/>
                 </div><br />
             </fieldset>
         </form>
