@@ -30,23 +30,69 @@
                     <input type="text" name="prenom" class="champ" placeholder="Prénom"/>
                 </div><br />
                 <div class="div1">
+                    Date de naissance :
+                </div>
+                <div class="div2">
+                    <input type="date" name="date" class="date" placeholder="Date"/>
+                </div><br />
+                <div class="div1">
                     Age :
                 </div>
                 <div class="div2">
                     <input type="number" name="age" class="age" placeholder="Age"/>
                 </div><br />
                 <div class="div1">
+                    Sexe :
+                </div>
+                <div class="div2">
+                    <select name="sexe" id="sexe" required>
+                        <option value="femme">Femme</option>
+                        <option value="homme">Homme</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div><br><br />
+                <div class="div1">
                     Pseudonyme :
                 </div>
                 <div class="div2">
                     <input type="text" name="pseudo" class="champ" placeholder="Pseudonyme"/>
-                </div><br />
+                </div><br><br />
                 <div class="div1">
                     Photo : 
                 </div>
                 <div class="div2">
                 <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" required><br><br>
                 </div><br />
+                <div class="div1">
+                    Situation familiale : 
+                </div>
+                <div class="div2">
+                <select name="situation" id="situation" required>
+                    <option value="celib">Célibataire</option>
+                    <option value="en couple">En couple</option>
+                    <option value="marié(e)">Marié(e)</option>
+                    <option value="Veuf(ve)">Veuf(ve)</option>
+                    <option value="autre">Autre</option>
+                </select></div><br><br>
+                <div class="div1">
+                    Adresse :
+                </div>
+                <div class="div2">
+                    <input type="text" id="adresse" class="adresse" placeholder="Adresse">
+                </div><br>
+                <div class="div1">
+                    Ville :
+                </div>
+                <div class="div2">
+                    <input type="text" id="ville" class="ville" placeholder="Ville">
+                </div><br>
+                <div class="div1">
+                    Pays :
+                </div>
+                <div class="div2">
+                    <input type="text" id="pays" class="pays" placeholder="Pays">
+                </div><br>
+
                 <div class="div1">
                     Couleur des cheveux : 
                 </div>
@@ -71,10 +117,22 @@
 
                 </div><br />
                 <div class="div1">
+                    Poids :
+                </div>
+                <div class="div2">
+                    <input type="number" id="poids" name="poids" placeholder="Poids">
+                </div><br><br />
+                <div class="div1">
+                    Taille en cm :
+                </div>
+                <div class="div2">
+                    <input type="number" id="taille" name="taille" placeholder="Taille">
+                </div><br><br />
+                <div class="div1">
 
                 </div>
                 <div class="div2">
-                <input type="button" class="bouton" value="Création du profil" onclick="linkopener('page_profil.php')"/>
+                <input type="button" class="bouton" value="Création du profil" onclick="linkopener('accueil.php')"/>
                 </div><br />
             </fieldset>
         </form>
