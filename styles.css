@@ -160,3 +160,41 @@ h2 {
     margin-bottom: 50px;
     margin-top: -20px;
 }
+
+.recherche {
+    display: flex;
+    justify-content: center; /* Centre le formulaire de recherche */
+    margin: 20px 0;
+}
+
+.recherche input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Arrondit seulement les coins gauche */
+}
+
+.recherche button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 0 5px 5px 0; /* Arrondit seulement les coins droit */
+    background-color: #4CAF50;
+    color: white;
+}
+
+p {
+    display: flex;
+    justify-content: center; /* Centre horizontalement dans le conteneur */
+    height: 10vh; /* Utilisez une hauteur pour voir l'effet du centrage */
+    align-items: center; /* Centre verticalement dans le conteneur */
+    margin: 0; /* Supprime les marges par défaut */
+}
+
+#souscription {
+    position: absolute;
+    bottom: -100px;
+    left: 650px;
+    font-size: 18px;
+    margin-top: -20px;
+    margin-bottom: -5px;
+}
