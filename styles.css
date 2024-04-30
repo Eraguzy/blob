@@ -191,10 +191,11 @@ p {
     margin: 0; /* Supprime les marges par défaut */
 }
 
+
 #souscription {
     position: absolute;
-    bottom: -100px;
-    left: 650px;
+    top: 95%;
+    left: 45%;
     font-size: 18px;
     margin-top: -20px;
     margin-bottom: -5px;
