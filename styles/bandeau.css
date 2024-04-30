@@ -24,16 +24,23 @@
     margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
 }
 
-.titrebandeau {
+
+.titrebandeau{ /*index.php*/
     font-size: xx-large;
     color: orange;
     font-family: helvetica;
     font-weight: bold;
     font-size: 50px;
+    position: absolute;
+    width: 50%;
+    left: 37%;
+    right: 50%;
+    bottom: 89%;
     margin-bottom: 10px;
     margin-right: 400px; /*sert à ramener le titre à gauche*/
-    margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
+    /*margin-left: -10px; sert à compenser l'écart trop grand entre le logo et le titre*/
 }
+
 
 .img {
     width: 80px;
