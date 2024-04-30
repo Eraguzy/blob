@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/page_connexion.css">
     <link rel="icon" href="logo.png">
     <title>Blob</title>
 </head>
