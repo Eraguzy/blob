@@ -127,7 +127,7 @@ input[type="submit"] {
     margin-right: 0px; /*évite l'espacement pas égal si y'a 2 boutons dans le bandeau (les margin s'additionnent*/
 }
 
-.imagelogo {
+.imagelogo {/*index.php*/
     display: flex; /* centrer image au milieu */
     justify-content: center; 
     align-items: center; 
@@ -139,14 +139,14 @@ h1 { /* centrer le texte*/
     margin-top: 50px;
 }
 
-#boutongauche {
+#boutongauche {/*index.php*/
     position: absolute;
     top: 45%;
     left: 25%;
     font-size: 18px;
 }
 
-/*mettre le bouton bien à droite et gauche*/
+/*mettre le bouton bien à droite et gauche*//*index.php*/
 #boutondroit {
     position: absolute;
     top: 45%;
@@ -162,7 +162,7 @@ h2 {
     margin-top: -20px;
 }
 
-.recherche {
+.recherche { /*accueil.php*/
     display: flex;
     justify-content: center; /* Centre le formulaire de recherche */
     margin: 20px 0;
@@ -183,7 +183,7 @@ h2 {
     color: white;
 }
 
-p {
+p { /*accueil.php*/
     display: flex;
     justify-content: center; /* Centre horizontalement dans le conteneur */
     height: 10vh; /* Utilisez une hauteur pour voir l'effet du centrage */
@@ -191,8 +191,7 @@ p {
     margin: 0; /* Supprime les marges par défaut */
 }
 
-
-#souscription {
+#souscription { /*accueil.php*/
     position: absolute;
     top: 95%;
     left: 45%;
