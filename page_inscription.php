@@ -42,7 +42,7 @@
                     Confirmer l'email :
                 </div>
                 <div class="div2">
-                    <input type="text" name="email" class="champ" placeholder="Email"/>
+                    <input type="text" name="confirm_email" class="champ" placeholder="Email"/>
                 </div><br />
                 <div class="div1">
                     Créer un mot de passe : 
@@ -54,17 +54,36 @@
                     Confirmer le mot de passe : 
                 </div>
                 <div class="div2">
-                    <input type="text" name="mdp" class="champ" placeholder="Mot de passe"/>
+                    <input type="text" name="confirm_mdp" class="champ" placeholder="Mot de passe"/>
                 </div><br />
                 <div class="div1">
 
                 </div>
                 <div class="div2">
-                <input type="button" class="bouton" value="Inscription" onclick="linkopener('page_profil.php')"/>
+                <input type="submit" class="bouton" value="Inscription"/>
                 </div><br />
             </fieldset>
         </form>
     </div>
+    <?php
+    // récupération des données du form, écriture dans un fichier
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom = $_POST["nom"];
+    $prenom = $_POST["prenom"];
+    $email = $_POST["email"];
+    $confirm_email = $_POST["confirm_email"]; 
+    $mdp = $_POST["mdp"];
+    $confirm_mdp = $_POST["confirm_mdp"]; 
+    if ($email != $confirm_email || $mdp != $confirm_mdp) {
+        echo "Les champs de confirmation ne correspondent pas.";
+        exit; 
+    }
+    $donnees = $nom . "," . $prenom . "," . $email . "," . $mdp . "\n";
+    file_put_contents("profil.txt", $donnees, FILE_APPEND);
+    header("Location: page_profil.php");
+    exit(); 
+    }
+    ?>
     <script src="script.js" type="text/javascript"></script>
 </body>
 
