@@ -1,0 +1,29 @@
+@import url("global.css");
+@import url("bandeau.css");
+
+.imagelogo {/*index.php*/
+    display: flex; /* centrer image au milieu */
+    justify-content: center; 
+    align-items: center; 
+}
+
+h1 { /* centrer le texte index.php*/ 
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#boutongauche {/*index.php*/
+    position: absolute;
+    top: 45%;
+    left: 25%;
+    font-size: 18px;
+}
+
+/*mettre le bouton bien à droite et gauche*//*index.php*/
+#boutondroit {
+    position: absolute;
+    top: 45%;
+    left: 65%;
+    font-size: 18px;
+}

@@ -1,0 +1,57 @@
+/*fichier global à inclure*/
+/*gestion du bandeau et de ses éléments*/
+form { /*pages connexion, inscriptions, ...*/
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+legend { /*pages connexion, inscriptions, ...*/
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 21px;
+    background-color: grey;
+    color: white;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+fieldset { /*pages connexion, inscriptions, ...*/
+    margin: auto;
+    border-radius: 10px;
+    border: solid red thick;
+}
+
+.div1, .div2 { /*Champs à saisir dans les pages de co, inscriptions*/
+    margin-left: 10px;
+    display: inline-block;
+    width: 28%;
+    font-size: 21px;
+    box-sizing: border-box;
+}
+
+.div2 { /*Champs à saisir dans les pages de co, inscriptions*/
+    margin-top: 10px;
+}
+
+input[type="text"] { /*Champs à saisir dans les pages de co, inscriptions*/
+    width: 140%;
+    height: 30px;
+}
+
+input[type="submit"] { /*Bouton submit formulaire*/
+    font-size: 21px;
+    background-color: darkorange;
+    border-radius: 5px;
+    border: solid darkorange medium;
+    padding-right: 40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 40px;
+    color: white;
+    margin-bottom: 10px;
+}

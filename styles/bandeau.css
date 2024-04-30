@@ -1,0 +1,45 @@
+/*fichier global à inclure*/
+/*gestion du bandeau et de ses éléments*/
+.bandeau {
+    background-color: black;
+    color: white;
+    height: 100px;
+    display: flex;
+    align-items: center; /* align vertical*/
+    justify-content: flex-end; /* align vertical*/
+}
+
+.bandeau > * { /*séparation entre le bandeau et ses éléments*/
+    margin: 20px;
+}
+
+.bandeautitle {
+    font-size: xx-large;
+    color: orange;
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 65px;
+    margin-bottom: 10px;
+    margin-right: auto; /*sert à ramener le titre à gauche*/
+    margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
+}
+
+.titrebandeau {
+    font-size: xx-large;
+    color: orange;
+    font-family: helvetica;
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 10px;
+    margin-right: 400px; /*sert à ramener le titre à gauche*/
+    margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
+}
+
+.img {
+    width: 80px;
+    left: 0;
+}
+
+#deuxboutons { /*à utiliser si on a deux boutons côte à côte dans un nav*/
+    margin-right: 0px; /*évite l'espacement pas égal si y'a 2 boutons dans le bandeau (les margin s'additionnent*/
+}
