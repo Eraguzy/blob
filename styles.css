@@ -141,18 +141,19 @@ h1 { /* centrer le texte*/
 
 #boutongauche {
     position: absolute;
-    top: 400px;
-    left: 280px;
+    top: 45%;
+    left: 25%;
     font-size: 18px;
 }
 
 /*mettre le bouton bien à droite et gauche*/
 #boutondroit {
     position: absolute;
-    top: 400px;
-    left: 980px;
+    top: 45%;
+    left: 65%;
     font-size: 18px;
 }
+
 
 
 h2 {
