@@ -16,31 +16,23 @@
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
     </nav>
 
-    <div class="contenu">
-        <form name="connexion" method="post" action="page_connexion.php">
-            <fieldset>
-                <legend>Connexion</legend>
-                <div class="div1">
-                    Email :
+    <div class="Connexion-page">
+        <div class="Connexion-boite">
+            <h2 class="legende">Connexion</h2>
+            <form name="connexion" method="post" action="page_connexion.php">
+                <div class="donnees">
+                    <label for="email">Email :</label>
+                    <input type="text" name="email" class="champ" placeholder="Email" required>
                 </div>
-                <div class="div2">
-                    <input type="text" name="email" class="champ" placeholder="Email"/>
-                </div><br />
-                <div class="div1">
-                    Mot de passe :
+                <div class="donnees">
+                    <label for="motdepasse">Mot de passe :</label>
+                    <input type="password" name="motdepasse" class="champ" placeholder="Mot de passe" required>
                 </div>
-                <div class="div2">
-                    <input type="text" name="mdp" class="champ" placeholder="Mot de passe"/>
-                </div><br />
-                <div class="div1">
-
-                </div>
-                <div class="div2">
-                    <input type="submit" class="bouton" value="Connexion"/>
-                </div><br />
-            </fieldset>
-        </form>
+                <input type="submit" value="Connexion"/>
+            </form>
+        </div>
     </div>
+    
     <?php
 // ouverture du fichier pour vérifier si l'user existe ou non
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
