@@ -1,57 +1,57 @@
 /*fichier global à inclure*/
 /*gestion du bandeau et de ses éléments*/
-form { /*pages connexion, inscriptions, ...*/
-    height: 500px;
+
+.Connexion-page {
+    background-image: url('../fond.png');
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 86.4vh;
 }
 
-legend { /*pages connexion, inscriptions, ...*/
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 21px;
-    background-color: grey;
-    color: white;
+.Connexion-boite {
+    background-color: black;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+}
+
+.legende {
+    color: orange;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.donnees {
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.donnees label {
+    color: orange;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.donnees input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
-fieldset { /*pages connexion, inscriptions, ...*/
-    margin: auto;
-    border-radius: 10px;
-    border: solid red thick;
-}
-
-.div1, .div2 { /*Champs à saisir dans les pages de co, inscriptions*/
-    margin-left: 10px;
-    display: inline-block;
-    width: 28%;
-    font-size: 21px;
-    box-sizing: border-box;
-}
-
-.div2 { /*Champs à saisir dans les pages de co, inscriptions*/
-    margin-top: 10px;
-}
-
-input[type="text"] { /*Champs à saisir dans les pages de co, inscriptions*/
-    width: 140%;
-    height: 30px;
-}
-
-input[type="submit"] { /*Bouton submit formulaire*/
-    font-size: 21px;
-    background-color: darkorange;
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: orange;
+    color: black;
+    border: none;
     border-radius: 5px;
-    border: solid darkorange medium;
-    padding-right: 40px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 40px;
-    color: white;
-    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #ffcc00;
 }
