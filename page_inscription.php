@@ -74,15 +74,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_email = $_POST["confirm_email"]; 
     $mdp = $_POST["mdp"];
     $confirm_mdp = $_POST["confirm_mdp"]; 
+    $fichier = "profil.txt";
+    $handle = fopen($fichier, "r");
+    $utilisateur_trouve = false;
     if ($email != $confirm_email || $mdp != $confirm_mdp) {
         echo "Les champs de confirmation ne correspondent pas.";
         exit; 
     }
-    $donnees = $nom . "," . $prenom . "," . $email . "," . $mdp . "\n";
-    file_put_contents("profil.txt", $donnees, FILE_APPEND);
-    header("Location: page_profil.php");
-    exit(); 
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Merci de saisir un email valide.";
     }
+    if ($handle) {
+        while (($ligne = fgets($handle)) !== false) {
+            $utilisateur = explode(",", $ligne);
+            if ($utilisateur[2] == $email && $utilisateur[3] == $mdp) {
+                $utilisateur_trouve = true; 
+                break; 
+                fclose($handle); 
+            }
+        }
+        if ($utilisateur_trouve) {
+            header("Location: accueil.php"); 
+            exit; 
+        } 
+        else {
+            $donnees = $nom . "," . $prenom . "," . $email . "," . $mdp . "," . "\n";
+            file_put_contents("profil.txt", $donnees, FILE_APPEND);
+            header("Location: page_profil.php");
+            exit(); 
+        }
+    }
+}
     ?>
     <script src="script.js" type="text/javascript"></script>
 </body>
