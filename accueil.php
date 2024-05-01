@@ -11,7 +11,7 @@
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau" >Bienvenue</div>
-        <input type="button" class="bouton" value="Modifier mon profil" onclick="linkopener('modif.php')"/>
+        <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil" onclick="linkopener('modif.php')"/>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
     </nav>
     <p class="para">Vous êtes maintenant inscrit sur Blob, vous pouvez rechercher dès à présent des personnes en tapant des mots-clés sur la barre de recherche.</p>
