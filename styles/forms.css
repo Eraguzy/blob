@@ -8,7 +8,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 86.4vh;
 }
 
 .Connexion-boite {
@@ -32,7 +31,6 @@
 .donnees label {
     color: orange;
     display: block;
-    margin-bottom: 5px;
 }
 
 .donnees input {
