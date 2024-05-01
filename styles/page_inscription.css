@@ -1,3 +1,15 @@
 @import url("global.css");
 @import url("bandeau.css");
 @import url("forms.css");
+
+/*fichier global à inclure*/
+/*gestion du bandeau et de ses éléments*/
+
+.Connexion-page {
+    height: 100vh;
+}
+
+.donnees label {
+    font-size: large;
+    margin-bottom: 8px;
+}
