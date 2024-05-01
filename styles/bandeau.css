@@ -46,3 +46,8 @@
 #deuxboutons { /*à utiliser si on a deux boutons côte à côte dans un nav*/
     margin-right: 0px; /*évite l'espacement pas égal si y'a 2 boutons dans le bandeau (les margin s'additionnent*/
 }
+
+#boutonmodif {
+    margin-right: 0px;
+}
+
