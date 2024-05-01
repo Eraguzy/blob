@@ -16,55 +16,39 @@
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
     </nav>
 
-    <div class="contenu">
-        <form name="connexion" method="post" action="#">
-            <fieldset>
-                <legend>Inscription</legend>
-                <div class="div1">
-                    Nom :
+    <div class="Connexion-page">
+        <div class="Connexion-boite">
+            <h2 class="legende">Inscription</h2>
+            <form name="connexion" method="post" action="#">
+                <div class="donnees">
+                    <label for="nom">Nom :</label>
+                    <input type="text" name="nom" class="champ" placeholder="Nom" required>
                 </div>
-                <div class="div2">
-                    <input type="text" name="nom" class="champ" placeholder="Nom"/>
-                </div><br />
-                <div class="div1">
-                    Prénom :
+                <div class="donnees">
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" name="prenom" class="champ" placeholder="Prénom" required>
                 </div>
-                <div class="div2">
-                    <input type="text" name="prenom" class="champ" placeholder="Prénom"/>
-                </div><br />
-                <div class="div1">
-                    Email :
+                <div class="donnees">
+                    <label for="email">Email :</label>
+                    <input type="email" name="email" class="champ" placeholder="Email" required>
                 </div>
-                <div class="div2">
-                    <input type="text" name="email" class="champ" placeholder="Email"/>
-                </div><br />
-                <div class="div1">
-                    Confirmer l'email :
+                <div class="donnees">
+                    <label for="email2">Confirmer l'email :</label>
+                    <input type="text" name="confirm_email" class="champ" placeholder="Email" required>
                 </div>
-                <div class="div2">
-                    <input type="text" name="confirm_email" class="champ" placeholder="Email"/>
-                </div><br />
-                <div class="div1">
-                    Créer un mot de passe : 
+                <div class="donnees">
+                    <label for="motdepasse">Mot de passe :</label>
+                    <input type="password" name="mdp" class="champ" placeholder="Mot de passe" required>
                 </div>
-                <div class="div2">
-                    <input type="text" name="mdp" class="champ" placeholder="Mot de passe"/>
-                </div><br />
-                <div class="div1">
-                    Confirmer le mot de passe : 
+                <div class="donnees">
+                    <label for="motdepasse2">Confirmer le mot de passe :</label>
+                    <input type="password" name="confirm_mdp" class="champ" placeholder="Mot de passe" required>
                 </div>
-                <div class="div2">
-                    <input type="text" name="confirm_mdp" class="champ" placeholder="Mot de passe"/>
-                </div><br />
-                <div class="div1">
-
-                </div>
-                <div class="div2">
-                <input type="submit" class="bouton" value="Inscription"/>
-                </div><br />
-            </fieldset>
-        </form>
+                <input type="submit" value="Inscription" />
+            </form>
+        </div>
     </div>
+    
     <?php
     // récupération des données du form, écriture dans un fichier
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
