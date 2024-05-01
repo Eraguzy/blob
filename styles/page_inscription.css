@@ -2,9 +2,6 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
-/*fichier global à inclure*/
-/*gestion du bandeau et de ses éléments*/
-
 .Connexion-page {
     height: 100vh;
 }
