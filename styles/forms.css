@@ -2,7 +2,7 @@
 /*gestion du bandeau et de ses éléments*/
 
 .Connexion-page {
-    background-image: url('../fond');
+    background-image: url('../fond.jpeg');
     background-size: cover;
     background-position: center;
     display: flex;
