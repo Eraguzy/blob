@@ -33,7 +33,7 @@
         </div>
     </div>
     
-    <?php
+<?php
 // ouverture du fichier pour vérifier si l'user existe ou non
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
