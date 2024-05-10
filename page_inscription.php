@@ -59,34 +59,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mdp = $_POST["mdp"];
     $confirm_mdp = $_POST["confirm_mdp"]; 
     $fichier = "profil.txt";
-    $handle = fopen($fichier, "r");
+    $file = fopen($fichier, "r");
     $utilisateur_trouve = false;
+
     if ($email != $confirm_email || $mdp != $confirm_mdp) {
         echo "Les champs de confirmation ne correspondent pas.";
         exit; 
     }
+
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "Merci de saisir un email valide.";
+        exit;
     }
-    if ($handle) {
-        while (($ligne = fgets($handle)) !== false) {
-            $utilisateur = explode(",", $ligne);
-            if ($utilisateur[2] == $email && $utilisateur[3] == $mdp) {
-                $utilisateur_trouve = true; 
-                break; 
-                fclose($handle); 
+
+    if ($file) {
+
+        while (($ligne = fgets($file)) !== false) {
+            $utilisateur = explode(";", $ligne);
+            if ($utilisateur[2] == $email) {
+                $utilisateur_trouve = true;
+                fclose($file);
+                break;
             }
         }
-        if ($utilisateur_trouve) {
-            header("Location: accueil.php"); 
+        
+        if ($utilisateur_trouve == true) {
+            header("Location: page_connexion.php");
             exit; 
         } 
         else {
-            $donnees = $nom . "," . $prenom . "," . $email . "," . $mdp . "," . "\n";
+            $hash = password_hash($mdp, PASSWORD_BCRYPT);
+            $donnees = $nom . ";" . $prenom . ";" . $email . ";" . $hash . ";" . "\n";
             file_put_contents("profil.txt", $donnees, FILE_APPEND);
             header("Location: page_profil.php");
+            fclose($file); 
             exit(); 
         }
+
     }
 }
     ?>

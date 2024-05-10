@@ -41,17 +41,25 @@
                 if ($file) {
                     while (($ligne = fgets($file)) !== false) {
                         $utilisateur = explode(";", $ligne);
-                        $email_data = $utilisateur[2];
-                        $mdp_data = $utilisateur[3];
+                        if(isset($utilisateur[2])){
+                            $email_data = $utilisateur[2];
+                        } else{
+                            $email_data = null;
+                        }
+                        if(isset($utilisateur[3])){
+                            $mdp_data = $utilisateur[3];
+                        } else{
+                            $mdp_data = null;
+                        }
 
                         // Vérification du mot de passe avec password_verify()
                         /*if ($email === $email_data && password_verify($mdp, $mdp_data)) {*/
                         if ($email == $email_data) {
-                            if ($mdp == $mdp_data) {
+                            if (password_verify($mdp, $mdp_data)) {
                                 $utilisateur_trouve = true;
                                 break;
                             } else {
-                                $mdp_incorrecte = 'true';
+                                $mdp_incorrecte = true;
                                 echo '</br><div class="message-erreur">Mot de passe incorrecte</div>';
                                 break;
                             }
@@ -59,11 +67,11 @@
                     }
                     fclose($file);
 
-                    if ($utilisateur_trouve == 'true') {
+                    if ($utilisateur_trouve == true) {
                         // Redirection vers la page d'accueil
                         header("Location: accueil.php");
                         exit;
-                    } else if ($mdp_incorrecte == 'false') {
+                    } else if ($mdp_incorrecte == false) {
                         // Redirection vers la page d'inscription
                         header("Location: page_inscription.php");
                         exit;
