@@ -12,8 +12,8 @@
     <nav class="bandeau">
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
-        <div class="titrebandeau" >Déjà membre</div>
-        <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
+        <div class="titrebandeau">Déjà membre</div>
+        <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')" />
     </nav>
 
     <div class="Connexion-page">
@@ -25,42 +25,57 @@
                     <input type="text" name="email" class="champ" placeholder="Email" required>
                 </div>
                 <div class="donnees">
-                    <label for="motdepasse">Mot de passe :</label>
-                    <input type="password" name="motdepasse" class="champ" placeholder="Mot de passe" required>
+                    <label for="mdp">Mot de passe :</label>
+                    <input type="password" name="mdp" class="champ" placeholder="Mot de passe" required>
                 </div>
-                <input type="submit" value="Connexion"/>
+                <input type="submit" value="Connexion" />
             </form>
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $email = $_POST["email"];
+                $mdp = $_POST["mdp"];
+                $fichier = "profil.txt";
+                $file = fopen($fichier, "r");
+                $utilisateur_trouve = false;
+
+                if ($file) {
+                    while (($ligne = fgets($file)) !== false) {
+                        $utilisateur = explode(";", $ligne);
+                        $email_data = $utilisateur[2];
+                        $mdp_data = $utilisateur[3];
+
+                        // Vérification du mot de passe avec password_verify()
+                        /*if ($email === $email_data && password_verify($mdp, $mdp_data)) {*/
+                        if ($email == $email_data) {
+                            if ($mdp == $mdp_data) {
+                                $utilisateur_trouve = true;
+                                break;
+                            } else {
+                                $mdp_incorrecte = 'true';
+                                echo '</br><div class="message-erreur">Mot de passe incorrecte</div>';
+                                break;
+                            }
+                        }
+                    }
+                    fclose($file);
+
+                    if ($utilisateur_trouve == 'true') {
+                        // Redirection vers la page d'accueil
+                        header("Location: accueil.php");
+                        exit;
+                    } else if ($mdp_incorrecte == 'false') {
+                        // Redirection vers la page d'inscription
+                        header("Location: page_inscription.php");
+                        exit;
+                    }
+                } else {
+                    // Gestion des erreurs de fichier
+                    echo "Une erreur est survenue lors de l'ouverture du fichier.";
+                }
+            }
+            ?>
         </div>
     </div>
-    
-<?php
-// ouverture du fichier pour vérifier si l'user existe ou non
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $mdp = $_POST["mdp"];
-    $fichier = "profil.txt";
-    $handle = fopen($fichier, "r");
-    $utilisateur_trouve = false; 
-    if ($handle) {
-        while (($ligne = fgets($handle)) !== false) {
-            $utilisateur = explode(",", $ligne);
-            if ($utilisateur[2] == $email && $utilisateur[3] == $mdp) {
-                $utilisateur_trouve = true; 
-                break;
-            }
-        }
-        fclose($handle); 
-        if ($utilisateur_trouve) {
-            header("Location: accueil.php"); 
-            exit; 
-        } else {
-            echo "Vous n'êtes pas encore inscrit, vous allez être redirigier vers la page d'inscription";
-            header("Location: page_inscription.php"); 
-            exit;
-        }
-    }
-}
-?>
 
     <script src="script.js" type="text/javascript"></script>
 </body>
