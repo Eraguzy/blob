@@ -1,3 +1,16 @@
+<?php
+// Vérification si le cookie existe
+if (isset($_COOKIE['user_id'])) {
+    // Authentification automatique de l'utilisateur
+    $user_id = $_COOKIE['user_id'];
+    $utilisateur = explode(";", $user_id);
+} else {
+    // Redirection vers la page de connexion si le cookie n'est pas présent
+    header("Location: page_connexion.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,9 +23,9 @@
     <nav class="bandeau">
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
-        <div class="titrebandeau" >Bienvenue</div>
-        <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil" onclick="linkopener('modif.php')"/>
-        <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
+        <div class="titrebandeau" >Bonjour <?php echo $utilisateur[2]; ?></div>
+        <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil" onclick="linkopener('page_profil.php')"/>
+        <input type="button" class="bouton" value="Déconnexion" onclick="linkopener('deconnexion.php')"/>
     </nav>
     <p class="para">Vous êtes maintenant inscrit sur Blob, vous pouvez rechercher dès à présent des personnes en tapant des mots-clés sur la barre de recherche.</p>
     <form action="/search" method="get" class="recherche">

@@ -25,3 +25,9 @@
     width: auto;
     height: auto;
 }
+
+.message-erreur {
+    color: orange; /* Couleur du texte */
+    font-size: 24px; /* Taille de police */
+    text-align: center; /* Alignement du texte au centre */
+}

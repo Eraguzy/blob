@@ -6,7 +6,7 @@
     height: 100px;
     display: flex;
     align-items: center; /* align vertical*/
-    justify-content: flex-end; /* align vertical*/
+    justify-content: flex-start; /* align vertical*/
 }
 
 .bandeau > * { /*séparation entre le bandeau et ses éléments*/
@@ -19,23 +19,21 @@
     font-family: helvetica;
     font-weight: bold;
     font-size: 65px;
-    margin-bottom: 10px;
     margin-right: auto; /*sert à ramener le titre à gauche*/
     margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
 }
 
 
-.titrebandeau{ /*index.php*/
-    font-size: xx-large;
+.titrebandeau { /*index.php*/
+    font-size: 50px;
     color: orange;
     font-family: helvetica;
     font-weight: bold;
-    font-size: 50px;
     position: absolute;
-    width: 50%;
-    align-items: center;
-    margin-right: 8%;
-    margin-bottom: 10px;
+    top: 30px;
+    left: 50%; /* Centrage horizontal */
+    transform: translate(-50%, -50%); /* Décalage de moitié de la taille */
+    text-align: center; /* Centrage horizontal */
 }
 
 .img {

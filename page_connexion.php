@@ -1,3 +1,10 @@
+<?php
+// Vérification si le cookie existe
+if (isset($_COOKIE['user_id'])) {
+    header("Location: index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -34,26 +41,25 @@
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $email = $_POST["email"];
                 $mdp = $_POST["mdp"];
-                $fichier = "profil.txt";
+                $fichier = "compte.txt";
                 $file = fopen($fichier, "r");
                 $utilisateur_trouve = false;
 
                 if ($file) {
                     while (($ligne = fgets($file)) !== false) {
                         $utilisateur = explode(";", $ligne);
-                        if(isset($utilisateur[2])){
-                            $email_data = $utilisateur[2];
+                        if(isset($utilisateur[3])){
+                            $email_data = $utilisateur[3];
                         } else{
                             $email_data = null;
                         }
-                        if(isset($utilisateur[3])){
-                            $mdp_data = $utilisateur[3];
+                        if(isset($utilisateur[4])){
+                            $mdp_data = $utilisateur[4];
                         } else{
                             $mdp_data = null;
                         }
 
                         // Vérification du mot de passe avec password_verify()
-                        /*if ($email === $email_data && password_verify($mdp, $mdp_data)) {*/
                         if ($email == $email_data) {
                             if (password_verify($mdp, $mdp_data)) {
                                 $utilisateur_trouve = true;
@@ -68,6 +74,8 @@
                     fclose($file);
 
                     if ($utilisateur_trouve == true) {
+                        // Création d'un cookie avec une durée de vie de 30 jours
+                        setcookie("user_id", $ligne, time() + (30 * 24 * 3600), "/");
                         // Redirection vers la page d'accueil
                         header("Location: accueil.php");
                         exit;

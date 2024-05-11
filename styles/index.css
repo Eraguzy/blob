@@ -29,15 +29,15 @@ p { /*accueil.php*/
 
 #boutongauche {/*index.php*/
     position: absolute;
-    top: 45%;
-    left: 25%;
+    top: 55%;
+    left: 20%;
     font-size: 18px;
 }
 
 /*mettre le bouton bien à droite et gauche*//*index.php*/
 #boutondroit {
     position: absolute;
-    top: 45%;
-    left: 65%;
+    top: 55%;
+    left: 70%;
     font-size: 18px;
 }

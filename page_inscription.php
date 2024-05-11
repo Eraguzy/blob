@@ -1,3 +1,10 @@
+<?php
+// Vérification si le cookie existe
+if (isset($_COOKIE['user_id'])) {
+    header("Location: index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -58,9 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_email = $_POST["confirm_email"]; 
     $mdp = $_POST["mdp"];
     $confirm_mdp = $_POST["confirm_mdp"]; 
-    $fichier = "profil.txt";
+    $fichier = "compte.txt";
     $file = fopen($fichier, "r");
     $utilisateur_trouve = false;
+    $compteur = 0;
 
     if ($email != $confirm_email || $mdp != $confirm_mdp) {
         echo "Les champs de confirmation ne correspondent pas.";
@@ -75,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($file) {
 
         while (($ligne = fgets($file)) !== false) {
+            $compteur++;
             $utilisateur = explode(";", $ligne);
             if ($utilisateur[2] == $email) {
                 $utilisateur_trouve = true;
@@ -89,9 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } 
         else {
             $hash = password_hash($mdp, PASSWORD_BCRYPT);
-            $donnees = $nom . ";" . $prenom . ";" . $email . ";" . $hash . ";" . "\n";
-            file_put_contents("profil.txt", $donnees, FILE_APPEND);
-            header("Location: page_profil.php");
+            $donnees = $compteur . ";" . $nom . ";" . $prenom . ";" . $email . ";" . $hash . ";" . "\n";
+            file_put_contents("compte.txt", $donnees, FILE_APPEND);
+            setcookie("user_id", $donnees, time() + (30 * 24 * 3600), "/");
+            header("Location: creation_profil.php");
             fclose($file); 
             exit(); 
         }
