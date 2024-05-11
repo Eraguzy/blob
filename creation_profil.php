@@ -2,9 +2,7 @@
 ob_start();
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
-    // Authentification automatique de l'utilisateur
-    $user_id = $_COOKIE['user_id'];
-    $utilisateur = explode(";", $user_id);
+    $id_utilisateur = $_COOKIE['user_id'];
 } else {
     // Redirection vers la page de connexion si le cookie n'est pas présent
     header("Location: page_connexion.php");
@@ -17,7 +15,7 @@ if (isset($_COOKIE['user_id'])) {
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/page_profil.css">
+    <link rel="stylesheet" type="text/css" href="styles/creation_profil.css">
     <title>Blob</title>
     <link rel="icon" href="logo.png">
 </head>
@@ -36,7 +34,7 @@ if (isset($_COOKIE['user_id'])) {
             <form name="creation_profil" method="post" action="#" enctype="multipart/form-data">
                 <div class="donnees">
                     <label for="date">Date de naissance :</label>
-                    <input type="date" name="date" class="date" placeholder="Date" required>
+                    <input type="date" name="date" class="date" placeholder="Date" required min="1900-01-01" max="<?php echo date('Y-m-d'); ?>">
                 </div>
                 <div class="donnees">
                     <label for="genre">Sexe :</label>
@@ -97,11 +95,11 @@ if (isset($_COOKIE['user_id'])) {
                 </div>
                 <div class="donnees">
                     <label for="poids">Poids :</label>
-                    <input type="number" id="poids" name="poids" placeholder="Poids" required>
+                    <input type="number" id="poids" name="poids" placeholder="Poids" required min="30" max="250">
                 </div>
                 <div class="donnees">
                     <label for="taille">Taille :</label>
-                    <input type="number" id="taille" name="taille" placeholder="Taille" required>
+                    <input type="number" id="taille" name="taille" placeholder="Taille" required min="100" max="250">
                 </div>
                 <input type="submit" value="Création du profil" />
             </form>
@@ -119,45 +117,71 @@ if (isset($_COOKIE['user_id'])) {
                 $couleur_des_yeux = $_POST["couleur_des_yeux"];
                 $poids = $_POST["poids"];
                 $taille = $_POST["taille"];
-                $fichier = "profil.txt";
+                $fichier = "profil.json";
 
                 $extension = ".jpg";
-                $chemin_destination = "photo_profil_utilisateurs/" . $utilisateur[0] . $extension;
+                $chemin_destination = "photo_profil_utilisateurs/" . $id_utilisateur . $extension;
                 if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
-
                     $fichier_temporaire = $_FILES["photo"]["tmp_name"];
-
-                    // Créer le dossier de destination s'il n'existe pas
                     if (!file_exists("photo_profil_utilisateurs/")) {
-                        mkdir("photo_profil_utilisateurs/", 0777, true); // Créez le dossier récursivement
+                        mkdir("photo_profil_utilisateurs/", 0777, true);
                     }
-
-                    // Déplacer le fichier temporaire vers le dossier de destination avec le nom approprié
                     if (move_uploaded_file($fichier_temporaire, $chemin_destination)) {
-                        // Succès : fichier téléchargé et déplacé avec succès
                         echo '</br><div class="message-erreur">Fichier téléchargé avec succès.</div>';
                     } else {
-                        // Erreur : échec du déplacement du fichier
                         echo '</br><div class="message-erreur">Une erreur s\'est produite lors du téléchargement du fichier.</div>';
                     }
-
                 } else {
-                    // Erreur : fichier non téléchargé ou erreur lors du téléchargement
                     echo '</br><div class="message-erreur">Une erreur s\'est produite lors du téléchargement du fichier.</div>';
                 }
 
-                $file = fopen($fichier, "r");
-
-                if ($file) {
-                    $donnees = $utilisateur[0] . ";" . $utilisateur[1] . ";" . $utilisateur[2] . ";" . $date . ";" . $genre . ";" . $pseudo . ";" . $situation . ";" . $adresse . ";" . $ville . ";" . $pays . ";" . $couleur_des_cheveux . ";" . $couleur_des_yeux . ";" . $poids . ";" . $taille . ";" . "\n";
-                    file_put_contents("profil.txt", $donnees, FILE_APPEND);
-                    header("Location: accueil.php");
-                    fclose($file);
-                    exit();
+                if (!file_exists($fichier)) {
+                    $data_profil = ["profils" => []];
                 } else {
-                    // Gestion des erreurs de fichier
-                    echo "Une erreur est survenue lors de l'ouverture du fichier.";
+                    $json_profil_contenue = file_get_contents($fichier);
+                    $data_profil = json_decode($json_profil_contenue, true);
                 }
+
+                $json_compte = file_get_contents("compte.json");
+                $data_compte = json_decode($json_compte, true);
+
+                foreach ($data_compte['utilisateurs'] as $utilisateur) {
+                    if ($utilisateur['id'] == $id_utilisateur) {
+                        $nom_utilisateur = $utilisateur['nom'];
+                        $prenom_utilisateur = $utilisateur['prenom'];
+                        break;
+                    }
+                }
+
+                $nouveau_profil = [
+                    'id' => $id_utilisateur,
+                    'nom' => $nom_utilisateur,
+                    'prenom' => $prenom_utilisateur,
+                    'date' => $date,
+                    'genre' => $genre,
+                    'pseudo' => $pseudo,
+                    'situation' => $situation,
+                    'adresse' => $adresse,
+                    'ville' => $ville,
+                    'pays' => $pays,
+                    'couleur_des_cheveux' => $couleur_des_cheveux,
+                    'couleur_des_yeux' => $couleur_des_yeux,
+                    'taille' => $taille,
+                    'poids' => $poids,
+                ];
+
+
+                $data_profil['profils'][] = $nouveau_profil;
+
+                $json_profil = json_encode($data_profil, JSON_PRETTY_PRINT);
+
+                file_put_contents($fichier, $json_profil);
+
+                $expiration = time() + (30 * 24 * 60 * 60);
+                setcookie("creation_profil", 1, $expiration, "/");
+                header("Location: accueil.php");
+                fclose($file);
+                exit();
             }
             ?>
         </div>

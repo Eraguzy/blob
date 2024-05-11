@@ -1,6 +1,9 @@
 <?php
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
+    if ($_COOKIE['creation_profil'] == 0) {
+        header("Location: creation_profil.php");
+    }
     // Authentification automatique de l'utilisateur
     $user_id = $_COOKIE['user_id'];
     $utilisateur = explode(";", $user_id);
@@ -23,7 +26,7 @@ if (isset($_COOKIE['user_id'])) {
     <nav class="bandeau">
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
-        <div class="titrebandeau" >Bonjour <?php echo $utilisateur[2]; ?></div>
+        <div class="titrebandeau" >Bonjour</div>
         <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil" onclick="linkopener('page_profil.php')"/>
         <input type="button" class="bouton" value="Déconnexion" onclick="linkopener('deconnexion.php')"/>
     </nav>

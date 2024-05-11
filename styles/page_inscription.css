@@ -6,6 +6,10 @@
     height: 100vh;
 }
 
+.Connexion-boite {
+    padding: 40px;
+}
+
 .donnees label {
     font-size: large;
     margin-bottom: 8px;

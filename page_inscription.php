@@ -1,7 +1,8 @@
 <?php
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
-    header("Location: index.php");
+    header("Location: accueil.php");
+    exit;
 }
 ?>
 
@@ -18,9 +19,9 @@ if (isset($_COOKIE['user_id'])) {
 <body>
     <nav class="bandeau">
         <img src="logo.png" class="img">
-         <div class="bandeautitle">BLOB</div>
-        <div class="titrebandeau" >Nouveau membre</div>
-        <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')"/>
+        <div class="bandeautitle">BLOB</div>
+        <div class="titrebandeau">Nouveau membre</div>
+        <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')" />
     </nav>
 
     <div class="Connexion-page">
@@ -55,59 +56,65 @@ if (isset($_COOKIE['user_id'])) {
             </form>
         </div>
     </div>
-    
+
     <?php
-    // récupération des données du form, écriture dans un fichier
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nom = $_POST["nom"];
-    $prenom = $_POST["prenom"];
-    $email = $_POST["email"];
-    $confirm_email = $_POST["confirm_email"]; 
-    $mdp = $_POST["mdp"];
-    $confirm_mdp = $_POST["confirm_mdp"]; 
-    $fichier = "compte.txt";
-    $file = fopen($fichier, "r");
-    $utilisateur_trouve = false;
-    $compteur = 0;
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nom = $_POST["nom"];
+        $prenom = $_POST["prenom"];
+        $email = $_POST["email"];
+        $confirm_email = $_POST["confirm_email"];
+        $mdp = $_POST["mdp"];
+        $confirm_mdp = $_POST["confirm_mdp"];
+        $fichier = "compte.json";
 
-    if ($email != $confirm_email || $mdp != $confirm_mdp) {
-        echo "Les champs de confirmation ne correspondent pas.";
-        exit; 
-    }
+        if ($email != $confirm_email || $mdp != $confirm_mdp) {
+            echo "Les champs de confirmation ne correspondent pas.";
+            exit;
+        }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Merci de saisir un email valide.";
-        exit;
-    }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "Merci de saisir un email valide.";
+            exit;
+        }
 
-    if ($file) {
+        if (!file_exists($fichier)) {
+            $data = ["utilisateurs" => []];
+        } else {
+            $json_content = file_get_contents($fichier);
+            $data = json_decode($json_content, true);
+        }
 
-        while (($ligne = fgets($file)) !== false) {
-            $compteur++;
-            $utilisateur = explode(";", $ligne);
-            if ($utilisateur[2] == $email) {
-                $utilisateur_trouve = true;
-                fclose($file);
-                break;
+        foreach ($data['utilisateurs'] as $utilisateur) {
+            if ($utilisateur['email'] == $email) {
+                echo "Cet email est déjà utilisé.";
+                exit;
             }
         }
-        
-        if ($utilisateur_trouve == true) {
-            header("Location: page_connexion.php");
-            exit; 
-        } 
-        else {
-            $hash = password_hash($mdp, PASSWORD_BCRYPT);
-            $donnees = $compteur . ";" . $nom . ";" . $prenom . ";" . $email . ";" . $hash . ";" . "\n";
-            file_put_contents("compte.txt", $donnees, FILE_APPEND);
-            setcookie("user_id", $donnees, time() + (30 * 24 * 3600), "/");
-            header("Location: creation_profil.php");
-            fclose($file); 
-            exit(); 
-        }
 
+        $hash = password_hash($mdp, PASSWORD_BCRYPT);
+
+        $id_utilisateur = uniqid();
+
+        $nouvel_utilisateur = [
+            'id' => $id_utilisateur,
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'email' => $email,
+            'mot_de_passe' => $hash
+        ];
+
+        $data['utilisateurs'][] = $nouvel_utilisateur;
+
+        $json_data = json_encode($data, JSON_PRETTY_PRINT);
+
+        file_put_contents($fichier, $json_data);
+
+        setcookie("user_id", $id_utilisateur, time() + (30 * 24 * 3600), "/");
+        setcookie("creation_profil", 0, time() + (30 * 24 * 3600), "/");
+
+        header("Location: creation_profil.php");
+        exit();
     }
-}
     ?>
     <script src="script.js" type="text/javascript"></script>
 </body>

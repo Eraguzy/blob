@@ -1,0 +1,11 @@
+{
+    "utilisateurs": [
+        {
+            "id": "663fc66368919",
+            "nom": "Beranger",
+            "prenom": "Loueva",
+            "email": "lou@gmail.com",
+            "mot_de_passe": "$2y$10$xSTkUG.slHL6dCLNo2m9IutXgWjcXfE1dh.Mse7Ff6S2eiEueZkwm"
+        }
+    ]
+}

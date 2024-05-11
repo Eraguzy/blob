@@ -1,7 +1,7 @@
 <?php
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
-    header("Location: index.php");
+    header("Location: accueil.php");
 }
 ?>
 
@@ -44,49 +44,36 @@ if (isset($_COOKIE['user_id'])) {
                 $fichier = "compte.txt";
                 $file = fopen($fichier, "r");
                 $utilisateur_trouve = false;
+                $mdp_incorrecte = true;
 
-                if ($file) {
-                    while (($ligne = fgets($file)) !== false) {
-                        $utilisateur = explode(";", $ligne);
-                        if(isset($utilisateur[3])){
-                            $email_data = $utilisateur[3];
-                        } else{
-                            $email_data = null;
-                        }
-                        if(isset($utilisateur[4])){
-                            $mdp_data = $utilisateur[4];
-                        } else{
-                            $mdp_data = null;
-                        }
-
-                        // Vérification du mot de passe avec password_verify()
-                        if ($email == $email_data) {
-                            if (password_verify($mdp, $mdp_data)) {
-                                $utilisateur_trouve = true;
-                                break;
-                            } else {
-                                $mdp_incorrecte = true;
-                                echo '</br><div class="message-erreur">Mot de passe incorrecte</div>';
-                                break;
-                            }
-                        }
-                    }
-                    fclose($file);
-
-                    if ($utilisateur_trouve == true) {
-                        // Création d'un cookie avec une durée de vie de 30 jours
-                        setcookie("user_id", $ligne, time() + (30 * 24 * 3600), "/");
-                        // Redirection vers la page d'accueil
-                        header("Location: accueil.php");
-                        exit;
-                    } else if ($mdp_incorrecte == false) {
-                        // Redirection vers la page d'inscription
-                        header("Location: page_inscription.php");
-                        exit;
-                    }
+                if (!file_exists($fichier)) {
+                    $data = ["utilisateurs" => []];
                 } else {
-                    // Gestion des erreurs de fichier
-                    echo "Une erreur est survenue lors de l'ouverture du fichier.";
+                    $json_content = file_get_contents($fichier);
+                    $data = json_decode($json_content, true);
+                }
+
+                foreach ($data['utilisateurs'] as $utilisateur) {
+                    if ($utilisateur['email'] == $email) {
+                        $utilisateur_trouve = true;
+                        $id_utilisateur = $utilisateur['id'];
+                        break;
+                        if($utilisateur['mdp'] == $mdp){
+                            $mdp_incorrecte = false;
+                        }
+                    }
+                }
+
+                if ($utilisateur_trouve == true && $mdp_incorrecte == false) {
+                    setcookie("user_id", $id_utilisateur, time() + (30 * 24 * 3600), "/");
+                    header("Location: accueil.php");
+                    exit;
+                } else if ($utilisateur_trouve == false) {
+                    header("Location: page_inscription.php");
+                    exit;
+                } else {
+                    echo '</br><div class="message-erreur">Mot de passe incorrecte.</div>';
+                    exit;
                 }
             }
             ?>
