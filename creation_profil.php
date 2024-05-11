@@ -1,5 +1,6 @@
 <?php
 ob_start();
+
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
     $id_utilisateur = $_COOKIE['user_id'];
@@ -180,7 +181,6 @@ if (isset($_COOKIE['user_id'])) {
                 $expiration = time() + (30 * 24 * 60 * 60);
                 setcookie("creation_profil", 1, $expiration, "/");
                 header("Location: accueil.php");
-                fclose($file);
                 exit();
             }
             ?>

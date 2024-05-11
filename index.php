@@ -2,6 +2,7 @@
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
     header("Location: accueil.php");
+    exit;
 }
 ?>
 

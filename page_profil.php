@@ -4,9 +4,7 @@ if (isset($_COOKIE['user_id'])) {
     if ($_COOKIE['creation_profil'] == 0) {
         header("Location: creation_profil.php");
     }
-    // Authentification automatique de l'utilisateur
-    $user_id = $_COOKIE['user_id'];
-    $utilisateur = explode(";", $user_id);
+    $id_utilisateur = $_COOKIE['user_id'];
 } else {
     // Redirection vers la page de connexion si le cookie n'est pas présent
     header("Location: page_connexion.php");
