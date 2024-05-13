@@ -31,7 +31,7 @@ if (isset($_COOKIE['user_id'])) {
 
     <div class="Connexion-page">
         <div class="Connexion-boite">
-            <h2 class="legende">Modification profil</h2>
+            <h2 class="legende">Création du profil</h2>
             <form name="creation_profil" method="post" action="#" enctype="multipart/form-data">
                 <div class="donnees">
                     <label for="date">Date de naissance :</label>
