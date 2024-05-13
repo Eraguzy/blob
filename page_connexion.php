@@ -1,5 +1,4 @@
 <?php
-// Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
     header("Location: accueil.php");
     exit;
@@ -42,10 +41,7 @@ if (isset($_COOKIE['user_id'])) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $email = $_POST["email"];
                 $mdp = $_POST["mdp"];
-                $fichier = "compte.txt";
-                $file = fopen($fichier, "r");
-                $utilisateur_trouve = false;
-                $mdp_incorrecte = true;
+                $fichier = "compte.json";
 
                 if (!file_exists($fichier)) {
                     $data = ["utilisateurs" => []];
@@ -54,27 +50,29 @@ if (isset($_COOKIE['user_id'])) {
                     $data = json_decode($json_content, true);
                 }
 
+                $utilisateur_trouve = false;
+                $mdp_correct = false;
+
                 foreach ($data['utilisateurs'] as $utilisateur) {
                     if ($utilisateur['email'] == $email) {
                         $utilisateur_trouve = true;
-                        $id_utilisateur = $utilisateur['id'];
-                        break;
-                        if($utilisateur['mdp'] == $mdp){
-                            $mdp_incorrecte = false;
+                        if (password_verify($mdp, $utilisateur['mot_de_passe'])) {
+                            $mdp_correct = true;
+                            $id_utilisateur = $utilisateur['id'];
+                            break;
                         }
                     }
                 }
 
-                if ($utilisateur_trouve == true && $mdp_incorrecte == false) {
+                if ($utilisateur_trouve && $mdp_correct) {
                     setcookie("user_id", $id_utilisateur, time() + (30 * 24 * 3600), "/");
                     header("Location: accueil.php");
                     exit;
-                } else if ($utilisateur_trouve == false) {
+                } else if (!$utilisateur_trouve) {
+                    echo '</br><div class="message-erreur">Email incorrect.</div>';
                     header("Location: page_inscription.php");
-                    exit;
                 } else {
-                    echo '</br><div class="message-erreur">Mot de passe incorrecte.</div>';
-                    exit;
+                    echo '</br><div class="message-erreur">Mot de passe incorrect.</div>';
                 }
             }
             ?>
