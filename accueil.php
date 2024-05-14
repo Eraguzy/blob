@@ -1,8 +1,24 @@
 <?php
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
-    if ($_COOKIE['creation_profil'] == 0) {
-        header("Location: creation_profil.php");
+    if (!isset($_COOKIE['creation_profil']) || $_COOKIE['creation_profil'] == 0) {
+        $profil_cree = 0;
+        $id_utilisateur = $_COOKIE['user_id'];
+        $fichier = "compte.json";
+        $json_content = file_get_contents($fichier);
+        $data = json_decode($json_content, true);
+        foreach ($data['profils'] as $profile) {
+            if ($profile['id'] == $id_utilisateur) {
+                $profil_cree= 1;
+                setcookie("creation_profil", 1, time() + (30 * 24 * 3600), "/");
+                break;
+            }
+        }
+        if ($profil_cree == 0) {
+            setcookie("creation_profil", 0, time() + (30 * 24 * 3600), "/");
+            header("Location: creation_profil.php");
+            exit;
+        }
     }
 } else {
     // Redirection vers la page de connexion si le cookie n'est pas présent
