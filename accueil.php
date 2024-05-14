@@ -33,9 +33,9 @@ if (isset($_COOKIE['user_id'])) {
         <button type="submit">Rechercher</button>
     </form>
     <div class="contenu">
-        <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, souscrivez à notre abonnement pour la modique somme de 39,90 euros par an !</p>
+        <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, cliquez sur le bouton en bas afin de découvrir toutes nos offres d'abonnement !</p>
     </div>
-    <input type="button" class="bouton" id="souscription" value="Souscrire" onclick="linkopener('index.php')"/>
+    <input type="button" class="bouton" id="souscription" value="Souscrire" onclick="linkopener('souscription.php')"/>
 
     <script src="script.js" type="text/javascript"></script>
 </body>
