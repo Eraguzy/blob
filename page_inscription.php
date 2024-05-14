@@ -29,14 +29,6 @@ if (isset($_COOKIE['user_id'])) {
             <h2 class="legende">Inscription</h2>
             <form name="connexion" method="post" action="#">
                 <div class="donnees">
-                    <label for="nom">Nom :</label>
-                    <input type="text" name="nom" class="champ" placeholder="Nom" required>
-                </div>
-                <div class="donnees">
-                    <label for="prenom">Prénom :</label>
-                    <input type="text" name="prenom" class="champ" placeholder="Prénom" required>
-                </div>
-                <div class="donnees">
                     <label for="email">Email :</label>
                     <input type="email" name="email" class="champ" placeholder="Email" required>
                 </div>
@@ -56,8 +48,6 @@ if (isset($_COOKIE['user_id'])) {
             </form>
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $nom = $_POST["nom"];
-                $prenom = $_POST["prenom"];
                 $email = $_POST["email"];
                 $confirm_email = $_POST["confirm_email"];
                 $mdp = $_POST["mdp"];
@@ -94,8 +84,6 @@ if (isset($_COOKIE['user_id'])) {
 
                 $nouvel_utilisateur = [
                     'id' => $id_utilisateur,
-                    'nom' => $nom,
-                    'prenom' => $prenom,
                     'email' => $email,
                     'mot_de_passe' => $hash
                 ];

@@ -34,8 +34,17 @@ if (isset($_COOKIE['user_id'])) {
             <h2 class="legende">Création du profil</h2>
             <form name="creation_profil" method="post" action="#" enctype="multipart/form-data">
                 <div class="donnees">
+                    <label for="nom">Nom :</label>
+                    <input type="text" name="nom" class="champ" placeholder="Nom" required>
+                </div>
+                <div class="donnees">
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" name="prenom" class="champ" placeholder="Prénom" required>
+                </div>
+                <div class="donnees">
                     <label for="date">Date de naissance :</label>
-                    <input type="date" name="date" class="date" placeholder="Date" required min="1900-01-01" max="<?php echo date('Y-m-d'); ?>">
+                    <input type="date" name="date" class="date" placeholder="Date" required min="1900-01-01"
+                        max="<?php echo date('Y-m-d'); ?>">
                 </div>
                 <div class="donnees">
                     <label for="genre">Sexe :</label>
@@ -106,7 +115,8 @@ if (isset($_COOKIE['user_id'])) {
             </form>
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+                $nom = $_POST["nom"];
+                $prenom = $_POST["prenom"];
                 $date = $_POST["date"];
                 $genre = $_POST["genre"];
                 $pseudo = $_POST["pseudo"];
@@ -118,7 +128,7 @@ if (isset($_COOKIE['user_id'])) {
                 $couleur_des_yeux = $_POST["couleur_des_yeux"];
                 $poids = $_POST["poids"];
                 $taille = $_POST["taille"];
-                $fichier = "profil.json";
+                $fichier = "compte.json";
 
                 $extension = ".jpg";
                 $chemin_destination = "photo_profil_utilisateurs/" . $id_utilisateur . $extension;
@@ -136,28 +146,20 @@ if (isset($_COOKIE['user_id'])) {
                     echo '</br><div class="message-erreur">Une erreur s\'est produite lors du téléchargement du fichier.</div>';
                 }
 
-                if (!file_exists($fichier)) {
-                    $data_profil = ["profils" => []];
-                } else {
-                    $json_profil_contenue = file_get_contents($fichier);
-                    $data_profil = json_decode($json_profil_contenue, true);
-                }
-
-                $json_compte = file_get_contents("compte.json");
-                $data_compte = json_decode($json_compte, true);
-
-                foreach ($data_compte['utilisateurs'] as $utilisateur) {
-                    if ($utilisateur['id'] == $id_utilisateur) {
-                        $nom_utilisateur = $utilisateur['nom'];
-                        $prenom_utilisateur = $utilisateur['prenom'];
-                        break;
+                if (file_exists($fichier)) {
+                    $json_contenue = file_get_contents($fichier);
+                    $data = json_decode($json_contenue, true);
+                    if (!isset($data['profils'])) {
+                        $data['profils'] = [];
                     }
+                } else {
+                    $data = ["profils" => []];
                 }
 
                 $nouveau_profil = [
                     'id' => $id_utilisateur,
-                    'nom' => $nom_utilisateur,
-                    'prenom' => $prenom_utilisateur,
+                    'nom' => $nom,
+                    'prenom' => $prenom,
                     'date' => $date,
                     'genre' => $genre,
                     'pseudo' => $pseudo,
@@ -172,11 +174,11 @@ if (isset($_COOKIE['user_id'])) {
                 ];
 
 
-                $data_profil['profils'][] = $nouveau_profil;
+                $data['profils'][] = $nouveau_profil;
 
-                $json_profil = json_encode($data_profil, JSON_PRETTY_PRINT);
+                $json_new_profil = json_encode($data, JSON_PRETTY_PRINT);
 
-                file_put_contents($fichier, $json_profil);
+                file_put_contents($fichier, $json_new_profil);
 
                 $expiration = time() + (30 * 24 * 60 * 60);
                 setcookie("creation_profil", 1, $expiration, "/");
