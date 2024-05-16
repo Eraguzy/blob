@@ -20,6 +20,7 @@ if (isset($_COOKIE['user_id'])) {
             <div class="bandeautitle">BLOB</div>
             <input id="deuxboutons" type="button" class="bouton" value="Inscription" onclick="linkopener('page_inscription.php')"/>
             <input type="button" class="bouton" value="Connexion" onclick="linkopener('page_connexion.php')"/>
+            <input type="button" class="bouton" value="Free Tour" onclick="linkopener('freetour.php')"/>
         </nav>
             
         <div class="contenu">
