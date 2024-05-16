@@ -1,0 +1,42 @@
+@import url("global.css");
+@import url("bandeau.css");
+@import url("forms.css");
+
+body, html {
+    height: calc(100% - 50px);
+    margin: 0;
+}
+
+.Connexion-page {
+    height: 100%;
+    width: auto;
+}
+
+.Connexion-boite {
+    position: relative;
+    padding: 20px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+#profil {
+    float: left;
+    top: 0;
+    left: 0;
+    width: 26%;
+    height: 26%;
+    margin-right: 20px;
+}
+
+.donnees{
+    margin-bottom: 0px;
+}
+
+.donnees label, input[type="file"]{
+    margin-bottom: 10px;
+}
+
+.donnees input{
+    padding: 10px 0px 10px 10px;
+}
