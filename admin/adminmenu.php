@@ -14,16 +14,13 @@
             <input type="button" class="bouton" value="Acceuil" onclick="linkopener('../accueil.php')"/>
         </nav>
 
-        <div>
-            <form action="/search" method="get" class="recherche">
-                <input type="text" name="query" placeholder="Rechercher...">
-                <button type="submit">Rechercher</button>
-            </form>
-        </div>
         <div class="titre">
-        <input type="button" class="bouton boutonadmin" value="Signalements" onclick="setopacitybutton(this)"/>
-        <input type="button" class="bouton boutonadmin" value="Bannissements" onclick="setopacitybutton(this)"/>
-        <input type="button" class="bouton boutonadmin" value="Modifier/Supprimer un profil" onclick="setopacitybutton(this)"/>
+        <input type="button" class="bouton boutonadmin" value="Signalements" onclick="setopacitybutton(this); signalements(this);"/>
+        <input type="button" class="bouton boutonadmin" value="Bannissements" onclick="setopacitybutton(this); bannissements(this);"/>
+        <input type="button" class="bouton boutonadmin" value="Modifier/Supprimer un profil" onclick="setopacitybutton(this); modifprofils(this)"/>
+        </div>
+        <div id="temporarycontent">
+
         </div>
 
         <script src="../script.js" type="text/javascript"></script>
