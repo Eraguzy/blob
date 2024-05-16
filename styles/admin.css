@@ -1,0 +1,14 @@
+@import url("global.css");
+@import url("bandeau.css");
+@import url("forms.css");
+@import url("accueil.css");
+
+.titre{
+    display: flex;
+    justify-content: space-between;
+}
+
+.boutonadmin{
+    margin: auto;
+    margin-top: 20px;
+}
