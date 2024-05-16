@@ -82,7 +82,7 @@ function changement_info($nom, $information)
             <div class="donnees">
                 <label for="date">Date de naissance :</label>
                 <input type="date" name="date" class="date" placeholder="Date" required min="1900-01-01"
-                    max="<?php echo date('Y-m-d'); ?>">
+                    max="<?php echo date('Y-m-d'); ?>" value=<?php echo $_SESSION['date'] ?>>
             </div>
             <div class="donnees">
                 <label for="genre">Sexe :</label>
