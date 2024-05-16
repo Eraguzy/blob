@@ -2,24 +2,20 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
+body, html {
+    height: calc(100% - 50px);
+    margin: 0;
+}
+
+.Connexion-page {
+    height: 100%;
+    width: auto;
+}
+
 .Connexion-boite {
-    padding: 18px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.donnees {
-    color: orange;
-}
-
-.donnees input:not([name='Nom']):not([name='Prenom']){
-    width:100%;
-    margin-top: 10px;
-}
-
-.donnees input[name='Nom'], .donnees input[name='Prenom'] {
-    width: calc(66%);
-    margin-top: 10px;
+    position: relative;
+    padding: 20px;
+    width: 40%;
 }
 
 #profil {
@@ -31,8 +27,10 @@
     margin-right: 20px;
 }
 
-.donnees label:not([for="date"]), .donnees select {
-    width: 21%; /* Calcule la largeur pour que deux selects s'affichent côte à côte avec un petit espace entre eux */
-    display: inline-block; /* Affiche les selects sur la même ligne */
-    margin-right: 20px; /* Espacement entre les selects */
+.donnees{
+    color: orange;
 }
+
+input.bouton{
+    margin-left: 30%;
+} 

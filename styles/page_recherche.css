@@ -1,0 +1,41 @@
+@import url("global.css");
+@import url("bandeau.css");
+@import url("forms.css");
+@import url("accueil.css");
+
+body, html {
+    height: calc(100% - 50px);
+    margin: 0;
+}
+
+.Connexion-page {
+    height: 100%;
+}
+
+.Connexion-boite {
+    height: 80%;
+    width: 50%;
+    padding: 0px 10px;
+}
+
+.recherche {
+    width: 100%; /* La barre de recherche prendra toute la largeur de .Connexion-boite */
+}
+
+.recherche input[type="text"] {
+    width: 83.3%;
+}
+
+.recherche button {
+    width: 16.7%;
+}
+
+#res{
+    color: orange;
+    left: 0%;
+    overflow-y: auto; /* Ajout d'un défilement vertical si nécessaire */
+}
+
+.profile{
+    margin-bottom: 10px;
+}
