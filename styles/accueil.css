@@ -44,3 +44,32 @@ p { /*accueil.php*/
     margin-top: -20px;
     margin-bottom: -5px;
 }
+
+.profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Change le curseur au survol */
+}
+
+.profile img {
+    width: 50px; /* Définit une largeur fixe pour les images de profil */
+    height: 50px; /* Définit une hauteur fixe pour les images de profil */
+    border-radius: 50%; /* Arrondit les images de profil */
+    margin-right: 10px; /* Ajoute un espacement à droite des images */
+}
+
+.profile span {
+    font-weight: bold; /* Rend le nom d'utilisateur en gras */
+}
+
+.conteneur{
+    position: relative;
+}
+
+#res {
+    position: absolute; /* Positionne les résultats juste en dessous de la barre de recherche */
+    left: 21%; /* Aligne les résultats à gauche de la barre de recherche */
+    margin-top: -12px;
+}
+
+
