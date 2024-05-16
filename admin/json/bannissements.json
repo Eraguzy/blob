@@ -1,0 +1,12 @@
+{
+    "bannissements": [
+        {
+            "case": 1,
+            "email": "eraguzy@gmail.com",
+            "description": "ressemble à bogdanov",
+            "auteur": {
+                "id": "664674387ae19"
+            }
+        }
+    ]
+}

@@ -1,3 +1,15 @@
 {
-    
+    "signalements": [ 
+        {
+            "case": 1,
+            "description": "personne très moche",
+            "suspect": {
+                "id": "6642a521bd7eb"
+            },
+            "auteur": {
+                "id": "664674387ae19"
+            },
+            "statut": 0
+        }
+    ]
 }
