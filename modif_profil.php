@@ -11,6 +11,8 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
+session_start();
+
 // Vérifier si la session est déjà démarrée
 if (!isset($_SESSION['nom'])) {
     // Si la session n'est pas démarrée, charger les données à partir du fichier JSON
@@ -69,7 +71,7 @@ function changement_info($nom, $information)
 
 <div class="Connexion-page">
     <div class="Connexion-boite">
-        <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil">
+        <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil" onclick="linkopener('changement_image.php')">
         <form method="post" action="#" enctype="multipart/form-data">
             <?php
             changement_info("nom", $_SESSION['nom']);
