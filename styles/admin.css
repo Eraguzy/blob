@@ -17,4 +17,14 @@
     border-radius: 2px;
     border: 1px solid;
     margin: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+
+.bannissements{
+    border-radius: 2px;
+    border: 1px solid;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
 }

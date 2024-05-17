@@ -20,7 +20,6 @@
         <input type="button" class="bouton boutonadmin" value="Modifier/Supprimer un profil" onclick="setopacitybutton(this); modifprofils(this)"/>
         </div>
         <div id="temporarycontent">
-
         </div>
 
         <script src="../script.js" type="text/javascript"></script>
