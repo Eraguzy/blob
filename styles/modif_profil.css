@@ -18,7 +18,7 @@
 }
 
 .donnees input[name='Nom'], .donnees input[name='Prenom'] {
-    width: calc(66%);
+    width: calc(65%);
     margin-top: 10px;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .donnees label:not([for="date"]), .donnees select {
-    width: 21%; /* Calcule la largeur pour que deux selects s'affichent côte à côte avec un petit espace entre eux */
+    width: 20.5%; /* Calcule la largeur pour que deux selects s'affichent côte à côte avec un petit espace entre eux */
     display: inline-block; /* Affiche les selects sur la même ligne */
     margin-right: 20px; /* Espacement entre les selects */
 }
