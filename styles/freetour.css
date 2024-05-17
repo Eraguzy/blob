@@ -4,16 +4,16 @@
 
 
 .image1 {
-    width: 350px; /* Largeur souhaitée */
+    width: 25%; /* Largeur souhaitée */
     height: auto; /* Hauteur ajustée automatiquement pour conserver les proportions de l'image */
-    margin-left: 20px;
-    margin-bottom: 20px;
+    margin-left: 3%;
+    margin-bottom: 5%;
 }
 
 .image2 {
-    width: 500px;
+    width: 25%;
     height: auto;
-    margin-left: 20px;
+    margin-left: 3%;
     
 }
 
@@ -27,24 +27,25 @@ p { /*accueil.php*/
 
 #souscription { /*accueil.php*/
     position: absolute;
-    top: 160%;
+    top: 110%;
     left: 45%;
     font-size: 18px;
     margin-top: -20px;
-    margin-bottom: 30px;
+    margin-bottom: 3%;
 }
 
 .text1 {
     position:absolute;
-    top: 50%;
+    top: 30%;
     left: 30%;
     text-align: center;
 }
 
 .text2 {
     position: absolute;
-    left: 43%;
-    bottom: -15%;
+    left: 40%;
+    bottom: 25%;
+    text-align: center;
 }
 
 .temoi1 {
@@ -55,6 +56,6 @@ p { /*accueil.php*/
 .temoi2 {
     text-align: center;
     position: absolute;
-    top: 120%;
-    left: 40%;
+    top: 80%;
+    left: 30%;
 }
