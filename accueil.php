@@ -25,6 +25,19 @@ if (isset($_COOKIE['user_id'])) {
     header("Location: page_connexion.php");
     exit;
 }
+
+// Charger les données du fichier JSON
+$fichier = "compte.json";
+$json_content = file_get_contents($fichier);
+$data = json_decode($json_content, true);
+
+// Trier les profils par ID en supposant que les IDs sont ordonnés chronologiquement
+usort($data['profils'], function ($a, $b) {
+    return strcmp($a['id'], $b['id']);
+});
+
+// Extraire les trois derniers profils
+$derniers_utilisateurs = array_slice($data['profils'], -3);
 ?>
 
 <!DOCTYPE html>
@@ -42,12 +55,10 @@ if (isset($_COOKIE['user_id'])) {
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Bonjour</div>
-        <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil"
-            onclick="linkopener('modif_profil.php')" />
+        <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil" onclick="linkopener('modif_profil.php')" />
         <input type="button" class="bouton" value="Déconnexion" onclick="linkopener('deconnexion.php')" />
     </nav>
-    <p class="para">Vous êtes maintenant inscrit sur Blob, vous pouvez rechercher dès à présent des personnes en tapant
-        des mots-clés sur la barre de recherche.</p>
+    <p class="para">Vous êtes maintenant inscrit sur Blob, vous pouvez rechercher dès à présent des personnes en tapant des mots-clés sur la barre de recherche.</p>
 
     <div class="conteneur">
         <form action="page_recherche.php" method="get" class="recherche">
@@ -103,8 +114,15 @@ if (isset($_COOKIE['user_id'])) {
     </script>
 
     <div class="contenu">
-        <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, cliquez sur le bouton en bas afin de
-            découvrir toutes nos offres d'abonnement !</p>
+        
+
+<p>Les trois derniers profils inscrits sur Blob :</p><br>
+<ul id="utilisateurs">
+            <?php foreach ($derniers_utilisateurs as $utilisateur) : ?>
+                <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, cliquez sur le bouton en bas afin de découvrir toutes nos offres d'abonnement !</p>
     </div>
     <input type="button" class="bouton" id="souscription" value="Souscrire" onclick="linkopener('souscription.php')" />
 
