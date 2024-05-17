@@ -1,15 +1,15 @@
 @import url("global.css");
 @import url("bandeau.css");
 
-h2 { /*accueil.php*/
+h2 { 
     text-align: center;
     margin-bottom: 50px;
     margin-top: -20px;
 }
 
-.recherche { /*accueil.php*/
+.recherche { 
     display: flex;
-    justify-content: center; /* Centre le formulaire de recherche */
+    justify-content: center; 
     margin: 20px 0;
 }
 
@@ -17,26 +17,26 @@ h2 { /*accueil.php*/
     width: 50%;
     padding: 10px;
     border: 2px solid #ccc;
-    border-radius: 5px 0 0 5px; /* Arrondit seulement les coins gauche */
+    border-radius: 5px 0 0 5px; 
 }
 
 .recherche button {
     padding: 12px 20px;
     border: none;
-    border-radius: 0 5px 5px 0; /* Arrondit seulement les coins droit */
+    border-radius: 0 5px 5px 0; 
     background-color: #4CAF50;
     color: white;
 }
 
-p { /*accueil.php*/
+p { 
     display: flex;
-    justify-content: center; /* Centre horizontalement dans le conteneur */
-    height: 10vh; /* Utilisez une hauteur pour voir l'effet du centrage */
-    align-items: center; /* Centre verticalement dans le conteneur */
-    margin: 0; /* Supprime les marges par défaut */
+    justify-content: center; 
+    height: 10vh; 
+    align-items: center; 
+    margin: 0; 
 }
 
-#souscription { /*accueil.php*/
+#souscription { 
     position: absolute;
     top: 95%;
     left: 45%;
@@ -48,11 +48,11 @@ p { /*accueil.php*/
 .profile {
     display: flex;
     align-items: center;
-    cursor: pointer; /* Change le curseur au survol */
+    cursor: pointer; 
 }
 
 .profile img {
-    width: 50px; /* Définit une largeur fixe pour les images de profil */
+    width: 50px; 
     height: 50px; /* Définit une hauteur fixe pour les images de profil */
     border-radius: 50%; /* Arrondit les images de profil */
     margin-right: 10px; /* Ajoute un espacement à droite des images */
@@ -72,4 +72,9 @@ p { /*accueil.php*/
     margin-top: -12px;
 }
 
+#utilisateurs {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
 
