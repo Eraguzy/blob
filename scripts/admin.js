@@ -19,7 +19,7 @@ function modifprofils(bouton){ // il y a un div vide dans le html, on remplace l
     document.body.appendChild(tempdiv);
 }
 
-function signalements(bouton){
+function bannissements(bouton){
     var html =
         ``
     
@@ -28,11 +28,16 @@ function signalements(bouton){
     document.body.appendChild(tempdiv);
 }
 
-function bannissements(bouton){
+function signalements(bouton){
     var html =
-        ``
-    
+        `<p id="report">test signalement 1</p>`;
+        
     let tempdiv = document.getElementById('temporarycontent');
     tempdiv.innerHTML = html;
-    document.body.appendChild(tempdiv);
+
+    let tempreport = document.getElementById('report');
+    tempreport.style.borderRadius = "2px";
+    tempreport.style.border = "1px solid";
+    tempreport.style.backgroundColor = "#f4f4f4";
+    tempreport.style.margin = "20px";
 }

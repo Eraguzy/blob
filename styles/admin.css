@@ -12,3 +12,9 @@
     margin: auto;
     margin-top: 20px;
 }
+
+.signalements{
+    border-radius: 2px;
+    border: 1px solid;
+    margin: 20px;
+}
