@@ -130,6 +130,7 @@ function changement_info($nom, $information)
                     <option value="decouverte">Découverte</option>
                     <option value="Classique">Classique</option>
                     <option value="VIP">VIP</option>
+                    <option value="utilisateur">Utilisateur (sans offre)</option>
                 </select>
             </div>
             <div class="donnees">
