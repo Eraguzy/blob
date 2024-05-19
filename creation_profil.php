@@ -171,7 +171,8 @@ if (isset($_COOKIE['user_id'])) {
                     'couleur_des_yeux' => $couleur_des_yeux,
                     'taille' => $taille,
                     'poids' => $poids,
-                    'statut' => 'utilisateur'
+                    'statut' => 'utilisateur',  
+                    'utilisateurs_bloques' => []
                 ];
 
 
