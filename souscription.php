@@ -4,6 +4,31 @@ if (!isset($_COOKIE['user_id'])) {
     header("Location: accueil.php");
     exit;
 }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id_utilisateur = $_COOKIE['user_id'];
+    $abo = $_POST['abo'];
+    $fichier = "compte.json";
+
+    if (file_exists($fichier)) {
+        $json_contenue = file_get_contents($fichier);
+        $data = json_decode($json_contenue, true);
+    } else {
+        $data = ["profils" => []];
+    }
+
+    foreach ($data['profils'] as &$profil) {
+        if ($profil['id'] == $id_utilisateur) {
+            $profil['statut'] = $abo;
+            break;
+        }
+    }
+
+    $json_new_contenue = json_encode($data, JSON_PRETTY_PRINT);
+    file_put_contents($fichier, $json_new_contenue);
+
+    header("Location: abonne.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
