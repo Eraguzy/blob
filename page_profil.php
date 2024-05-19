@@ -48,7 +48,7 @@ function affichage_info($nom, $information, $id_utilisateur)
     $nom = ucfirst($nom);
     $bouton_message = '';
     if ($nom == 'Poids') {
-        $bouton_message = "<input type='button' class='bouton' value='Envoyer un message' onclick=\"linkopener('page_discussion.php?id_utilisateur=$id_utilisateur')\" />";
+        $bouton_message = "<input type='button' class='bouton' value='Envoyer un message' onclick=\"linkopener('page_discussion.php?id_cible=$id_utilisateur')\" />";
     }
     echo "<div class='donnees'>
             $nom : $information
