@@ -2,102 +2,65 @@
     "signalements": [
         {
             "case": 1,
-            "description": "personne très moche",
+            "description": "trop moche",
             "suspect": {
-                "id": "6642a521bd7eb"
-            },
-            "auteur": {
-                "id": "664674387ae19"
-            }
-        },
-        {
-            "case": 2,
-            "description": "encore plus moche",
-            "suspect": {
-                "id": "6645897eabcdf"
-            },
-            "auteur": {
-                "id": "6645897dabcdf"
+                "id": "user1@example.com"
             }
         },
         {
             "case": 3,
             "description": "comportement suspect",
             "suspect": {
-                "id": "6647a521bd7ec"
-            },
-            "auteur": {
-                "id": "664674387ae20"
+                "id": "user3@example.com"
             }
         },
         {
             "case": 4,
-            "description": "inapproprié",
+            "description": "inappropri\u00e9",
             "suspect": {
-                "id": "6645897eabcde"
-            },
-            "auteur": {
-                "id": "6645897dabcde"
+                "id": "user4@example.com"
             }
         },
         {
             "case": 5,
             "description": "harcelement",
             "suspect": {
-                "id": "6647a521bd7ed"
-            },
-            "auteur": {
-                "id": "664674387ae21"
+                "id": "user5@example.com"
             }
         },
         {
             "case": 6,
             "description": "spam",
             "suspect": {
-                "id": "6645897eabcdf"
-            },
-            "auteur": {
-                "id": "6645897dabcdf"
+                "id": "user6@example.com"
             }
         },
         {
             "case": 7,
             "description": "compte suspect",
             "suspect": {
-                "id": "6647a521bd7ee"
-            },
-            "auteur": {
-                "id": "664674387ae22"
+                "id": "user7@example.com"
             }
         },
         {
             "case": 8,
-            "description": "contenu inapproprié",
+            "description": "contenu inappropri\u00e9",
             "suspect": {
-                "id": "6645897eabcdd"
-            },
-            "auteur": {
-                "id": "6645897dabcdd"
+                "id": "user8@example.com"
             }
         },
         {
             "case": 9,
-            "description": "usurpation d'identité",
+            "description": "usurpation d'identit\u00e9",
             "suspect": {
-                "id": "6647a521bd7ef"
-            },
-            "auteur": {
-                "id": "664674387ae23"
+                "id": "user9@example.com"
             }
         },
         {
             "case": 10,
-            "description": "activité suspecte",
+            "description": "activit\u00e9 suspecte",
             "suspect": {
-                "id": "6645897eabcda"
-            },
-            "auteur": {
-                "id": "6645897dabcda"
+                "id": "user10@example.com"
             }
         }
     ]

@@ -1,5 +1,22 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+     
+    function highestcase($jsonpath){ //renvoie le numéro du cas actuel le plus élevé + 1 d'un fichier json
+        $jsonin = file_get_contents($jsonpath);
+        $data = json_decode($jsonin, true);
+    
+        // Trouver le plus grand numéro de cas actuel
+        $max_case = 0;
+        foreach ($data['bannissements'] as $ban) {
+            if ($ban['case'] > $max_case) {
+                $max_case = $ban['case'];
+            }
+        }
+
+        // Nouveau numéro de cas = plus grand numéro de cas + 1
+        return $max_case + 1;
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){ // actions ban/unban etc
         if (isset($_POST['action']) && $_POST['action'] === 'unban'){ //vérif de l'action voulue
             $json_content = file_get_contents('json/bannissements.json'); //fichier json lui même
             $data = json_decode($json_content, true); //extrait le tableau de tableaux contenant la hiérarchie du fichier json
@@ -17,8 +34,27 @@
         if (isset($_POST['action']) && $_POST['action'] === 'ban'){
             $json_content = file_get_contents('json/bannissements.json');
             $data = json_decode($json_content, true);
+            
+            $new_ban = [
+                "case" => highestcase('json/bannissements.json'), 
+                "email" => $_POST['email'], 
+                "description" => $_POST['description'],
+            ];
+            
+            $data['bannissements'][] = $new_ban; //ajout dans la variable puis dans la BDD
+            file_put_contents('json/bannissements.json', json_encode($data, JSON_PRETTY_PRINT));
+            
 
+            //supp tous les signalements liés à ce mail
+            $json_content = file_get_contents('json/signalements.json');
+            $data = json_decode($json_content, true);
 
+            foreach($data['signalements'] as $key => $sign){
+                if($sign['suspect']['id'] == $_POST['email']){
+                    array_splice($data['signalements'], $key, 1);
+                }
+            }
+            file_put_contents('json/signalements.json', json_encode($data, JSON_PRETTY_PRINT));
         }
 
 

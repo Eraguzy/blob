@@ -33,7 +33,6 @@ function bannissements(bouton){
                 var conteneur = bannissements[i];
 
                 var cas = conteneur.case;
-                var auteur = conteneur.auteur.id;
                 var description = conteneur.description;
                 var email = conteneur.email;
                 var html = `
@@ -45,7 +44,6 @@ function bannissements(bouton){
                         </div>
                     </div>
                     email : ${email}<br>
-                    banni par : ${auteur}<br>
                     description : ${description}
                 </div>`;
                 tempdiv.innerHTML += html;
@@ -73,17 +71,16 @@ function signalements(bouton){
                 var cas = conteneur.case;
                 var description = conteneur.description;
                 var suspect = conteneur.suspect.id;
-                var auteur = conteneur.auteur.id;
                 var html = `
                 <div class="encadre">
                     <div class="encadreheader">
                         <h3>cas numéro ${cas}</h3>
                         <div>
                             <input type="button" value="Supprimer le signalement" onclick="boutonaction('${cas}','supp', this)"/>
-                            <input type="button" value="Bannir" onclick="boutonaction('${cas}','ban', this)"/>
+                            <input type="button" value="Bannir" onclick="boutonaction('${cas}','ban', this,'${suspect}')"/>
                         </div>
                     </div>
-                    ${suspect} signalé par : ${auteur}<br>
+                    ${suspect} signalé<br>
                     description : ${description}
                 </div>`;
                 tempdiv.innerHTML += html;
@@ -96,7 +93,8 @@ function signalements(bouton){
 }
 
 //  actions
-function boutonaction(caseid, event, boutonchoisi){
+// les bans et signalements se feront selon email car beaucoup plus simple pour bannir
+function boutonaction(caseid, event, boutonchoisi, email = ""){ //boutonchoisi pour remplacer le bouton par le texte souhaité pour afficher sur le client
     var req = new XMLHttpRequest();
     req.open("POST","../admin/adminmenu.php", true); // définition du fichier php contenant l'action à realiser
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -107,7 +105,11 @@ function boutonaction(caseid, event, boutonchoisi){
             boutonchoisi.parentNode.replaceChild(newText, boutonchoisi);
         }
     }
-    
-    param = "action="+ event +"&case=" + caseid; //envoi au php du cas à supp
+
+    if(event == "ban" || event == "report"){
+        var description = prompt("Veuillez entrer une description pour cette action");
+    }
+
+    param = "action="+ event +"&case=" + caseid +"&email=" + email +"&description=" + description; //envoi au php du cas à supp et de l'email concerné si besoin
     req.send(param);
 }
