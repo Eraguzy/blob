@@ -71,7 +71,7 @@ function affichage_info($nom, $information, $id_utilisateur)
     <img src="logo.png" class="img">
     <div class="bandeautitle">BLOB</div>
     <div class="titrebandeau">Profil</div>
-    <input type="button" class="bouton" value="Accueil" onclick="linkopener('accueil.php')" />
+    <input type="button" class="bouton" value="Accueil" onclick="linkopener('abonne.php')" />
 </nav>
 
 <div class="Connexion-page">
