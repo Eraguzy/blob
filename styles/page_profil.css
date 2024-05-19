@@ -34,3 +34,10 @@ body, html {
 input.bouton{
     margin-left: 30%;
 } 
+
+input[name="reportbutton"]{
+    position: absolute;
+    right: 1.2%;
+    bottom: 4%;
+    padding: 0.5%;
+}

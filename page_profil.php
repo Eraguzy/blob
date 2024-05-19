@@ -31,6 +31,11 @@ foreach ($data['profils'] as $profil) {
         $profil_visite['couleur_des_cheveux'] = $profil['couleur_des_cheveux'];
         $profil_visite['taille'] = $profil['taille'];
         $profil_visite['poids'] = $profil['poids'];
+        foreach ($data['utilisateurs'] as $user){ //recup email de l'utilisateur visité pour signalement
+            if ($user['id'] == $id_utilisateur){
+                $emailuser = $user['email'];
+            }
+        }
         break;
     }
 }
@@ -92,10 +97,12 @@ function affichage_info($nom, $information, $id_utilisateur)
         affichage_info("taille", $profil_visite['taille'], $id_utilisateur);
         affichage_info("poids", $profil_visite['poids'], $id_utilisateur);
         ?>
+        <input type="button" value="Signaler" name="reportbutton" onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
     </div>
 </div>
 
 <script src="script.js" type="text/javascript"></script>
+<script src="scripts/admin.js" type="text/javascript"></script>
 </body>
 
 </html>

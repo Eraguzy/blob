@@ -1,14 +1,15 @@
 <?php
      
-    function highestcase($jsonpath){ //renvoie le numéro du cas actuel le plus élevé + 1 d'un fichier json
+    function highestcase($jsonpath, $key){ //renvoie le numéro du cas actuel le plus élevé + 1 d'un fichier json
+        // $key contient le nom du tableau (signalements ou bans)
         $jsonin = file_get_contents($jsonpath);
         $data = json_decode($jsonin, true);
     
         // Trouver le plus grand numéro de cas actuel
         $max_case = 0;
-        foreach ($data['bannissements'] as $ban) {
-            if ($ban['case'] > $max_case) {
-                $max_case = $ban['case'];
+        foreach ($data[$key] as $item){
+            if ($item['case'] > $max_case){
+                $max_case = $item['case'];
             }
         }
 
@@ -32,11 +33,11 @@
 
 
         if (isset($_POST['action']) && $_POST['action'] === 'ban'){
-            $json_content = file_get_contents('json/bannissements.json');
+            $json_content = file_get_contents('json/bannissements.json', 'bannissements');
             $data = json_decode($json_content, true);
             
             $new_ban = [
-                "case" => highestcase('json/bannissements.json'), 
+                "case" => highestcase('json/bannissements.json', 'bannissements'), 
                 "email" => $_POST['email'], 
                 "description" => $_POST['description'],
             ];
@@ -45,7 +46,7 @@
             file_put_contents('json/bannissements.json', json_encode($data, JSON_PRETTY_PRINT));
             
 
-            //supp tous les signalements liés à ce mail
+            // supp tous les signalements liés à ce mail
             $json_content = file_get_contents('json/signalements.json');
             $data = json_decode($json_content, true);
 
@@ -58,7 +59,7 @@
         }
 
 
-        if (isset($_POST['action']) && $_POST['action'] === 'supp'){
+        if (isset($_POST['action']) && $_POST['action'] === 'supp'){ //supp un signalement
             $json_content = file_get_contents('json/signalements.json');
             $data = json_decode($json_content, true);
             
@@ -69,6 +70,20 @@
                 }
             }
             file_put_contents('json/signalements.json', json_encode($data, JSON_PRETTY_PRINT));   
+        }
+
+        if (isset($_POST['action']) && $_POST['action'] === 'report'){ // créer un signalement
+            $json_content = file_get_contents('json/signalements.json');
+            $data = json_decode($json_content, true);
+            
+            $new_report = [
+                "case" => highestcase('json/signalements.json', 'signalements'), 
+                "suspect" => ["id" => $_POST['email']], 
+                "description" => $_POST['description'],
+            ];
+            
+            $data['signalements'][] = $new_report; //ajout dans la variable puis dans la BDD
+            file_put_contents('json/signalements.json', json_encode($data, JSON_PRETTY_PRINT));
         }
     }
 ?>

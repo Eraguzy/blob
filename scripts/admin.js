@@ -106,7 +106,7 @@ function boutonaction(caseid, event, boutonchoisi, email = ""){ //boutonchoisi p
         }
     }
 
-    if(event == "ban" || event == "report"){
+    if(event == "ban" || event == "report"){ // demande de description unique lorsque que c'est pertinent
         var description = prompt("Veuillez entrer une description pour cette action");
     }
 

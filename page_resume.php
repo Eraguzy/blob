@@ -16,11 +16,17 @@ $fichier = "compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
-foreach ($data['profils'] as $profil) {
-    if ($profil['id'] == $id_utilisateur) {
+foreach ($data['profils'] as $profil){
+    if ($profil['id'] == $id_utilisateur){
         $profil_visite['nom'] = $profil['nom'];
         $profil_visite['prenom'] = $profil['prenom'];
         $profil_visite['genre'] = $profil['genre'];
+
+        foreach ($data['utilisateurs'] as $user){ //recup email de l'utilisateur visité pour signalement
+            if ($user['id'] == $id_utilisateur){
+                $emailuser = $user['email'];
+            }
+        }
         break;
     }
 }
@@ -56,10 +62,12 @@ foreach ($data['profils'] as $profil) {
         <div class='donnees'>
             Genre : <?php echo $profil_visite['genre']; ?>
         </div>
+        <input type="button" value="Signaler" name="reportbutton" onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
     </div>
 </div>
-
+ 
 <script src="script.js" type="text/javascript"></script>
+<script src="scripts/admin.js" type="text/javascript"></script>
 </body>
 
 </html>
