@@ -52,6 +52,7 @@ if (isset($_COOKIE['user_id'])) {
 
                 $utilisateur_trouve = false;
                 $mdp_correct = false;
+                $statut_utilisateur = null;
 
                 foreach ($data['utilisateurs'] as $utilisateur) {
                     if ($utilisateur['email'] == $email) {
@@ -59,14 +60,24 @@ if (isset($_COOKIE['user_id'])) {
                         if (password_verify($mdp, $utilisateur['mot_de_passe'])) {
                             $mdp_correct = true;
                             $id_utilisateur = $utilisateur['id'];
+                            foreach ($data['profils'] as $profil) {
+                                if ($profil['id'] == $id_utilisateur) {
+                                    $statut_utilisateur = $profil['statut'];
+                                    break;
+                                }
+                            }
                             break;
                         }
                     }
                 }
+            
 
                 if ($utilisateur_trouve && $mdp_correct) {
                     setcookie("user_id", $id_utilisateur, time() + (30 * 24 * 3600), "/");
-                    header("Location: accueil.php");
+                    // Changement : Redirection basée sur le statut de l'utilisateur
+                    if ($statut_utilisateur == 'classique' || $statut_utilisateur == 'vip' || $statut_utilisateur == 'decouverte') {
+                        header("Location: abonne.php");
+                    } 
                     exit;
                 } else if (!$utilisateur_trouve) {
                     echo '</br><div class="message-erreur">Email incorrect.</div>';
