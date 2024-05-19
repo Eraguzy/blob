@@ -50,7 +50,7 @@
             <img src="../logo.png" class="img" onclick="linkopener('../accueil.php')">
             <div class="bandeautitle">BLOB</div>
             <div class="titrebandeau">Tableau de bord administrateur</div>
-            <input type="button" class="bouton" value="Acceuil" onclick="linkopener('../accueil.php')"/>
+            <input type="button" class="bouton" value="Accueil" onclick="linkopener('../index.php')"/>
         </nav>
 
         <div class="titre">
