@@ -79,7 +79,7 @@ function signalements(bouton){
                     <div class="encadreheader">
                         <h3>cas numéro ${cas}</h3>
                         <div>
-                            <input type="button" value="Supprimer" onclick="boutonaction('${cas}','supp', this)"/>
+                            <input type="button" value="Supprimer le signalement" onclick="boutonaction('${cas}','supp', this)"/>
                             <input type="button" value="Bannir" onclick="boutonaction('${cas}','ban', this)"/>
                         </div>
                     </div>
@@ -103,7 +103,7 @@ function boutonaction(caseid, event, boutonchoisi){
     
     req.onreadystatechange = function(){
         if (this.readyState === 4 && this.status === 200) {
-            var newText = document.createTextNode("Rafraîchissez la page."); 
+            var newText = document.createTextNode("Patientez et rafraîchissez la page, cela peut prendre un certain temps..."); 
             boutonchoisi.parentNode.replaceChild(newText, boutonchoisi);
         }
     }
