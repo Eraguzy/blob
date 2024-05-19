@@ -1,5 +1,5 @@
-{   
-    "signalements": [ 
+{
+    "signalements": [
         {
             "case": 1,
             "description": "personne très moche",
@@ -8,8 +8,7 @@
             },
             "auteur": {
                 "id": "664674387ae19"
-            },
-            "statut": 0
+            }
         },
         {
             "case": 2,
@@ -19,6 +18,86 @@
             },
             "auteur": {
                 "id": "6645897dabcdf"
+            }
+        },
+        {
+            "case": 3,
+            "description": "comportement suspect",
+            "suspect": {
+                "id": "6647a521bd7ec"
+            },
+            "auteur": {
+                "id": "664674387ae20"
+            }
+        },
+        {
+            "case": 4,
+            "description": "inapproprié",
+            "suspect": {
+                "id": "6645897eabcde"
+            },
+            "auteur": {
+                "id": "6645897dabcde"
+            }
+        },
+        {
+            "case": 5,
+            "description": "harcelement",
+            "suspect": {
+                "id": "6647a521bd7ed"
+            },
+            "auteur": {
+                "id": "664674387ae21"
+            }
+        },
+        {
+            "case": 6,
+            "description": "spam",
+            "suspect": {
+                "id": "6645897eabcdf"
+            },
+            "auteur": {
+                "id": "6645897dabcdf"
+            }
+        },
+        {
+            "case": 7,
+            "description": "compte suspect",
+            "suspect": {
+                "id": "6647a521bd7ee"
+            },
+            "auteur": {
+                "id": "664674387ae22"
+            }
+        },
+        {
+            "case": 8,
+            "description": "contenu inapproprié",
+            "suspect": {
+                "id": "6645897eabcdd"
+            },
+            "auteur": {
+                "id": "6645897dabcdd"
+            }
+        },
+        {
+            "case": 9,
+            "description": "usurpation d'identité",
+            "suspect": {
+                "id": "6647a521bd7ef"
+            },
+            "auteur": {
+                "id": "664674387ae23"
+            }
+        },
+        {
+            "case": 10,
+            "description": "activité suspecte",
+            "suspect": {
+                "id": "6645897eabcda"
+            },
+            "auteur": {
+                "id": "6645897dabcda"
             }
         }
     ]

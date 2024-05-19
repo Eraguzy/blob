@@ -1,3 +1,33 @@
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        if (isset($_POST['action']) && $_POST['action'] === 'unban'){ //vérif de l'action voulue
+            $json_content = file_get_contents('json/bannissements.json');
+            $data = json_decode($json_content, true);
+
+            foreach($data['bannissements'] as $key => $bans){ //parcours du fichier json
+                if($bans['case'] == $_POST['case']){ // comparaison du numéro de cas
+                    array_splice($data['bannissements'], $key, 1);
+                    break;
+                }
+            }
+            file_put_contents('json/bannissements.json', json_encode($data, JSON_PRETTY_PRINT));
+        }
+
+
+        if (isset($_POST['action']) && $_POST['action'] === 'ban'){
+            $json_content = file_get_contents('json/bannissements.json');
+            $data = json_decode($json_content, true);
+
+
+        }
+        if (isset($_POST['action']) && $_POST['action'] === 'supp'){
+            $json_content = file_get_contents('json/signalements.json');
+            $data = json_decode($json_content, true);
+            
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

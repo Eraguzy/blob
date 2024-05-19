@@ -15,6 +15,22 @@
             "auteur": {
                 "id": "666"
             }
+        },
+        {
+            "case": 3,
+            "email": "example@example.com",
+            "description": "comportement inapproprié",
+            "auteur": {
+                "id": "667"
+            }
+        },
+        {
+            "case": 4,
+            "email": "test@test.com",
+            "description": "harcèlement en ligne",
+            "auteur": {
+                "id": "668"
+            }
         }
     ]
 }

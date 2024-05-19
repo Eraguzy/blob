@@ -41,7 +41,7 @@ function bannissements(bouton){
                     <div class="encadreheader">
                         <h3>cas numéro ${cas}</h3>
                         <div>
-                            <input type="button" value="Unban" onclick="boutonaction('${cas}', 'unban')"/>
+                            <input type="button" value="Unban" onclick="boutonaction('${cas}', 'unban', this)"/>
                         </div>
                     </div>
                     email : ${email}<br>
@@ -70,25 +70,23 @@ function signalements(bouton){
 
             for(var i=0; i<signalements.length; i++){
                 var conteneur = signalements[i];
-                if(conteneur.statut == 0){ // vérifie que le cas n'est pas encore résolu
-                    var cas = conteneur.case;
-                    var description = conteneur.description;
-                    var suspect = conteneur.suspect.id;
-                    var auteur = conteneur.auteur.id;
-                    var html = `
-                    <div class="encadre">
-                        <div class="encadreheader">
-                            <h3>cas numéro ${cas}</h3>
-                            <div>
-                                <input type="button" value="Supprimer" onclick="boutonaction('${cas}', 'supp')/>
-                                <input type="button" value="Bannir" onclick="boutonaction('${cas}', 'ban')/>
-                            </div>
+                var cas = conteneur.case;
+                var description = conteneur.description;
+                var suspect = conteneur.suspect.id;
+                var auteur = conteneur.auteur.id;
+                var html = `
+                <div class="encadre">
+                    <div class="encadreheader">
+                        <h3>cas numéro ${cas}</h3>
+                        <div>
+                            <input type="button" value="Supprimer" onclick="boutonaction('${cas}','supp', this)"/>
+                            <input type="button" value="Bannir" onclick="boutonaction('${cas}','ban', this)"/>
                         </div>
-                        ${suspect} signalé par : ${auteur}<br>
-                        description : ${description}
-                    </div>`;
-                    tempdiv.innerHTML += html;
-                }
+                    </div>
+                    ${suspect} signalé par : ${auteur}<br>
+                    description : ${description}
+                </div>`;
+                tempdiv.innerHTML += html;
             }
         }
     }
@@ -98,18 +96,15 @@ function signalements(bouton){
 }
 
 //  actions
-function boutonaction(caseid, event){
+function boutonaction(caseid, event, boutonchoisi){
     var req = new XMLHttpRequest();
     req.open("POST","../admin/adminmenu.php", true); // définition du fichier php contenant l'action à realiser
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     
     req.onreadystatechange = function(){
         if (this.readyState === 4 && this.status === 200) {
-            var replacetab = document.querySelectorAll('input[value="Unban"]');
-            var replace = replacetab[0]; // query renvoie un tableau
-        
             var newText = document.createTextNode("Rafraîchissez la page."); 
-            replace.parentNode.replaceChild(newText, replace); 
+            boutonchoisi.parentNode.replaceChild(newText, boutonchoisi);
         }
     }
     
