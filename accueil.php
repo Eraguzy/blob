@@ -26,6 +26,14 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
+//si on veut accéder à accueil.php, on ne doit pas être un abonné 
+session_start();
+if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'decouverte' || $_SESSION['statut'] == 'VIP' || $_SESSION['statut'] == 'Classique')) {
+    // Redirection vers la page abonne.php si l'utilisateur est abonné
+    header("Location: abonne.php");
+    exit;
+}
+
 // Charger les données du fichier JSON
 $fichier = "compte.json";
 $json_content = file_get_contents($fichier);
