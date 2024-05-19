@@ -38,8 +38,14 @@ function bannissements(bouton){
                 var description = conteneur.description;
                 var email = conteneur.email;
                 var html = `
-                <div class="bannissements">
-                    <h3>cas numéro ${cas}</h3>
+                <div class="encadre">
+                    <div class="encadreheader">
+                        <h3>cas numéro ${cas}</h3>
+                        <div>
+                            <input type="button" value="Supprimer"/>
+                            <input type="button" value="Bannir"/>
+                        </div>
+                    </div>
                     email : ${email}<br>
                     banni par : ${auteur}<br>
                     description : ${description}
@@ -72,8 +78,14 @@ function signalements(bouton){
                     var suspect = conteneur.suspect.id;
                     var auteur = conteneur.auteur.id;
                     var html = `
-                    <div class="signalements">
-                        <h3>cas numéro ${cas}</h3>
+                    <div class="encadre">
+                        <div class="encadreheader">
+                            <h3>cas numéro ${cas}</h3>
+                            <div>
+                                <input type="button" value="Supprimer"/>
+                                <input type="button" value="Bannir"/>
+                            </div>
+                        </div>
                         ${suspect} signalé par : ${auteur}<br>
                         description : ${description}
                     </div>`;

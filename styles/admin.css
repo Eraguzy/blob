@@ -13,7 +13,7 @@
     margin-top: 20px;
 }
 
-.signalements{
+.encadre{
     border-radius: 2px;
     border: 1px solid;
     margin: 20px;
@@ -21,10 +21,7 @@
     background-color: #f4f4f4;
 }
 
-.bannissements{
-    border-radius: 2px;
-    border: 1px solid;
-    margin: 20px;
-    padding: 10px;
-    background-color: #f4f4f4;
+.encadreheader{ /*contient le titre ainsi que les boutons*/
+    display: flex;
+    justify-content: space-between;
 }
