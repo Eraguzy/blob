@@ -44,7 +44,7 @@ Audrey, 32 ans</div>
         <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, cliquez sur le bouton en bas afin de
             découvrir toutes nos offres d'abonnement !</p>
     </div>
-    <input type="button" class="bouton" id="souscription" value="Souscrire" onclick="linkopener('souscription.php')" />
+    <input type="button" class="bouton" id="souscription" value="Souscrire" onclick="linkopener('page_inscription.php')" />
 
     <script src="script.js" type="text/javascript"></script>
 </body>
