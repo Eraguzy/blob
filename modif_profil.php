@@ -73,7 +73,7 @@ function changement_info($nom, $information)
 <div class="Connexion-page">
     <div class="Connexion-boite">
         <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil" onclick="linkopener('changement_image.php')">
-        <form method="post" action="#" enctype="multipart/form-data">
+        <form method="post" action="modif_profil.php" enctype="multipart/form-data">
             <?php
             changement_info("nom", $_SESSION['nom']);
             changement_info("prenom", $_SESSION['prenom']);
