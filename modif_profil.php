@@ -36,6 +36,7 @@ if (!isset($_SESSION['nom'])) {
             $_SESSION['couleur_des_cheveux'] = $profil['couleur_des_cheveux'];
             $_SESSION['taille'] = $profil['taille'];
             $_SESSION['poids'] = $profil['poids'];
+            $_SESSION['statut'] = $profil['statut'];
             break;
         }
     }
@@ -120,6 +121,17 @@ function changement_info($nom, $information)
                     <option value="autre">Autre</option>
                 </select>
             </div>
+            
+            <div class="donnees">
+            <label for="statut">Offre d'abonnement :</label>
+            </div>
+            <div class="donnees">
+            <select name="statut" id="statut" value=<?php echo $_SESSION['statut'] ?> required>
+                    <option value="decouverte">Découverte</option>
+                    <option value="Classique">Classique</option>
+                    <option value="VIP">VIP</option>
+                </select>
+            </div>
             <div class="donnees">
                 <label for="poids">Poids :</label>
                 <input type="number" id="poids" name="poids" placeholder="Poids" value=<?php echo $_SESSION['poids'] ?>
@@ -155,6 +167,7 @@ function changement_info($nom, $information)
                 mise_a_jour('couleur_des_yeux');
                 mise_a_jour('taille');
                 mise_a_jour('poids');
+                mise_a_jour('statut');
 
                 foreach ($data['profils'] as &$profil) {
                     if ($profil['id'] == $id_utilisateur) {
@@ -171,6 +184,7 @@ function changement_info($nom, $information)
                         $profil['couleur_des_yeux'] = $_SESSION['couleur_des_yeux'];
                         $profil['taille'] = $_SESSION['taille'];
                         $profil['poids'] = $_SESSION['poids'];
+                        $profil['statut'] = $_SESSION['statut'];
                         break;
                     }
                 }
