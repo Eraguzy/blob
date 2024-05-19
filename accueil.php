@@ -90,7 +90,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         }
 
         function viewProfile(id_utilisateur) {
-            window.location.href = 'page_profil.php?id_utilisateur=' + id_utilisateur;
+            window.location.href = 'page_resume.php?id_utilisateur=' + id_utilisateur;
         }
 
         function Suggestions(str) {
