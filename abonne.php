@@ -45,7 +45,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/accueil.css">
+    <link rel="stylesheet" type="text/css" href="styles/abonne.css">
     <title>Blob</title>
     <link rel="icon" href="logo.png">
 </head>
@@ -58,7 +58,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil" onclick="linkopener('modif_profil.php')" />
         <input type="button" class="bouton" value="Déconnexion" onclick="linkopener('deconnexion.php')" />
     </nav>
-    <p class="para">Vous êtes maintenant un abonné Blob, vous pouvez rechercher dès à présent des personnes en tapant des mots-clés sur la barre de recherche, visualiser le profil complet, envoyer un mesage à quelqu'un, et bloquer une personne !.</p>
+    <p class="para">Cher abonné Blob, vous pouvez rechercher dès à présent des personnes en tapant le pseudo sur la barre de recherche, visualiser le profil complet, envoyer un mesage à quelqu'un, et bloquer une personne !</p>
 
     <div class="conteneur">
         <form action="page_recherche.php" method="get" class="recherche">
@@ -122,8 +122,10 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
                 <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
             <?php endforeach; ?>
         </ul>
-        <input type="button" class="bouton" value="Bloquer une personne" onclick="linkopener('deconnexion.php')" />
-        <input type="button" class="bouton" value="Messagerie" onclick="linkopener('deconnexion.php')" />
+        <div class="boutons2">
+        <input type="button" class="bouton" value="Liste des bloqués" onclick="linkopener('liste_bloque.php')" />
+        <input type="button" class="bouton" value="Vues de mon profil" onclick="linkopener('vues.php')" />
+        </div>
         
 
     <script src="script.js" type="text/javascript"></script>
