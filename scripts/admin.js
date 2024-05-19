@@ -25,7 +25,6 @@ function bannissements(bouton){
         if (this.readyState === 4 && this.status === 200) {
             
             var json = JSON.parse(this.responseText);
-            console.log(json);
             var bannissements = json.bannissements;
             var tempdiv = document.getElementById('temporarycontent');
             tempdiv.innerHTML = "";
@@ -42,8 +41,7 @@ function bannissements(bouton){
                     <div class="encadreheader">
                         <h3>cas numéro ${cas}</h3>
                         <div>
-                            <input type="button" value="Supprimer"/>
-                            <input type="button" value="Bannir"/>
+                            <input type="button" value="Unban" onclick="boutonaction('${cas}', 'unban')"/>
                         </div>
                     </div>
                     email : ${email}<br>
@@ -82,8 +80,8 @@ function signalements(bouton){
                         <div class="encadreheader">
                             <h3>cas numéro ${cas}</h3>
                             <div>
-                                <input type="button" value="Supprimer"/>
-                                <input type="button" value="Bannir"/>
+                                <input type="button" value="Supprimer" onclick="boutonaction('${cas}', 'supp')/>
+                                <input type="button" value="Bannir" onclick="boutonaction('${cas}', 'ban')/>
                             </div>
                         </div>
                         ${suspect} signalé par : ${auteur}<br>
@@ -97,4 +95,24 @@ function signalements(bouton){
 
     ajax.open("GET", "json/signalements.json", true);
     ajax.send();
+}
+
+//  actions
+function boutonaction(caseid, event){
+    var req = new XMLHttpRequest();
+    req.open("POST","../admin/adminmenu.php", true); // définition du fichier php contenant l'action à realiser
+    req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    
+    req.onreadystatechange = function(){
+        if (this.readyState === 4 && this.status === 200) {
+            var replacetab = document.querySelectorAll('input[value="Unban"]');
+            var replace = replacetab[0]; // query renvoie un tableau
+        
+            var newText = document.createTextNode("Rafraîchissez la page."); 
+            replace.parentNode.replaceChild(newText, replace); 
+        }
+    }
+    
+    param = "action="+ event +"&case=" + caseid; //envoi au php du cas à supp
+    req.send(param);
 }
