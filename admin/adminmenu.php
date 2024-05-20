@@ -31,9 +31,8 @@
             file_put_contents('json/bannissements.json', json_encode($data, JSON_PRETTY_PRINT));
         }
 
-
         if (isset($_POST['action']) && $_POST['action'] === 'ban'){ // 3 actions : ajout du ban, suppression des signalements liés à cet email, suppression du compte
-            $json_content = file_get_contents('json/bannissements.json', 'bannissements');
+            $json_content = file_get_contents('json/bannissements.json');
             $data = json_decode($json_content, true);
             
             $new_ban = [
@@ -59,24 +58,22 @@
 
 
             // suppression du compte
-            $json_content = file_get_contents('../compte.json', 'bannissements');
+            $json_content = file_get_contents('../compte.json');
             $data = json_decode($json_content, true);
 
             foreach($data['utilisateurs'] as $key => $user){ // recherche et suppression du compte associé
                 if($user['email'] == $_POST['email']){
                     $idsupp = $user['id'];
-                    array_splice($data['utilisateurs'], $key, 1);
-
-                    foreach($data['profils'] as $profile_key => $profile){ // recherche et suppression du profil associé
-                        if($profile['id'] == $idsupp){
-                            array_splice($data['profils'], $profile_key, 1);
+                        foreach($data['profils'] as $profile_key => $profile){ // recherche et suppression du profil associé
+                            if($profile['id'] == $idsupp){
+                                array_splice($data['profils'], $profile_key, 1);
+                            }
                         }
-                    }
+                        array_splice($data['utilisateurs'], $key, 1);
                 }
             }
             file_put_contents('../compte.json', json_encode($data, JSON_PRETTY_PRINT));
         }
-
 
         if (isset($_POST['action']) && $_POST['action'] === 'supp'){ //supp un signalement
             $json_content = file_get_contents('json/signalements.json');
@@ -103,6 +100,32 @@
             
             $data['signalements'][] = $new_report; //ajout dans la variable puis dans la BDD
             file_put_contents('json/signalements.json', json_encode($data, JSON_PRETTY_PRINT));
+        }
+
+        if (isset($_POST['action']) && $_POST['action'] === 'suppacc'){ // supprimer un compte
+            $json_content = file_get_contents('../compte.json');
+            $data = json_decode($json_content, true);
+
+            foreach($data['utilisateurs'] as $key => $user){ // recherche et suppression du compte associé
+                if($user['email'] == $_POST['email']){
+                    $idsupp = $user['id'];
+                        foreach($data['profils'] as $profile_key => $profile){ // recherche et suppression du profil associé
+                            if($profile['statut'] == 'admin'){ // vérifie qu'on ne va pas supp un admin
+                                $isadmin = true;
+                            }
+                            else{
+                                $isadmin = false;
+                            }
+                            if($profile['id'] == $idsupp && $isadmin == false){
+                                array_splice($data['profils'], $profile_key, 1);
+                            }
+                        }
+                        if($isadmin == false){
+                            array_splice($data['utilisateurs'], $key, 1);
+                        }
+                }
+            }
+            file_put_contents('../compte.json', json_encode($data, JSON_PRETTY_PRINT));
         }
     }
 ?>
