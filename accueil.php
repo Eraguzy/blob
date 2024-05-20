@@ -26,6 +26,11 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
+// Charger les données du fichier JSON
+$fichier = "compte.json";
+$json_content = file_get_contents($fichier);
+$data = json_decode($json_content, true);
+
 //si on veut accéder à accueil.php, on ne doit pas être un abonné 
 session_start();
 if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'decouverte' || $_SESSION['statut'] == 'vip' || $_SESSION['statut'] == 'classique')) {
@@ -33,11 +38,6 @@ if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'decouverte' || $_SESSI
     header("Location: abonne.php");
     exit;
 }
-
-// Charger les données du fichier JSON
-$fichier = "compte.json";
-$json_content = file_get_contents($fichier);
-$data = json_decode($json_content, true);
 
 // Trier les profils par ID en supposant que les IDs sont ordonnés chronologiquement
 usort($data['profils'], function ($a, $b) {
