@@ -32,6 +32,11 @@ function changement_info($nom, $information)
     <link rel="stylesheet" type="text/css" href="styles/modif_profil.css">
     <link rel="icon" href="logo.png">
     <title>Blob</title>
+    <script>
+        function linkopener(a) {
+            window.open(a, '_self');
+        }
+    </script>
 </head>
 
 <nav class="bandeau">
