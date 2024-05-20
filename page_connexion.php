@@ -77,7 +77,10 @@ if (isset($_COOKIE['user_id'])) {
                     // Changement : Redirection basée sur le statut de l'utilisateur
                     if ($statut_utilisateur == 'classique' || $statut_utilisateur == 'vip' || $statut_utilisateur == 'decouverte') {
                         header("Location: abonne.php");
-                    } 
+                    }
+                    else if($statut_utilisateur == 'admin'){ //redirection de l'admin
+                        header("Location: admin/adminmenu.php");
+                    }
                     exit;
                 } else if (!$utilisateur_trouve) {
                     echo '</br><div class="message-erreur">Email incorrect.</div>';
