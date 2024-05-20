@@ -16,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     foreach ($data['profils'] as &$profil) {
         if ($profil['id'] == $user_id) {
-            $profil['statut_start_time'] = time();
+            $profil['statut_starter_time'] = time();
             $statut = $profil['statut'];
-            $profil['statut_start_time'] += $temps_ajoute; 
+            $profil['statut_starter_time'] += $temps_ajoute; 
             break;
         }
     }
