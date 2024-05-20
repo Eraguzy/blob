@@ -12,6 +12,8 @@ if (isset($_COOKIE['user_id'])) {
 
 $id_destinataire = $_GET['id_cible'];
 $id_utilisateur = $_COOKIE['user_id'];
+
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +80,7 @@ $id_utilisateur = $_COOKIE['user_id'];
 
                 foreach ($data['discussions'] as &$discussion) {
                     if (($discussion['id_utilisateur1'] == $id_utilisateur && $discussion['id_utilisateur2'] == $id_destinataire) || ($discussion['id_utilisateur2'] == $id_utilisateur && $discussion['id_utilisateur1'] == $id_destinataire)) {
-                        $discussion['messages'][] = $id_utilisateur;
+                        $discussion['messages'][] = $_SESSION['pseudo'];
                         $discussion['messages'][] = $nouveau_message;
                         $discussion_existe = true;
                         break;
@@ -89,7 +91,7 @@ $id_utilisateur = $_COOKIE['user_id'];
                     $nouvel_discussion = [
                         'id_utilisateur1' => $id_utilisateur,
                         'id_utilisateur2' => $id_destinataire,
-                        'messages' => [$id_utilisateur, $nouveau_message],
+                        'messages' => [$_SESSION['pseudo'], $nouveau_message],
                     ];
                     $data['discussions'][] = $nouvel_discussion;
                 }
