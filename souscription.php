@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     foreach ($data['profils'] as &$profil) {
         if ($profil['id'] == $id_utilisateur) {
             $profil['statut'] = $abo;
+            $profil['statut_starter_time'] = time();
             break;
         }
     }
