@@ -68,7 +68,7 @@ if ($profile) {
     $statut = $profile['statut'];
     $startTime = $profile['statut_starter_time'];
 
-    if (!isStatutValid($statut, $startTime, $statuts)) {
+    if (!isStatutValid($statut, $startTime, $statuts) && $statut != 'admin') {
         // Statut expiré
         header("Location: statut_expire.php");
         exit;
