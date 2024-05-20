@@ -56,21 +56,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="donnees">
                     <div class="container">
                     <input type="radio" id="decouverte" name="abo" value="decouverte" checked />
-                    <label for="decouverte" class="decouverte">Offre découverte : 9,90 euros par mois</label>
+                    <label for="decouverte" class="discover">Offre découverte : 9,90 euros par mois</label>
                     <div class="encart1" >Avec cette offre découverte, vous aurez accès aux fonctionnalités de Blob, mais limitées en temps</div>
                     </div>
                 </div>
                 <div class="donnees">
                     <div class="container">
                     <input type="radio" id="classique" name="abo" value="classique" />
-                    <label for="classique" class="classique">Offre classique : 14,90 euros par mois</label>
+                    <label for="classique" class="classic">Offre classique : 14,90 euros par mois</label>
                     <div class="encart2">Avec l'offre classique, vous bénéficiez de toutes les fonctionnalités de Blob, mais pour une durée limitée.</div>
                     </div>
                 </div>
                 <div class="donnees">
                     <div class="container">
-                    <input type="radio" class="vip" name="abo" value="vip" />
-                    <label for="vip" id="vip">Offre VIP : 29,90 euros par mois id</label>
+                    <input type="radio" id="vip" name="abo" value="vip" />
+                    <label for="vip" class="privilege">Offre VIP : 29,90 euros par mois id</label>
                     <div class="encart3">Avec cette super offre VIP, vous bénéficiez de toutes les fonctionnalités de Blob pendant un maximum de temps !!!! Vous allez pécher du poisson !!!</div>
                     </div>
                 </div>
