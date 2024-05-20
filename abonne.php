@@ -66,7 +66,7 @@ $profile = getUserProfile($user_id, $data);
 
 if ($profile) {
     $statut = $profile['statut'];
-    $startTime = $profile['statut_start_time'];
+    $startTime = $profile['statut_starter_time'];
 
     if (!isStatutValid($statut, $startTime, $statuts)) {
         // Statut expiré
@@ -74,7 +74,7 @@ if ($profile) {
         exit;
     } else {
         $_SESSION['statut'] = $statut;
-        $_SESSION['statut_start_time'] = $startTime;
+        $_SESSION['statut_starter_time'] = $startTime;
         echo "Votre statut $statut est encore valide.";
     }
 } else {
