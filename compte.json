@@ -475,7 +475,7 @@
             "couleur_des_yeux": "bleu",
             "taille": "170",
             "poids": "56",
-            "statut": "Classique",
+            "statut": "classique",
             "utilisateurs_bloques": [
                 "salut",
                 "coucou"
