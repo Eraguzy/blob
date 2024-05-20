@@ -38,6 +38,8 @@ if (isset($_COOKIE['user_id'])) {
                 <input type="submit" value="Connexion" />
             </form>
             <?php
+            session_start();
+
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $email = $_POST["email"];
                 $mdp = $_POST["mdp"];
@@ -79,6 +81,7 @@ if (isset($_COOKIE['user_id'])) {
                         header("Location: abonne.php");
                     }
                     else if($statut_utilisateur == 'admin'){ //redirection de l'admin
+                        $_SESSION['statut'] = 'admin';
                         header("Location: admin/adminmenu.php");
                     }
                     exit;

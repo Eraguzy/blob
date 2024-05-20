@@ -386,7 +386,7 @@
             "couleur_des_yeux": "marron",
             "taille": "181",
             "poids": "70",
-            "statut": "decouverte",
+            "statut": "admin",
             "utilisateurs_bloques": [
                 "salut",
                 "coucou"

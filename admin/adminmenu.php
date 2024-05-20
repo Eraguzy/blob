@@ -1,5 +1,4 @@
 <?php
-     
     function highestcase($jsonpath, $key){ //renvoie le numéro du cas actuel le plus élevé + 1 d'un fichier json
         // $key contient le nom du tableau (signalements ou bans)
         $jsonin = file_get_contents($jsonpath);
@@ -144,6 +143,13 @@
             }
             file_put_contents('../compte.json', json_encode($data, JSON_PRETTY_PRINT));
         }
+    }
+
+    session_start();
+    if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 'admin'){
+        // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+        header("Location: ../page_connexion.php");
+        exit();
     }
 ?>
 
