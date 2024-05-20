@@ -172,7 +172,8 @@ if (isset($_COOKIE['user_id'])) {
                     'taille' => $taille,
                     'poids' => $poids,
                     'statut' => 'utilisateur',  
-                    'utilisateurs_bloques' => []
+                    'utilisateurs_bloques' => [],
+                    'stalkers' => []
                 ];
 
 
