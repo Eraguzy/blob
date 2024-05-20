@@ -1,4 +1,9 @@
 <?php
+$statuts = [
+    'decouverte' => 60,
+    'classique' => 600,
+    'vip' => 3600
+];
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
     if (!isset($_COOKIE['creation_profil']) || $_COOKIE['creation_profil'] == 0) {
@@ -38,6 +43,43 @@ usort($data['profils'], function ($a, $b) {
 
 // Extraire les trois derniers profils
 $derniers_utilisateurs = array_slice($data['profils'], -3);
+
+session_start();
+$user_id = $_COOKIE['user_id'];
+
+function getUserProfile($user_id, $data) {
+    foreach ($data['profils'] as $profile) {
+        if ($profile['id'] == $user_id) {
+            return $profile;
+        }
+    }
+    return null;
+}
+
+function isStatutValid($statut, $startTime, $statuts) {
+    $currentTime = time();
+    $duration = $statuts[$statut];
+    return ($currentTime - $startTime) < $duration;
+}
+
+$profile = getUserProfile($user_id, $data);
+
+if ($profile) {
+    $statut = $profile['statut'];
+    $startTime = $profile['statut_start_time'];
+
+    if (!isStatutValid($statut, $startTime, $statuts)) {
+        // Statut expiré
+        header("Location: statut_expire.php");
+        exit;
+    } else {
+        $_SESSION['statut'] = $statut;
+        $_SESSION['statut_start_time'] = $startTime;
+        echo "Votre statut $statut est encore valide.";
+    }
+} else {
+    echo "Profil utilisateur non trouvé.";
+}
 ?>
 
 <!DOCTYPE html>
@@ -115,18 +157,18 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
 
     <div class="contenu">
         
-
 <p>Les trois derniers profils inscrits sur Blob :</p><br>
 <ul id="utilisateurs">
             <?php foreach ($derniers_utilisateurs as $utilisateur) : ?>
                 <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
             <?php endforeach; ?>
-        </ul>
+
         <input type="button" class="bouton" value="Liste des bloqués" onclick="linkopener('liste_bloque.php')" />
         <input type="button" class="bouton" value="Vues de mon profil" onclick="linkopener('liste_vues.php')" />
+        <input type="button" class="bouton" value="Extension du statut" onclick="linkopener('extension_statut.php')" />
+        </ul>
         </div>
         
-
     <script src="script.js" type="text/javascript"></script>
 </body>
 
