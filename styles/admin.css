@@ -25,3 +25,12 @@
     display: flex;
     justify-content: space-between;
 }
+
+.boutonvue{
+    margin: 1%;
+}
+
+.vuescontainer{
+    display: flex;
+    justify-content: center;
+}

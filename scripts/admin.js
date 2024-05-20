@@ -9,10 +9,15 @@ function setopacitybutton(bouton){ // il faut que le conteneur en question ait l
 
 function modifprofils(bouton){ // il y a un div vide dans le html, on remplace le html à l'intérieur à chaque pression de bouton par ce que l'on souhaite
     var html =
-        `<form action="/search" method="get" class="recherche">
-            <input type="text" name="query" placeholder="Rechercher..."/>
-            <button type="submit">Rechercher</button>
-        </form>;`
+        `
+        <form action="/search" method="get" class="recherche">
+        <input type="text" name="query" placeholder="Rechercher..."/>
+        <button type="submit">Rechercher</button>
+        </form>
+        <div class="vuescontainer">
+        <input type="button" class="bouton boutonvue" value="Accès interface non-abonné" onclick="linkopener('../accueil.php')"/>
+        <input type="button" class="bouton boutonvue" value="Accès interface abonné" onclick="linkopener('../abonne.php')"/>
+        </div>`
 
     let tempdiv = document.getElementById('temporarycontent');
     tempdiv.innerHTML = html;
