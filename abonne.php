@@ -46,7 +46,11 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
 
 session_start();
 $user_id = $_COOKIE['user_id'];
-
+if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'utilisateur')) {
+    // Redirection vers la page accueil.php si l'utilisateur n'est pas abonné
+    header("Location: accueil.php");
+    exit;
+}
 function getUserProfile($user_id, $data) {
     foreach ($data['profils'] as $profile) {
         if ($profile['id'] == $user_id) {
@@ -64,11 +68,15 @@ function isStatutValid($statut, $startTime, $statuts) {
 
 $profile = getUserProfile($user_id, $data);
 
+
 if ($profile) {
     $statut = $profile['statut'];
     $startTime = $profile['statut_starter_time'];
-
-    if (!isStatutValid($statut, $startTime, $statuts) && $statut != 'admin') {
+    if ($statut == 'utilisateur') {
+        header("Location: accueil.php");
+        exit;
+    }
+    if (!isStatutValid($statut, $startTime, $statuts) && $statut != 'admin' && $statut != 'admi') {
         // Statut expiré
         header("Location: statut_expire.php");
         exit;
