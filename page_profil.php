@@ -98,6 +98,7 @@ function affichage_info($nom, $information, $id_utilisateur)
         affichage_info("poids", $profil_visite['poids'], $id_utilisateur);
         ?>
         <input type="button" value="Signaler" name="reportbutton" onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
+        <input type="button" value="Bloquer">
     </div>
 </div>
 
