@@ -386,12 +386,13 @@
             "couleur_des_yeux": "marron",
             "taille": "181",
             "poids": "70",
-            "statut": "admin",
+            "statut": "vip",
             "utilisateurs_bloques": [
                 "salut",
                 "coucou"
             ],
-            "stalkers": []
+            "stalkers": [],
+            "statut_start_time": 1716235433
         },
         {
             "id": "664a09d1b1249",
