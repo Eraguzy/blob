@@ -2,12 +2,13 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
-.Connexion-page {
-    height: 100vh;
+body, html {
+    height: calc(100% - 50px);
+    margin: 0;
 }
 
-.Connexion-boite {
-    padding: 40px;
+.Connexion-page {
+    height: 100%;
 }
 
 .donnees label {
