@@ -13,31 +13,6 @@ if (isset($_COOKIE['user_id'])) {
 
 session_start();
 
-// Vérifier si la session est déjà démarrée
-if (!isset($_SESSION['nom'])) {
-    // Si la session n'est pas démarrée, charger les données à partir du fichier JSON
-    $fichier = "compte.json";
-    $json_content = file_get_contents($fichier);
-    $data = json_decode($json_content, true);
-    foreach ($data['profils'] as $profil) {
-        if ($profil['id'] == $id_utilisateur) {
-            $_SESSION['nom'] = $profil['nom'];
-            $_SESSION['prenom'] = $profil['prenom'];
-            $_SESSION['date'] = $profil['date'];
-            $_SESSION['genre'] = $profil['genre'];
-            $_SESSION['pseudo'] = $profil['pseudo'];
-            $_SESSION['situation'] = $profil['situation'];
-            $_SESSION['adresse'] = $profil['adresse'];
-            $_SESSION['ville'] = $profil['ville'];
-            $_SESSION['pays'] = $profil['pays'];
-            $_SESSION['couleur_des_yeux'] = $profil['couleur_des_yeux'];
-            $_SESSION['couleur_des_cheveux'] = $profil['couleur_des_cheveux'];
-            $_SESSION['taille'] = $profil['taille'];
-            $_SESSION['poids'] = $profil['poids'];
-            break;
-        }
-    }
-}
 function changement_info($nom, $information)
 {
     $nom2 = ucfirst($nom);
@@ -48,14 +23,22 @@ function changement_info($nom, $information)
           </div>";
 }
 ?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles/modif_profil.css">
     <link rel="icon" href="logo.png">
     <title>Blob</title>
+    <script>
+        function linkopener(a) {
+            window.open(a, '_self');
+        }
+    </script>
 </head>
+
 <nav class="bandeau">
     <img src="logo.png" class="img">
     <div class="bandeautitle">BLOB</div>
@@ -66,7 +49,7 @@ function changement_info($nom, $information)
 <div class="Connexion-page">
     <div class="Connexion-boite">
         <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil" onclick="linkopener('changement_image.php')">
-        <form method="post" action="#" enctype="multipart/form-data">
+        <form method="post" action="modif_profil.php" enctype="multipart/form-data">
             <?php
             changement_info("nom", $_SESSION['nom']);
             changement_info("prenom", $_SESSION['prenom']);
@@ -114,6 +97,18 @@ function changement_info($nom, $information)
                     <option value="autre">Autre</option>
                 </select>
             </div>
+            
+            <div class="donnees">
+            <label for="statut">Offre d'abonnement :</label>
+            </div>
+            <div class="donnees">
+            <select name="statut" id="statut" value=<?php echo $_SESSION['statut'] ?> required>
+                    <option value="decouverte">Découverte</option>
+                    <option value="Classique">Classique</option>
+                    <option value="VIP">VIP</option>
+                    <option value="utilisateur">Utilisateur (sans offre)</option>
+                </select>
+            </div>
             <div class="donnees">
                 <label for="poids">Poids :</label>
                 <input type="number" id="poids" name="poids" placeholder="Poids" value=<?php echo $_SESSION['poids'] ?>
@@ -135,6 +130,7 @@ function changement_info($nom, $information)
                         $_SESSION[$nom] = $_POST[$nom];
                     }
                 }
+
                 mise_a_jour('nom');
                 mise_a_jour('prenom');
                 mise_a_jour('date');
@@ -148,6 +144,8 @@ function changement_info($nom, $information)
                 mise_a_jour('couleur_des_yeux');
                 mise_a_jour('taille');
                 mise_a_jour('poids');
+                mise_a_jour('statut');
+
                 foreach ($data['profils'] as &$profil) {
                     if ($profil['id'] == $id_utilisateur) {
                         $profil['nom'] = $_SESSION['nom'];
@@ -163,9 +161,11 @@ function changement_info($nom, $information)
                         $profil['couleur_des_yeux'] = $_SESSION['couleur_des_yeux'];
                         $profil['taille'] = $_SESSION['taille'];
                         $profil['poids'] = $_SESSION['poids'];
+                        $profil['statut'] = $_SESSION['statut'];
                         break;
                     }
                 }
+
                 $json_modifie = json_encode($data, JSON_PRETTY_PRINT);
                 file_put_contents($fichier, $json_modifie);
                 exit;
@@ -174,7 +174,7 @@ function changement_info($nom, $information)
         </form>
     </div>
 </div>
-<script src="script.js" type="text/javascript"></script>
+
 </body>
 
 </html>
