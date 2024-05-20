@@ -47,7 +47,7 @@ foreach ($data['profils'] as $profil){
     <img src="logo.png" class="img">
     <div class="bandeautitle">BLOB</div>
     <div class="titrebandeau">Profil résumé</div>
-    <input type="button" class="bouton" value="Accueil" onclick="linkopener('abonne.php')" />
+    <input type="button" class="bouton" value="Accueil" onclick="linkopener('accueil.php')" />
 </nav>
 
 <div class="Connexion-page">
@@ -63,7 +63,7 @@ foreach ($data['profils'] as $profil){
             Genre : <?php echo $profil_visite['genre']; ?>
         </div>
         <input type="button" value="Signaler" name="reportbutton" onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
-    </div>
+        <input type="button" class="bouton" value="Voir le profil complet" onclick="linkopener('souscription.php')" /> </div>
 </div>
  
 <script src="script.js" type="text/javascript"></script>
