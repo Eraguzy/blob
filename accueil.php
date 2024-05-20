@@ -46,28 +46,6 @@ usort($data['profils'], function ($a, $b) {
 
 // Extraire les trois derniers profils
 $derniers_utilisateurs = array_slice($data['profils'], -3);
-
-if (!isset($_SESSION['nom'])) {
-    foreach ($data['profils'] as $profil) {
-        if ($profil['id'] == $id_utilisateur) {
-            $_SESSION['nom'] = $profil['nom'];
-            $_SESSION['prenom'] = $profil['prenom'];
-            $_SESSION['date'] = $profil['date'];
-            $_SESSION['genre'] = $profil['genre'];
-            $_SESSION['pseudo'] = $profil['pseudo'];
-            $_SESSION['situation'] = $profil['situation'];
-            $_SESSION['adresse'] = $profil['adresse'];
-            $_SESSION['ville'] = $profil['ville'];
-            $_SESSION['pays'] = $profil['pays'];
-            $_SESSION['couleur_des_yeux'] = $profil['couleur_des_yeux'];
-            $_SESSION['couleur_des_cheveux'] = $profil['couleur_des_cheveux'];
-            $_SESSION['taille'] = $profil['taille'];
-            $_SESSION['poids'] = $profil['poids'];
-            $_SESSION['statut'] = $profil['statut'];
-            break;
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
