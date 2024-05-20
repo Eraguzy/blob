@@ -175,7 +175,6 @@ function changement_info($nom, $information)
     </div>
 </div>
 
-<script src="script.js" type="text/javascript"></script>
 </body>
 
 </html>
