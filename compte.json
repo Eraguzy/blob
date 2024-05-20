@@ -64,6 +64,46 @@
             "id": "664674387ae19",
             "email": "laura.johnson@example.com",
             "mot_de_passe": "$2y$10$0AQbhUCKG2WpRLnpqdsl0.\/CVqsIpIib9D3mtBbZ7OCwtYMNccjR6"
+        },
+        {
+            "id": "664a09d1b1249",
+            "email": "clara@gmail.com",
+            "mot_de_passe": "$2y$10$qVjnXDUCBXzm6jRSDutaLOzEeY9JB.KrTqUrvP6ta5ZdZdF31VJa6"
+        },
+        {
+            "id": "664a0f05f378f",
+            "email": "adrien@gmail.com",
+            "mot_de_passe": "$2y$10$LRu2HurD7i8ITb5ZiEv1peHHChmmanY1T2\/QkyN5NbUNcty.WSgrG"
+        },
+        {
+            "id": "664a17f86a6d5",
+            "email": "flo@gmail.com",
+            "mot_de_passe": "$2y$10$Al9CjLFXlXarsw0hq9iCt.eVQaWp1uqADnG3MpUBTrpBc35lp0b3C"
+        },
+        {
+            "id": "664a3e57ed333",
+            "email": "julie@gmail.com",
+            "mot_de_passe": "$2y$10$cK96HCovwYtipzH4f5\/MleywLSkEkYTnHsYpAWWHWnn0WDgEBndvi"
+        },
+        {
+            "id": "664a5937257c2",
+            "email": "anna@gmail.com",
+            "mot_de_passe": "$2y$10$gHuWz\/S1iZ3iufg1ejOyfOEJSZG5xniqvq9qtYAxL7kAGzo3ONixa"
+        },
+        {
+            "id": "664b180ca76d8",
+            "email": "sara@gmail.com",
+            "mot_de_passe": "$2y$10$ggf2hbdu10LA8ztTibzLZ.0XuHjZ11RUKafFNGCty05t9AcSOGrdW"
+        },
+        {
+            "id": "664b1d1d33502",
+            "email": "emma@gmail.com",
+            "mot_de_passe": "$2y$10$x7srLp1BUEYaQRXwOoiLF.NQQF5RBu6ua7cqMW6QQltK6twycO2YO"
+        },
+        {
+            "id": "664b3fa0a0b23",
+            "email": "hello@gmail.com",
+            "mot_de_passe": "$2y$10$DZidHrdbud\/jYKUn7JmhAOt.Ea98lfZcqXKtVjE2qq4buEIRjAFC6"
         }
     ],
     "profils": [
@@ -81,7 +121,13 @@
             "couleur_des_cheveux": "noir",
             "couleur_des_yeux": "vert",
             "taille": "200",
-            "poids": "200"
+            "poids": "200",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "664471541255a",
@@ -97,7 +143,13 @@
             "couleur_des_cheveux": "brun",
             "couleur_des_yeux": "bleu",
             "taille": "145",
-            "poids": "145"
+            "poids": "145",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "6645897aabcde",
@@ -113,7 +165,13 @@
             "couleur_des_cheveux": "brun",
             "couleur_des_yeux": "marron",
             "taille": "180",
-            "poids": "70"
+            "poids": "70",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "6645897babcdf",
@@ -129,7 +187,13 @@
             "couleur_des_cheveux": "blond",
             "couleur_des_yeux": "vert",
             "taille": "165",
-            "poids": "55"
+            "poids": "55",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "6645897cabcdf",
@@ -145,7 +209,13 @@
             "couleur_des_cheveux": "roux",
             "couleur_des_yeux": "bleu",
             "taille": "175",
-            "poids": "80"
+            "poids": "80",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "6645897dabcdf",
@@ -161,7 +231,13 @@
             "couleur_des_cheveux": "brun",
             "couleur_des_yeux": "marron",
             "taille": "160",
-            "poids": "50"
+            "poids": "50",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "6645897eabcdf",
@@ -177,7 +253,13 @@
             "couleur_des_cheveux": "noir",
             "couleur_des_yeux": "bleu",
             "taille": "185",
-            "poids": "90"
+            "poids": "90",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "6645897fabcdf",
@@ -193,7 +275,13 @@
             "couleur_des_cheveux": "blond",
             "couleur_des_yeux": "bleu",
             "taille": "170",
-            "poids": "60"
+            "poids": "60",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "66458980abcdg",
@@ -209,7 +297,13 @@
             "couleur_des_cheveux": "roux",
             "couleur_des_yeux": "vert",
             "taille": "180",
-            "poids": "75"
+            "poids": "75",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "66458981abcdg",
@@ -225,7 +319,13 @@
             "couleur_des_cheveux": "brun",
             "couleur_des_yeux": "marron",
             "taille": "160",
-            "poids": "55"
+            "poids": "55",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "66458101abcdg",
@@ -241,7 +341,13 @@
             "couleur_des_cheveux": "brun",
             "couleur_des_yeux": "marron",
             "taille": "160",
-            "poids": "55"
+            "poids": "55",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "6642a521bd7eb",
@@ -257,7 +363,13 @@
             "couleur_des_cheveux": "noir",
             "couleur_des_yeux": "vert",
             "taille": "200",
-            "poids": "200"
+            "poids": "200",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
         },
         {
             "id": "664674387ae19",
@@ -274,7 +386,188 @@
             "couleur_des_yeux": "marron",
             "taille": "181",
             "poids": "70",
-            "statut": "admin"
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
+        },
+        {
+            "id": "664a09d1b1249",
+            "nom": "clara",
+            "prenom": "martin",
+            "date": "2024-05-02",
+            "genre": "femme",
+            "pseudo": "clara",
+            "situation": "celib",
+            "adresse": "4 rue des champs elys\u00e9es",
+            "ville": "paris",
+            "pays": "france",
+            "couleur_des_cheveux": "noir",
+            "couleur_des_yeux": "bleu",
+            "taille": "172",
+            "poids": "58",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
+        },
+        {
+            "id": "664a0f05f378f",
+            "nom": "Bernier",
+            "prenom": "Adrien",
+            "date": "2024-05-01",
+            "genre": "homme",
+            "pseudo": "Ad",
+            "situation": "celib",
+            "adresse": "8 all\u00e9e louis shcrek",
+            "ville": "la frette sur seine",
+            "pays": "france",
+            "couleur_des_cheveux": "brun",
+            "couleur_des_yeux": "bleu",
+            "taille": "180",
+            "poids": "75",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
+        },
+        {
+            "id": "664a17f86a6d5",
+            "nom": "flo",
+            "prenom": "flo",
+            "date": "2024-05-01",
+            "genre": "femme",
+            "pseudo": "flo",
+            "situation": "celib",
+            "adresse": "flo",
+            "ville": "flo",
+            "pays": "flo",
+            "couleur_des_cheveux": "brun",
+            "couleur_des_yeux": "bleu",
+            "taille": "170",
+            "poids": "60",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
+        },
+        {
+            "id": "664a3e57ed333",
+            "nom": "julie",
+            "prenom": "dupond",
+            "date": "2024-05-01",
+            "genre": "femme",
+            "pseudo": "juju",
+            "situation": "celib",
+            "adresse": "lala",
+            "ville": "lala",
+            "pays": "france",
+            "couleur_des_cheveux": "brun",
+            "couleur_des_yeux": "bleu",
+            "taille": "170",
+            "poids": "56",
+            "statut": "Classique",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
+        },
+        {
+            "id": "664a5937257c2",
+            "nom": "anna",
+            "prenom": "germain",
+            "date": "2024-05-01",
+            "genre": "femme",
+            "pseudo": "anna",
+            "situation": "celib",
+            "adresse": "anna",
+            "ville": "anna",
+            "pays": "lille",
+            "couleur_des_cheveux": "brun",
+            "couleur_des_yeux": "bleu",
+            "taille": "170",
+            "poids": "59",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [
+                "salut",
+                "coucou"
+            ],
+            "stalkers": []
+        },
+        {
+            "id": "664b180ca76d8",
+            "nom": "sara",
+            "prenom": "rabi",
+            "date": "2024-05-01",
+            "genre": "femme",
+            "pseudo": "sara",
+            "situation": "celib",
+            "adresse": "sara",
+            "ville": "sara",
+            "pays": "france",
+            "couleur_des_cheveux": "brun",
+            "couleur_des_yeux": "bleu",
+            "taille": "165",
+            "poids": "55",
+            "statut": "decouverte",
+            "stalkers": []
+        },
+        {
+            "id": "664b1d1d33502",
+            "nom": "Emma",
+            "prenom": "Jean",
+            "date": "2024-05-01",
+            "genre": "femme",
+            "pseudo": "emma du 95",
+            "situation": "celib",
+            "adresse": "emma",
+            "ville": "emma",
+            "pays": "espagne",
+            "couleur_des_cheveux": "brun",
+            "couleur_des_yeux": "bleu",
+            "taille": "100",
+            "poids": "70",
+            "statut": "classique",
+            "utilisateurs_bloques": [],
+            "stalkers": []
+        },
+        {
+            "id": "664b3fa0a0b23",
+            "nom": "hello",
+            "prenom": "coucou",
+            "date": "2024-05-01",
+            "genre": "femme",
+            "pseudo": "hello",
+            "situation": "celib",
+            "adresse": "hello",
+            "ville": "coucou",
+            "pays": "france",
+            "couleur_des_cheveux": "brun",
+            "couleur_des_yeux": "bleu",
+            "taille": "190",
+            "poids": "85",
+            "statut": "decouverte",
+            "utilisateurs_bloques": [],
+            "stalkers": []
+        }
+    ],
+    "discussions": [
+        {
+            "id_utilisateur1": "664a09d1b1249",
+            "id_utilisateur2": "6642a521bd7eb",
+            "messages": [
+                "664a09d1b1249",
+                "coucou"
+            ]
         }
     ]
 }
