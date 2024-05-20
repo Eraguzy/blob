@@ -122,7 +122,6 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
                 <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
             <?php endforeach; ?>
         </ul>
-        <div class="boutons2">
         <input type="button" class="bouton" value="Liste des bloqués" onclick="linkopener('liste_bloque.php')" />
         <input type="button" class="bouton" value="Vues de mon profil" onclick="linkopener('liste_vues.php')" />
         </div>
