@@ -130,8 +130,8 @@ function changement_info($nom, $information)
             <div class="donnees">
             <select name="statut" id="statut" value=<?php echo $_SESSION['statut'] ?> required>
                     <option value="decouverte">Découverte</option>
-                    <option value="Classique">Classique</option>
-                    <option value="VIP">VIP</option>
+                    <option value="classique">Classique</option>
+                    <option value="vip">VIP</option>
                     <option value="utilisateur">Utilisateur (sans offre)</option>
                 </select>
             </div>
