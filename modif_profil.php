@@ -124,7 +124,7 @@ function changement_info($nom, $information)
                 </select>
             </div>
             
-            <div class="donnees">
+           <!-- <div class="donnees">
             <label for="statut">Offre d'abonnement :</label>
             </div>
             <div class="donnees">
@@ -134,7 +134,7 @@ function changement_info($nom, $information)
                     <option value="vip">VIP</option>
                     <option value="utilisateur">Utilisateur (sans offre)</option>
                 </select>
-            </div>
+            </div> -->
             <div class="donnees">
                 <label for="poids">Poids :</label>
                 <input type="number" id="poids" name="poids" placeholder="Poids" value=<?php echo $_SESSION['poids'] ?>
