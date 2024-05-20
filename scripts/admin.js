@@ -36,7 +36,6 @@ function bannissements(bouton){
             
             for(var i=0; i<bannissements.length; i++){
                 var conteneur = bannissements[i];
-                
                 var cas = conteneur.case;
                 var description = conteneur.description;
                 var email = conteneur.email;
@@ -67,7 +66,6 @@ function signalements(bouton){
         if (this.readyState === 4 && this.status === 200) {
             
             var json = JSON.parse(this.responseText);
-            console.log(json);
             var signalements = json.signalements;
             var tempdiv = document.getElementById('temporarycontent');
             tempdiv.innerHTML = "";
