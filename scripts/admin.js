@@ -28,10 +28,10 @@ function bannissements(bouton){
             var bannissements = json.bannissements;
             var tempdiv = document.getElementById('temporarycontent');
             tempdiv.innerHTML = "";
-
+            
             for(var i=0; i<bannissements.length; i++){
                 var conteneur = bannissements[i];
-
+                
                 var cas = conteneur.case;
                 var description = conteneur.description;
                 var email = conteneur.email;
@@ -48,6 +48,7 @@ function bannissements(bouton){
                 </div>`;
                 tempdiv.innerHTML += html;
             }
+            tempdiv.innerHTML += "Les administrateurs ne peuvent pas être bannis.";
         }
     }
 

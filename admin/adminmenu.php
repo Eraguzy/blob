@@ -31,8 +31,25 @@
             file_put_contents('json/bannissements.json', json_encode($data, JSON_PRETTY_PRINT));
         }
 
-        if (isset($_POST['action']) && $_POST['action'] === 'ban'){ // 3 actions : ajout du ban, suppression des signalements liés à cet email, suppression du compte
-            $json_content = file_get_contents('json/bannissements.json');
+        if (isset($_POST['action']) && $_POST['action'] === 'ban'){ // 4 actions : vérif pas admin, ajout du ban, suppression des signalements liés à cet email, suppression du compte
+            //vérif d'abord qu'on est pas en train de ban un admin
+            $json_content = file_get_contents('../compte.json');
+            $data = json_decode($json_content, true);
+
+            foreach($data["utilisateurs"] as $user){
+                if($user['email'] == $_POST['email']){
+                    $idsupp = $user['id'];
+                    foreach($data['profils'] as $profile){ // recherche et suppression du profil associé
+                        if($profile['id'] == $idsupp && $profile['statut'] == 'admin'){
+                            echo "Impossible de bannir un administrateur";
+                            return;
+                        }
+                    }
+                }
+            }
+
+
+            $json_content = file_get_contents('json/bannissements.json'); //création du ban
             $data = json_decode($json_content, true);
             
             $new_ban = [
