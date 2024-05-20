@@ -12,12 +12,12 @@
     color: orange;
 }
 
-.donnees input:not([name='Nom']):not([name='Prenom']){
+.donnees input:not([name='nom']):not([name='prenom']){
     width:100%;
     margin-top: 10px;
 }
 
-.donnees input[name='Nom'], .donnees input[name='Prenom'] {
+.donnees input[name='nom'], .donnees input[name='prenom'] {
     width: calc(65%);
     margin-top: 10px;
 }
