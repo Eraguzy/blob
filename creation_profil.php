@@ -128,6 +128,7 @@ if (isset($_COOKIE['user_id'])) {
                 $couleur_des_yeux = $_POST["couleur_des_yeux"];
                 $poids = $_POST["poids"];
                 $taille = $_POST["taille"];
+                $statut_start_time = time(); 
                 $fichier = "compte.json";
 
                 $extension = ".jpg";
@@ -173,7 +174,8 @@ if (isset($_COOKIE['user_id'])) {
                     'poids' => $poids,
                     'statut' => 'utilisateur',  
                     'utilisateurs_bloques' => [],
-                    'stalkers' => []
+                    'stalkers' => [],
+                    'statut_start_time' => $statut_start_time
                 ];
 
 
