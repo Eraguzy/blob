@@ -75,20 +75,66 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         </form>
         <div id="res"></div>
     </div>
+    <script>
+        function adjustContentPadding(resultsCount) {
+            console.log("Nombre de résultats:", resultsCount);
+            var contentElement = document.querySelector(".contenu");
+            var paddingTop = 30 + resultsCount * 40;
+            console.log("Padding top calculé:", paddingTop);
+            contentElement.style.paddingTop = paddingTop + "px";
+        }
+
+        function getResultsCount() {
+            var profileElements = document.querySelectorAll(".profile");
+            return profileElements.length;
+        }
+
+        function viewProfile(id_utilisateur) {
+            window.location.href = 'page_resume.php?id_utilisateur=' + id_utilisateur;
+        }
+
+        function Suggestions(str) {
+            var xhttp;
+            if (str.length == 0) {
+                document.getElementById("res").innerHTML = "";
+                adjustContentPadding(0); // Pas de résultats
+                return;
+            }
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("res").innerHTML = this.responseText;
+                    adjustContentPadding(getResultsCount());
+
+                    // Ajouter un gestionnaire d'événements de clic pour chaque profil
+                    var profileElements = document.querySelectorAll(".profile");
+                    profileElements.forEach(function (element) {
+                        element.addEventListener('click', function () {
+                            var id_utilisateur = element.getAttribute('data-user-id');
+                            viewProfile(id_utilisateur);
+                        });
+                    });
+                }
+            };
+            xhttp.open("GET", "recherche.php?q=" + str + "&limit=true", true);
+            xhttp.send();
+        }
+    </script>
 
     <div class="contenu">
-        <p>Les trois derniers profils inscrits sur Blob :</p><br>
-            <ul id="utilisateurs">
-                    <?php foreach ($derniers_utilisateurs as $utilisateur) : ?>
-                        <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
-                    <?php endforeach; ?>
-             </ul>
+        
+
+<p>Les trois derniers profils inscrits sur Blob :</p><br>
+<ul id="utilisateurs">
+            <?php foreach ($derniers_utilisateurs as $utilisateur) : ?>
+                <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
+            <?php endforeach; ?>
+        </ul>
         <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, cliquez sur le bouton en bas afin de découvrir toutes nos offres d'abonnement !</p>
     </div>
     <input type="button" class="bouton" id="souscription" value="Souscrire" onclick="linkopener('souscription.php')" />
 
     <script src="script.js" type="text/javascript"></script>
-    <script src="scripts/recherche.js" type="text/javascript"></script>
 </body>
 
 </html>
