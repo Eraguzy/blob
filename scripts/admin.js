@@ -12,8 +12,7 @@ function modifprofils(bouton){ // il y a un div vide dans le html, on remplace l
         `
         <div class="conteneur">
             <form action="page_recherche.php" method="get" class="recherche">
-                <input type="text" name="q" id="recherche" placeholder="Rechercher..." onkeyup="Suggestions(this.value)">
-                <button type="submit">Rechercher</button>
+                <input type="text" name="q" id="recherche" placeholder="Rechercher..." onkeyup="Suggestions(this.value, '../photo_profil_utilisateurs/')">
             </form>
         </div>
         <div id="res"></div>

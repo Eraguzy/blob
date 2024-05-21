@@ -49,6 +49,7 @@ if (isset($_COOKIE['user_id'])) {
 
         function Suggestions(str) {
             var xhttp;
+            var cheminimg = "photo_profil_utilisateurs/";
             if (str.length == 0) {
                 document.getElementById("res").innerHTML = "";
                 return;
@@ -68,7 +69,7 @@ if (isset($_COOKIE['user_id'])) {
                     });
                 }
             };
-            xhttp.open("GET", "recherche.php?q=" + str, true);
+            xhttp.open("GET", "../recherche.php?q=" + str + "&cheminimg=" + cheminimg, true);
             xhttp.send();
         }
 

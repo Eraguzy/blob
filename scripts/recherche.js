@@ -15,8 +15,11 @@ function viewProfile(id_utilisateur) {
     window.location.href = '../page_resume.php?id_utilisateur=' + id_utilisateur;
 }
 
-function Suggestions(str) {
+function Suggestions(str, cheminimg = 'photo_profil_utilisateurs/') { 
+    //cheminimg = chemin vers l'image depuis le document appelant (permet d'afficher les pdp correctement lors de la recherche en changeant le chemin dans recherche.php)
+    // valeur par défaut de cheminimg = quand le document appelant est à la racine
     var xhttp;
+
     if (str.length == 0) {
         document.getElementById("res").innerHTML = "";
         adjustContentPadding(0); // Pas de résultats
@@ -38,6 +41,6 @@ function Suggestions(str) {
             });
         }
     };
-    xhttp.open("GET", "../recherche.php?q=" + str + "&limit=true", true);
+    xhttp.open("GET", "../recherche.php?q=" + str + "&limit=true&cheminimg=" + cheminimg, true);
     xhttp.send();
 }
