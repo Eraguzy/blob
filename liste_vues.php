@@ -16,13 +16,22 @@ if ($data === false) {
 }
 
 $userID = $_COOKIE['user_id'];
-
 $vues = [];
+$vuesPseudos = [];
 
 foreach ($data['profils'] as $profil) {
     if ($profil['id'] === $userID) {
         $vues = $profil['stalkers'];
         break;
+    }
+}
+
+foreach ($vues as $vuesID) {
+    foreach ($data['profils'] as $profil) {
+        if ($profil['id'] === $vuesID) {
+            $vuesPseudos[] = $profil['pseudo'];
+            break;
+        }
     }
 }
 
@@ -34,7 +43,7 @@ foreach ($data['profils'] as $profil) {
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles/bloque.css">
     <link rel="icon" href="logo.png">
-    <title>Liste des utilisateurs bloqués</title>
+    <title>Liste des utilisateurs ayant vu mon profil</title>
 </head>
 <body>
     <nav class="bandeau">
@@ -47,8 +56,8 @@ foreach ($data['profils'] as $profil) {
         <div class="Connexion-boite">
             <h2>Mes stalkers :</h2>
             <ul>
-                <?php foreach ($vues as $vuesID) : ?>
-                    <li><?php echo $vuesID; ?></li>
+                <?php foreach ($vuesPseudos as $pseudos) : ?>
+                    <li><?php echo $pseudos; ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
