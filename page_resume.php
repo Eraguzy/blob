@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
     if (!isset($_GET['id_utilisateur'])) {
@@ -9,9 +10,10 @@ if (isset($_COOKIE['user_id'])) {
     header("Location: page_connexion.php");
     exit;
 }
-
+$profil_visite = [];
 $id_utilisateur = $_GET['id_utilisateur'];
 $fichier = "compte.json";
+$isAdmin = false;
 
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
@@ -29,6 +31,11 @@ foreach ($data['profils'] as $profil){
         }
         break;
     }
+}
+//si on est admin, rediriger vers le profil complet
+$user_id = $_COOKIE['user_id'];
+if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'admin')) {
+    $isAdmin = true;
 }
 
 ?>
@@ -63,9 +70,14 @@ foreach ($data['profils'] as $profil){
             Genre : <?php echo $profil_visite['genre']; ?>
         </div>
         <input type="button" value="Signaler" name="reportbutton" onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
-        <input type="button" class="bouton" value="Voir le profil complet" onclick="linkopener('souscription.php')" /> </div>
-</div>
- 
+        <?php if ($isAdmin) : ?>
+            <input type="button" class="bouton" value="Profil complet" onclick="linkopener('page_profil.php?id_utilisateur=<?php echo $id_utilisateur; ?>')" />
+        <?php else : ?>
+            <input type="button" class="bouton" value="Voir le profil complet" onclick="linkopener('souscription.php')" />
+        <?php endif; ?>
+        </div>
+        </div>
+    
 <script src="script.js" type="text/javascript"></script>
 <script src="scripts/admin.js" type="text/javascript"></script>
 </body>
