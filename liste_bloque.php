@@ -16,13 +16,22 @@ if ($data === false) {
 }
 
 $userID = $_COOKIE['user_id'];
-
 $bloques = [];
+$bloquesPseudos = [];
 
 foreach ($data['profils'] as $profil) {
     if ($profil['id'] === $userID) {
         $bloques = $profil['utilisateurs_bloques'];
         break;
+    }
+}
+
+foreach ($bloques as $bloqueID) {
+    foreach ($data['profils'] as $profil) {
+        if ($profil['id'] === $bloqueID) {
+            $bloquesPseudos[] = $profil['pseudo'];
+            break;
+        }
     }
 }
 
@@ -47,8 +56,8 @@ foreach ($data['profils'] as $profil) {
         <div class="Connexion-boite">
             <h2>Utilisateurs bloqués :</h2>
             <ul>
-                <?php foreach ($bloques as $bloqueID) : ?>
-                    <li><?php echo $bloqueID; ?></li>
+                <?php foreach ($bloquesPseudos as $pseudos) : ?>
+                    <li><?php echo $pseudos; ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
