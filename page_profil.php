@@ -31,7 +31,7 @@ foreach ($data['profils'] as $profil) {
         $profil_visite['couleur_des_cheveux'] = $profil['couleur_des_cheveux'];
         $profil_visite['taille'] = $profil['taille'];
         $profil_visite['poids'] = $profil['poids'];
-        foreach ($data['utilisateurs'] as $user){ //recup email de l'utilisateur visité pour signalement
+        foreach ($data['utilisateurs'] as $user){ //recup email de l'utilisateur visité pour signalement et pour bloquer
             if ($user['id'] == $id_utilisateur){
                 $emailuser = $user['email'];
             }
@@ -98,7 +98,11 @@ function affichage_info($nom, $information, $id_utilisateur)
         affichage_info("poids", $profil_visite['poids'], $id_utilisateur);
         ?>
         <input type="button" value="Signaler" name="reportbutton" onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
-        <input type="button" value="Bloquer">
+        <form action="blocage.php" method="get">
+            <input type="hidden" name="id_utilisateur" value="<?php echo htmlspecialchars($id_utilisateur); ?>">
+            <input type="submit" value="Bloquer cet utilisateur">
+        </form>
+
     </div>
 </div>
 
