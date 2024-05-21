@@ -14,9 +14,9 @@ if ($q !== "") {
             // Vérifie si la limite des résultats est activée et si le nombre maximum de résultats n'est pas atteint
             if (!$limitResults || ($limitResults && $count < 5)) {
                 if ($res === "") {
-                    $res = '<div class="profile" data-user-id="' . $profil['id'] . '">' . '<img src="../photo_profil_utilisateurs/' . $profil['id'] . '.jpg" alt="Photo de profil">' . '<span>' . $profil['pseudo'] . '</span>' . '</div>';
+                    $res = '<div class="profile" data-user-id="' . $profil['id'] . '">' . '<img src="photo_profil_utilisateurs/' . $profil['id'] . '.jpg" alt="Photo de profil">' . '<span>' . $profil['pseudo'] . '</span>' . '</div>';
                 } else {
-                    $res .= '<div class="profile" data-user-id="' . $profil['id'] . '">' . '<img src="../photo_profil_utilisateurs/' . $profil['id'] . '.jpg" alt="Photo de profil">' . '<span>' . $profil['pseudo'] . '</span>' . '</div>';
+                    $res .= '<div class="profile" data-user-id="' . $profil['id'] . '">' . '<img src="photo_profil_utilisateurs/' . $profil['id'] . '.jpg" alt="Photo de profil">' . '<span>' . $profil['pseudo'] . '</span>' . '</div>';
                 }
                 $count++;
             } else {
