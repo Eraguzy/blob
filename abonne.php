@@ -1,4 +1,5 @@
 <?php
+session_start();
 $statuts = [
     'decouverte' => 60,
     'classique' => 600,
@@ -45,7 +46,6 @@ usort($data['profils'], function ($a, $b) {
 // Extraire les trois derniers profils
 $derniers_utilisateurs = array_slice($data['profils'], -3);
 
-session_start();
 $user_id = $_COOKIE['user_id'];
 if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'utilisateur')) {
     // Redirection vers la page accueil.php si l'utilisateur n'est pas abonné
