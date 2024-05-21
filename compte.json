@@ -397,7 +397,8 @@
                 "coucou"
             ],
             "stalkers": [],
-            "statut_start_time": 1716234962
+            "statut_start_time": 1716234962,
+            "statut_starter_time": 1716283436
         },
         {
             "id": "664a09d1b1249",
@@ -564,6 +565,26 @@
             "statut": "decouverte",
             "utilisateurs_bloques": [],
             "stalkers": []
+        },
+        {
+            "id": "664bb9a80c026",
+            "nom": "chekhab",
+            "prenom": "elias",
+            "date": "2004-09-14",
+            "genre": "homme",
+            "pseudo": "eraguzy2",
+            "situation": "en couple",
+            "adresse": "dzidzj",
+            "ville": "cergy",
+            "pays": "france",
+            "couleur_des_cheveux": "brun",
+            "couleur_des_yeux": "bleu",
+            "taille": "100",
+            "poids": "30",
+            "statut": "vip",
+            "utilisateurs_bloques": [],
+            "stalkers": [],
+            "statut_starter_time": 1716300894
         }
     ],
     "discussions": [

@@ -171,14 +171,15 @@
         </nav>
 
         <div class="titre">
-        <input type="button" class="bouton boutonadmin" value="Signalements" onclick="setopacitybutton(this); signalements(this);"/>
-        <input type="button" class="bouton boutonadmin" value="Bannissements" onclick="setopacitybutton(this); bannissements(this);"/>
-        <input type="button" class="bouton boutonadmin" value="Modifier/Supprimer un profil" onclick="setopacitybutton(this); modifprofils(this)"/>
+            <input type="button" class="bouton boutonadmin" value="Signalements" onclick="setopacitybutton(this); signalements(this);"/>
+            <input type="button" class="bouton boutonadmin" value="Bannissements" onclick="setopacitybutton(this); bannissements(this);"/>
+            <input type="button" class="bouton boutonadmin" value="Modifier/Supprimer un profil" onclick="setopacitybutton(this); modifprofils(this)"/>
         </div>
         <div id="temporarycontent">
         </div>
 
         <script src="../script.js" type="text/javascript"></script>
         <script src="../scripts/admin.js" type="text/javascript"></script>
+        <script src="../scripts/recherche.js" type="text/javascript"></script>
     </body>
 </html>
