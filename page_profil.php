@@ -10,14 +10,19 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
-$id_utilisateur = $_GET['id_utilisateur'];
+$id_utilisateur_visite = $_GET['id_utilisateur'];
+$id_utilisateur_courant = $_COOKIE['user_id'];
 $fichier = "compte.json";
 
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
+$profil_visite = [];
+$emailuser = "";
+$utilisateur_courant_bloque = false;
+
 foreach ($data['profils'] as $profil) {
-    if ($profil['id'] == $id_utilisateur) {
+    if ($profil['id'] == $id_utilisateur_visite) {
         $profil_visite['nom'] = $profil['nom'];
         $profil_visite['prenom'] = $profil['prenom'];
         $profil_visite['date'] = $profil['date'];
@@ -32,13 +37,23 @@ foreach ($data['profils'] as $profil) {
         $profil_visite['taille'] = $profil['taille'];
         $profil_visite['poids'] = $profil['poids'];
         foreach ($data['utilisateurs'] as $user){ //recup email de l'utilisateur visité pour signalement et pour bloquer
-            if ($user['id'] == $id_utilisateur){
+            if ($user['id'] == $id_utilisateur_visite){
                 $emailuser = $user['email'];
             }
         }
         break;
     }
 }
+
+foreach ($data['profils'] as $profil) {
+    if ($profil['id'] == $id_utilisateur_courant && isset($profil['utilisateurs_bloques'])) {
+        if (in_array($id_utilisateur_visite, $profil['utilisateurs_bloques'])) {
+            $utilisateur_courant_bloque = true;
+        }
+        break;
+    }
+}
+
 
 function calculerAge($dateNaissance)
 {
@@ -71,7 +86,7 @@ function affichage_info($nom, $information, $id_utilisateur)
     <link rel="icon" href="logo.png">
     <title>Blob</title>
 </head>
-
+<body>
 <nav class="bandeau">
     <img src="logo.png" class="img">
     <div class="bandeautitle">BLOB</div>
@@ -81,27 +96,36 @@ function affichage_info($nom, $information, $id_utilisateur)
 
 <div class="Connexion-page">
     <div class="Connexion-boite">
-        <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil">
+        <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur_visite; ?>.jpg" alt="Photo de profil">
         <?php
-        affichage_info("nom", $profil_visite['pseudo'], $id_utilisateur);
-        affichage_info("prenom", $profil_visite['nom'], $id_utilisateur);
-        affichage_info("pseudo", $profil_visite['prenom'], $id_utilisateur);
-        affichage_info("age", calculerAge($profil_visite['date']), $id_utilisateur);
-        affichage_info("genre", $profil_visite['genre'], $id_utilisateur);
-        affichage_info("situation", $profil_visite['situation'], $id_utilisateur);
-        affichage_info("adresse", $profil_visite['adresse'], $id_utilisateur);
-        affichage_info("ville", $profil_visite['ville'], $id_utilisateur);
-        affichage_info("pays", $profil_visite['pays'], $id_utilisateur);
-        affichage_info("couleur_des_cheveux", $profil_visite['couleur_des_cheveux'], $id_utilisateur);
-        affichage_info("couleur_des_yeux", $profil_visite['couleur_des_yeux'], $id_utilisateur);
-        affichage_info("taille", $profil_visite['taille'], $id_utilisateur);
-        affichage_info("poids", $profil_visite['poids'], $id_utilisateur);
+        affichage_info("nom", $profil_visite['pseudo'], $id_utilisateur_visite);
+        affichage_info("prenom", $profil_visite['nom'], $id_utilisateur_visite);
+        affichage_info("pseudo", $profil_visite['prenom'], $id_utilisateur_visite);
+        affichage_info("age", calculerAge($profil_visite['date']), $id_utilisateur_visite);
+        affichage_info("genre", $profil_visite['genre'], $id_utilisateur_visite);
+        affichage_info("situation", $profil_visite['situation'], $id_utilisateur_visite);
+        affichage_info("adresse", $profil_visite['adresse'], $id_utilisateur_visite);
+        affichage_info("ville", $profil_visite['ville'], $id_utilisateur_visite);
+        affichage_info("pays", $profil_visite['pays'], $id_utilisateur_visite);
+        affichage_info("couleur_des_cheveux", $profil_visite['couleur_des_cheveux'], $id_utilisateur_visite);
+        affichage_info("couleur_des_yeux", $profil_visite['couleur_des_yeux'], $id_utilisateur_visite);
+        affichage_info("taille", $profil_visite['taille'], $id_utilisateur_visite);
+        affichage_info("poids", $profil_visite['poids'], $id_utilisateur_visite);
         ?>
         <input type="button" value="Signaler" name="reportbutton" onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
-        <form action="blocage.php" method="get">
-            <input type="hidden" name="id_utilisateur" value="<?php echo htmlspecialchars($id_utilisateur); ?>">
-            <input type="submit" value="Bloquer cet utilisateur">
-        </form>
+        <?php if (!$utilisateur_courant_bloque): ?>
+            <form action="blocage.php" method="get">
+                <input type="hidden" name="id_utilisateur" value="<?php echo htmlspecialchars($id_utilisateur_visite); ?>">
+                <input type="submit" value="Bloquer cet utilisateur">
+            </form>
+        <?php endif; ?> 
+        
+        <?php if ($utilisateur_courant_bloque): ?>
+            <form action="debloquer.php" method="get">
+                <input type="hidden" name="id_utilisateur" value="<?php echo htmlspecialchars($id_utilisateur_visite); ?>">
+                <input type="submit" value="Débloquer cet utilisateur">
+            </form>
+        <?php endif; ?> 
 
     </div>
 </div>
