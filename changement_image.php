@@ -13,7 +13,6 @@ if (isset($_COOKIE['user_id'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 
@@ -34,7 +33,7 @@ if (isset($_COOKIE['user_id'])) {
 
     <div class="Connexion-page">
         <div class="Connexion-boite">
-            <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil">
+            <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg?<?php echo time(); ?>" alt="Photo de profil">
             <form method="post" action="#" enctype="multipart/form-data">
                 <div class="donnees">
                     <label for="photo">Photo :</label>
@@ -51,7 +50,8 @@ if (isset($_COOKIE['user_id'])) {
                             }
                             if (move_uploaded_file($fichier_temporaire, $chemin_destination)) {
                                 echo '</br><div class="message-erreur">Fichier téléchargé avec succès.</div>';
-                                header('Location: modif_profil.php');
+                                header('Location: changement_image.php?' . time());
+                                exit;
                             } else {
                                 echo '</br><div class="message-erreur">Une erreur s\'est produite lors du téléchargement du fichier.</div>';
                             }
