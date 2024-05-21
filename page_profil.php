@@ -1,5 +1,13 @@
 <?php
 // Vérification si le cookie existe
+session_start();
+if (isset($_SESSION['statut']) && $_SESSION['statut'] == 'admin'){
+    // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    $id_utilisateur = $_GET['id_utilisateur'];
+    header("Location: admin/modif_profil_admin.php?id_utilisateur=" . urlencode($id_utilisateur)); //header peut pas directement inclure du code php
+    exit;
+}
+
 if (isset($_COOKIE['user_id'])) {
     if (!isset($_GET['id_utilisateur'])) {
         header("Location: accueil.php");
