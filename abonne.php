@@ -129,8 +129,25 @@ if ($profile) {
         }
 
         function viewProfile(id_utilisateur) {
-            window.location.href = 'page_profil.php?id_utilisateur=' + id_utilisateur;
-        }
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    console.log("ID enregistré avec succès");
+                    window.location.href = 'page_profil.php?id_utilisateur=' + id_utilisateur;
+                } 
+                else {
+                    console.error("Erreur lors de l'enregistrement de l'ID: " + this.status);
+                }
+            }
+        };
+        xhttp.open("POST", "stalkers.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("target_id=" + id_utilisateur);
+        console.log("Requête envoyée pour enregistrer l'ID");
+    }
+
+
 
         function Suggestions(str) {
             var xhttp;
