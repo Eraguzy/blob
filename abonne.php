@@ -2,7 +2,8 @@
 $statuts = [
     'decouverte' => 60,
     'classique' => 600,
-    'vip' => 3600
+    'vip' => 3600,
+    'admin' => 2000000
 ];
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
