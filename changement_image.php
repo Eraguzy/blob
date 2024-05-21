@@ -50,7 +50,7 @@ if (isset($_COOKIE['user_id'])) {
                             }
                             if (move_uploaded_file($fichier_temporaire, $chemin_destination)) {
                                 echo '</br><div class="message-erreur">Fichier téléchargé avec succès.</div>';
-                                header('Location: changement_image.php?' . time());
+                                header('Location: modif_profil.php?' . time());
                                 exit;
                             } else {
                                 echo '</br><div class="message-erreur">Une erreur s\'est produite lors du téléchargement du fichier.</div>';
