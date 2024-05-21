@@ -104,6 +104,11 @@
             "id": "664b3fa0a0b23",
             "email": "hello@gmail.com",
             "mot_de_passe": "$2y$10$DZidHrdbud\/jYKUn7JmhAOt.Ea98lfZcqXKtVjE2qq4buEIRjAFC6"
+        },
+        {
+            "id": "664bb9a80c026",
+            "email": "laura2.johnson@example.com",
+            "mot_de_passe": "$2y$10$hE6zXpe7Otq\/Zq6m6L3MZOzK6JZUrvrbUYHUFvU0r6gC9GxmyAnJi"
         }
     ],
     "profils": [
@@ -392,7 +397,7 @@
                 "coucou"
             ],
             "stalkers": [],
-            "statut_start_time": 1716235433
+            "statut_start_time": 1716234962
         },
         {
             "id": "664a09d1b1249",
