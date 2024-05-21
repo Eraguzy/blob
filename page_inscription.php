@@ -71,12 +71,22 @@ if (isset($_COOKIE['user_id'])) {
                     $data = json_decode($json_content, true);
                 }
 
+                $jsonbans = file_get_contents('admin/json/bannissements.json'); //vérifie si l'email est banni lors de l'inscription
+                $datajson = json_decode($jsonbans, true);
+                foreach($datajson['bannissements'] as $banni){
+                    if($banni['email'] == $email){
+                        echo '</br><div class="message-erreur">Cet email est banni.</div>';
+                        exit;
+                    }
+                }
+
                 foreach ($data['utilisateurs'] as $utilisateur) {
                     if ($utilisateur['email'] == $email) {
                         echo '</br><div class="message-erreur">Cet email est déjà utilisé.</div>';
                         exit;
                     }
                 }
+
 
                 $hash = password_hash($mdp, PASSWORD_BCRYPT);
 
