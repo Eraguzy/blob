@@ -13,6 +13,23 @@ if (isset($_COOKIE['user_id'])) {
 $id_destinataire = $_GET['id_cible'];
 $id_utilisateur = $_COOKIE['user_id'];
 
+$fichier = "compte.json";
+if (file_exists($fichier)) {
+    $json_contenue = file_get_contents($fichier);
+    $data = json_decode($json_contenue, true);
+} else {
+    $data = ["discussions" => [], "profils" => []];
+}
+//verifier si l'utilisateur nous a bloqué, si oui redirection vers une page de message d'erreur
+foreach ($data['profils'] as $profil) {
+    if ($profil['id'] == $id_destinataire) {
+        if (isset($profil['utilisateurs_bloques']) && in_array($id_utilisateur, $profil['utilisateurs_bloques'])) {
+            header("Location: message_bloque.php");
+            exit;
+        }
+        break;
+    }
+}
 session_start();
 ?>
 
@@ -31,7 +48,7 @@ session_start();
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Messages</div>
-        <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')" />
+        <input type="button" class="bouton" value="Accueil" onclick="linkopener('abonne.php')" />
     </nav>
 
     <div class="Connexion-page">
