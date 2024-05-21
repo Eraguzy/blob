@@ -1,11 +1,17 @@
 <?php
-session_start();
 $statuts = [
     'decouverte' => 60,
     'classique' => 600,
     'vip' => 3600,
     'admin' => 2000000
 ];
+session_start();
+$fichier = "compte.json";
+$json_content = file_get_contents($fichier);
+$data = json_decode($json_content, true);
+$user_id = $_COOKIE['user_id'];
+
+
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
     if (!isset($_COOKIE['creation_profil']) || $_COOKIE['creation_profil'] == 0) {
@@ -33,10 +39,6 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
-// Charger les données du fichier JSON
-$fichier = "compte.json";
-$json_content = file_get_contents($fichier);
-$data = json_decode($json_content, true);
 
 // Trier les profils par ID en supposant que les IDs sont ordonnés chronologiquement
 usort($data['profils'], function ($a, $b) {
@@ -46,13 +48,6 @@ usort($data['profils'], function ($a, $b) {
 // Extraire les trois derniers profils
 $derniers_utilisateurs = array_slice($data['profils'], -3);
 
-
-$user_id = $_COOKIE['user_id'];
-if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'utilisateur')) {
-    // Redirection vers la page accueil.php si l'utilisateur n'est pas abonné
-    header("Location: accueil.php");
-    exit;
-}
 function getUserProfile($user_id, $data) {
     foreach ($data['profils'] as $profile) {
         if ($profile['id'] == $user_id) {
