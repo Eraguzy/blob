@@ -1,7 +1,63 @@
 <?php
+session_start();
 if (isset($_COOKIE['user_id'])) {
     header("Location: accueil.php");
     exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $mdp = $_POST["mdp"];
+    $fichier = "compte.json";
+
+    if (!file_exists($fichier)) {
+        $data = ["utilisateurs" => []];
+    } else {
+        $json_content = file_get_contents($fichier);
+        $data = json_decode($json_content, true);
+    }
+
+    $utilisateur_trouve = false;
+    $mdp_correct = false;
+    $statut_utilisateur = null;
+
+    foreach ($data['utilisateurs'] as $utilisateur) {
+        if ($utilisateur['email'] == $email) {
+            $utilisateur_trouve = true;
+            if (password_verify($mdp, $utilisateur['mot_de_passe'])) {
+                $mdp_correct = true;
+                $id_utilisateur = $utilisateur['id'];
+                foreach ($data['profils'] as $profil) {
+                    if ($profil['id'] == $id_utilisateur) {
+                        $statut_utilisateur = $profil['statut'];
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    if ($utilisateur_trouve && $mdp_correct) {
+        setcookie("user_id", $id_utilisateur, time() + (30 * 24 * 3600), "/");
+        $_SESSION['user_id'] = $id_utilisateur;
+        $_SESSION['statut'] = $statut_utilisateur;
+        
+        if ($statut_utilisateur == 'classique' || $statut_utilisateur == 'vip' || $statut_utilisateur == 'decouverte') {
+            header("Location: abonne.php");
+        } else if ($statut_utilisateur == 'admin') {
+            header("Location: admin/adminmenu.php");
+        }
+        else if($statut_utilisateur == 'utilisateur'){
+            header("Location: accueil.php");
+        }
+        exit;
+    } else if (!$utilisateur_trouve) {
+        header("Location: page_inscription.php");
+        exit;
+    } else {
+        $error_message = "Mot de passe incorrect.";
+    }
 }
 ?>
 
@@ -38,59 +94,8 @@ if (isset($_COOKIE['user_id'])) {
                 <input type="submit" value="Connexion" />
             </form>
             <?php
-            session_start();
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $email = $_POST["email"];
-                $mdp = $_POST["mdp"];
-                $fichier = "compte.json";
-
-                if (!file_exists($fichier)) {
-                    $data = ["utilisateurs" => []];
-                } else {
-                    $json_content = file_get_contents($fichier);
-                    $data = json_decode($json_content, true);
-                }
-
-                $utilisateur_trouve = false;
-                $mdp_correct = false;
-                $statut_utilisateur = null;
-
-                foreach ($data['utilisateurs'] as $utilisateur) {
-                    if ($utilisateur['email'] == $email) {
-                        $utilisateur_trouve = true;
-                        if (password_verify($mdp, $utilisateur['mot_de_passe'])) {
-                            $mdp_correct = true;
-                            $id_utilisateur = $utilisateur['id'];
-                            foreach ($data['profils'] as $profil) {
-                                if ($profil['id'] == $id_utilisateur) {
-                                    $statut_utilisateur = $profil['statut'];
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                }
-            
-
-                if ($utilisateur_trouve && $mdp_correct) {
-                    setcookie("user_id", $id_utilisateur, time() + (30 * 24 * 3600), "/");
-                    // Changement : Redirection basée sur le statut de l'utilisateur
-                    if ($statut_utilisateur == 'classique' || $statut_utilisateur == 'vip' || $statut_utilisateur == 'decouverte') {
-                        header("Location: abonne.php");
-                    }
-                    else if($statut_utilisateur == 'admin'){ //redirection de l'admin
-                        $_SESSION['statut'] = 'admin';
-                        header("Location: admin/adminmenu.php");
-                    }
-                    exit;
-                } else if (!$utilisateur_trouve) {
-                    echo '</br><div class="message-erreur">Email incorrect.</div>';
-                    header("Location: page_inscription.php");
-                } else {
-                    echo '</br><div class="message-erreur">Mot de passe incorrect.</div>';
-                }
+            if (isset($error_message)) {
+                echo '<div class="message-erreur">' . $error_message . '</div>';
             }
             ?>
         </div>
