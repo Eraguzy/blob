@@ -48,11 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Extension du statut</div>
+        <input type="button" class="bouton" value="Retour" onclick="linkopener('abonne.php')" />
     </nav>
 <body>
     <h1>EXTENSION DU STATUT</h1>
     <form method="POST" action="">
         <button type="submit" class="bouton">Ajouter du temps</button>
     </form>
+    <script src="script.js" type="text/javascript"></script>
 </body>
 </html>
