@@ -581,10 +581,10 @@
             "couleur_des_yeux": "bleu",
             "taille": "100",
             "poids": "30",
-            "statut": "decouverte",
+            "statut": "utilisateur",
             "utilisateurs_bloques": [],
             "stalkers": [],
-            "statut_starter_time": 1716338911
+            "statut_starter_time": 1716361534
         }
     ],
     "discussions": [
