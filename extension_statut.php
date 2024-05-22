@@ -16,15 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     foreach ($data['profils'] as &$profil) {
         if ($profil['id'] == $user_id) {
-            $profil['statut_start_time'] = time();
             $statut = $profil['statut'];
             global $statuts;
             $statuts = [
-                'decouverte' => 60,
-                'classique' => 600,
-                'vip' => 3600
+                'decouverte' => 30,
+                'classique' => 60,
+                'vip' => 150
             ];
-            $profil['statut_start_time'] += $temps_ajoute * $statuts[$statut];
+            $profil['statut_start_time'] = time() + $statuts[$statut];
             break;
         }
     }
@@ -42,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles/bloque.css">
     <link rel="icon" href="logo.png">
-    <title>Statut expiré</title>
+    <title>Extension du statut</title>
 </head>
 <body>
     <nav class="bandeau">
@@ -53,8 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h1>EXTENSION DU STATUT</h1>
     <form method="POST" action="">
-        <label for="temps">Durée à ajouter (en secondes) :</label>
-        <input type="number" id="temps" name="temps" required><br>
         <button type="submit" class="bouton">Ajouter du temps</button>
     </form>
 </body>
