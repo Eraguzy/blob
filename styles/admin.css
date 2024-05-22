@@ -35,3 +35,17 @@
     justify-content: center;
     margin-top: 12%;
 }
+
+.conteneur { 
+    display: flex;
+    justify-content: center; 
+    margin: 20px;
+}
+
+.redirectrecherche{
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px; 
+    background-color: #4CAF50;
+    color: white;
+}
