@@ -1,11 +1,13 @@
 <?php
 session_start();
 
+//vérifie si on est connecté
 if (!isset($_COOKIE['user_id'])) {
     header("Location: page_connexion.php");
     exit;
 }
 
+//ouverture de la base de donnée json
 $user_id = $_COOKIE['user_id'];
 $fichier = "compte.json";
 
@@ -14,15 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $json_content = file_get_contents($fichier);
     $data = json_decode($json_content, true);
 
+    //récupération des profils, ajout du temps souhaité à la valeur de début 
     foreach ($data['profils'] as &$profil) {
         if ($profil['id'] == $user_id) {
-            $profil['statut_starter_time'] = time();
-            $statut = $profil['statut'];
             $profil['statut_starter_time'] += $temps_ajoute; 
             break;
         }
     }
-
+    
     file_put_contents($fichier, json_encode($data, JSON_PRETTY_PRINT));
 
     header("Location: abonne.php");
