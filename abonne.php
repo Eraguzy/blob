@@ -1,16 +1,8 @@
 <?php
-$statuts = [
-    'decouverte' => 60,
-    'classique' => 600,
-    'vip' => 3600,
-    'admin' => 2000000
-];
-session_start();
 $fichier = "compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 $user_id = $_COOKIE['user_id'];
-
 
 // Vérification si le cookie existe
 if (isset($_COOKIE['user_id'])) {
@@ -39,7 +31,6 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
-
 // Trier les profils par ID en supposant que les IDs sont ordonnés chronologiquement
 usort($data['profils'], function ($a, $b) {
     return strcmp($a['id'], $b['id']);
@@ -47,44 +38,6 @@ usort($data['profils'], function ($a, $b) {
 
 // Extraire les trois derniers profils
 $derniers_utilisateurs = array_slice($data['profils'], -3);
-
-function getUserProfile($user_id, $data) {
-    foreach ($data['profils'] as $profile) {
-        if ($profile['id'] == $user_id) {
-            return $profile;
-        }
-    }
-    return null;
-}
-
-function isStatutValid($statut, $startTime, $statuts) {
-    $currentTime = time();
-    $duration = $statuts[$statut];
-    return ($currentTime - $startTime) < $duration;
-}
-
-$profile = getUserProfile($user_id, $data);
-
-
-if ($profile) {
-    $statut = $profile['statut'];
-    $startTime = $profile['statut_starter_time'];
-    if ($statut == 'utilisateur') {
-        header("Location: accueil.php");
-        exit;
-    }
-    if (!isStatutValid($statut, $startTime, $statuts) && $statut != 'admin') {
-        // Statut expiré
-        header("Location: statut_expire.php");
-        exit;
-    } else {
-        $_SESSION['statut'] = $statut;
-        $_SESSION['statut_starter_time'] = $startTime;
-        echo "Votre statut $statut est encore valide.";
-    }
-} else {
-    echo "Profil utilisateur non trouvé.";
-}
 ?>
 
 <!DOCTYPE html>
@@ -95,6 +48,24 @@ if ($profile) {
     <link rel="stylesheet" type="text/css" href="styles/abonne.css">
     <title>Blob</title>
     <link rel="icon" href="logo.png">
+    <script>
+        //fonction qui vérifie le statut toutes les 5 secondes
+        function checkStatut() {
+            fetch('verif_statut.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                } else if (data.error) {
+                    console.error('Erreur:', data.error);
+                } else if (data.valid) {
+                    console.log(data.message);
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+        setInterval(checkStatut, 5000);
+    </script>
 </head>
 
 <body>
@@ -146,8 +117,6 @@ if ($profile) {
         xhttp.send("target_id=" + id_utilisateur);
         console.log("Requête envoyée pour enregistrer l'ID");
     }
-
-
 
         function Suggestions(str) {
             var xhttp;
