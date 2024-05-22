@@ -56,11 +56,6 @@
             "mot_de_passe": "$2y$10$Ef1DjPq1z8zRzShqoJ.jNeZKp2q8Vzmq0laZUJqB2XvJX76qL2udK"
         },
         {
-            "id": "6642a521bd7eb",
-            "email": "lou@gmail.com",
-            "mot_de_passe": "$2y$10$OAblF45yXIo3k1jayO5TPexhljbxORDJLUBM24kFu\/MPFVsW3MtJe"
-        },
-        {
             "id": "664674387ae19",
             "email": "laura.johnson@example.com",
             "mot_de_passe": "$2y$10$0AQbhUCKG2WpRLnpqdsl0.\/CVqsIpIib9D3mtBbZ7OCwtYMNccjR6"
@@ -347,28 +342,6 @@
             "couleur_des_yeux": "marron",
             "taille": "160",
             "poids": "55",
-            "statut": "decouverte",
-            "utilisateurs_bloques": [
-                "salut",
-                "coucou"
-            ],
-            "stalkers": []
-        },
-        {
-            "id": "6642a521bd7eb",
-            "nom": "Beranger",
-            "prenom": "Loueva",
-            "date": "2000-10-16",
-            "genre": "homme",
-            "pseudo": "Lucas",
-            "situation": "celib",
-            "adresse": "30 avenue du languedoc",
-            "ville": "Villepreux",
-            "pays": "France",
-            "couleur_des_cheveux": "noir",
-            "couleur_des_yeux": "vert",
-            "taille": "200",
-            "poids": "200",
             "statut": "decouverte",
             "utilisateurs_bloques": [
                 "salut",
