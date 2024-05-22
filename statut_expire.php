@@ -56,7 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>STATUT EXPIRÉ</h1>
     <p>Souhaitez-vous étendre votre durée d'abonnement ?</p>
     <form method="POST" action="">
-        <button type="submit" class="bouton">Ajouter du temps</button>
+        <button type="submit" class="bouton">Étendre l'abonnement</button>
+        <input type="button" class="bouton" value="Ne pas reconduire" onclick="linkopener('deconnexion.php')" />
     </form>
+    
+    <script src="script.js" type="text/javascript"></script>
 </body>
 </html>
