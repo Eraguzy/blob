@@ -2,10 +2,6 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
-.Connexion-page {
-    height: 86.4vh;
-}
-
 .Connexion-boite {
     padding: 40px;
     text-align: center;

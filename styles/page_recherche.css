@@ -3,15 +3,6 @@
 @import url("forms.css");
 @import url("accueil.css");
 
-body, html {
-    height: calc(100% - 50px);
-    margin: 0;
-}
-
-.Connexion-page {
-    height: 100%;
-}
-
 .Connexion-boite {
     height: 80%;
     width: 50%;

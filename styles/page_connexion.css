@@ -2,15 +2,6 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
-body, html {
-    height: calc(100% - 50px);
-    margin: 0;
-}
-
-.Connexion-page {
-    height: 100%;
-}
-
 .donnees label {
     margin-bottom: 5px;
 }

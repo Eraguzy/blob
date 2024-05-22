@@ -2,6 +2,10 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
+.Connexion-page{
+	height: auto;
+}
+
 .Connexion-boite {
     padding: 18px;
     margin-top: 20px;

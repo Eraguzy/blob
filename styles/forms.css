@@ -1,7 +1,13 @@
 /*fichier global à inclure*/
 /*gestion du bandeau et de ses éléments*/
 
+body, html {
+    height: calc(100% - 50px);
+    margin: 0;
+}
+
 .Connexion-page {
+    height: 100%;
     background-image: url('../fond.jpeg');
     background-size: cover;
     background-position: center;
