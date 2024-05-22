@@ -33,7 +33,7 @@ $data = json_decode($json_content, true);
 
 //si on veut accéder à accueil.php, on ne doit pas être un abonné 
 session_start();
-if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'decouverte' || $_SESSION['statut'] == 'vip' || $_SESSION['statut'] == 'classique')) {
+if (isset($_SESSION['statut']) && ($_SESSION['statut'] == 'decouverte' || $_SESSION['statut'] == 'vip' || $_SESSION['statut'] == 'classique')) {
     // Redirection vers la page abonne.php si l'utilisateur est abonné
     header("Location: abonne.php");
     exit;
@@ -63,14 +63,30 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Bonjour</div>
-        <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil" onclick="linkopener('modif_profil.php')" />
+        <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil"
+            onclick="linkopener('modif_profil.php')" />
         <input type="button" class="bouton" value="Déconnexion" onclick="linkopener('deconnexion.php')" />
     </nav>
-    <p class="para">Vous êtes maintenant inscrit sur Blob, vous pouvez rechercher dès à présent des personnes en tapant des mots-clés sur la barre de recherche.</p>
+    <p class="para">Vous êtes maintenant inscrit sur Blob, vous pouvez rechercher dès à présent des personnes en tapant
+        des mots-clés sur la barre de recherche.</p>
 
     <div class="conteneur">
         <form action="page_recherche.php" method="get" class="recherche">
             <input type="text" name="q" id="recherche" placeholder="Rechercher..." onkeyup="Suggestions(this.value)">
+            <select name="filtre">
+                <option value="">Pseudo</option>
+                <option value="nom">Nom</option>
+                <option value="prenom">Prenom</option>
+                <option value="date">Date de naissance</option>
+                <option value="genre">Genre</option>
+                <option value="ville">Ville</option>
+                <option value="pays">Pays</option>
+                <option value="situation">situation</option>
+                <option value="couleur_des_yeux">Couleur des yeux</option>
+                <option value="couleur_des_cheveux">Couleur des cheveux</option>
+                <option value="taille">Taille</option>
+                <option value="poids">Poids</option>
+            </select>
             <button type="submit">Rechercher</button>
         </form>
         <div id="res"></div>
@@ -94,6 +110,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         }
 
         function Suggestions(str) {
+            var filtre = document.querySelector('select[name="filtre"]').value; // Récupérer la valeur sélectionnée du champ select
             var xhttp;
             if (str.length == 0) {
                 document.getElementById("res").innerHTML = "";
@@ -116,21 +133,22 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
                     });
                 }
             };
-            xhttp.open("GET", "recherche.php?q=" + str + "&limit=true", true);
+            xhttp.open("GET", "recherche.php?q=" + str + "&filtre=" + filtre + "&limit=true", true);
             xhttp.send();
         }
     </script>
 
     <div class="contenu">
-        
 
-<p>Les trois derniers profils inscrits sur Blob :</p><br>
-<ul id="utilisateurs">
-            <?php foreach ($derniers_utilisateurs as $utilisateur) : ?>
+
+        <p>Les trois derniers profils inscrits sur Blob :</p><br>
+        <ul id="utilisateurs">
+            <?php foreach ($derniers_utilisateurs as $utilisateur): ?>
                 <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
             <?php endforeach; ?>
         </ul>
-        <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, cliquez sur le bouton en bas afin de découvrir toutes nos offres d'abonnement !</p>
+        <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, cliquez sur le bouton en bas afin de
+            découvrir toutes nos offres d'abonnement !</p>
     </div>
     <input type="button" class="bouton" id="souscription" value="Souscrire" onclick="linkopener('souscription.php')" />
 

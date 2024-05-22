@@ -33,8 +33,22 @@ if (isset($_COOKIE['user_id'])) {
         <div class="Connexion-boite">
             <div class="conteneur">
                 <form action="#" method="get" class="recherche">
-                    <input type="text" name="q" id="recherche" placeholder="<?php echo $_GET['q']; ?>"
+                    <input type="text" name="q" id="recherche" placeholder="Recherche" value="<?php echo $_GET['q']; ?>"
                         onkeyup="Suggestions(this.value)">
+                    <select name="filtre">
+                        <option value="">Pseudo</option>
+                        <option value="nom">Nom</option>
+                        <option value="prenom">Prenom</option>
+                        <option value="date">Date de naissance</option>
+                        <option value="genre">Genre</option>
+                        <option value="ville">Ville</option>
+                        <option value="pays">Pays</option>
+                        <option value="situation">situation</option>
+                        <option value="couleur_des_yeux">Couleur des yeux</option>
+                        <option value="couleur_des_cheveux">Couleur des cheveux</option>
+                        <option value="taille">Taille</option>
+                        <option value="poids">Poids</option>
+                    </select>
                     <button type="submit">Rechercher</button>
                 </form>
                 <div id="res"></div>
@@ -48,6 +62,7 @@ if (isset($_COOKIE['user_id'])) {
         }
 
         function Suggestions(str) {
+            var filtre = document.querySelector('select[name="filtre"]').value; // Récupérer la valeur sélectionnée du champ select
             var xhttp;
             if (str.length == 0) {
                 document.getElementById("res").innerHTML = "";
@@ -68,7 +83,7 @@ if (isset($_COOKIE['user_id'])) {
                     });
                 }
             };
-            xhttp.open("GET", "recherche.php?q=" + str, true);
+            xhttp.open("GET", "recherche.php?q=" + str + "&filtre=" + filtre + "&limit=true", true);
             xhttp.send();
         }
 
@@ -78,7 +93,7 @@ if (isset($_COOKIE['user_id'])) {
             var Taille_boite_resultats = Taille_boite - Taille_barre - 40;
             document.getElementById('res').style.maxHeight = Taille_boite_resultats + 'px';
             var Largeur_boite = document.querySelector('.Connexion-boite').offsetWidth;
-            var Largeur_boite_resultats = Largeur_boite - 115.15 - 40 ; // 40 px pour la marge 115.15px largeur profil
+            var Largeur_boite_resultats = Largeur_boite - 115.15 - 40; // 40 px pour la marge 115.15px largeur profil
             document.getElementById('res').style.paddingRight = Largeur_boite_resultats + 'px';
         });
     </script>
