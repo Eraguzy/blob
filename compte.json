@@ -581,10 +581,10 @@
             "couleur_des_yeux": "bleu",
             "taille": "100",
             "poids": "30",
-            "statut": "utilisateur",
+            "statut": "classique",
             "utilisateurs_bloques": [],
             "stalkers": [],
-            "statut_starter_time": 1716361534
+            "statut_starter_time": 1716366614
         }
     ],
     "discussions": [
