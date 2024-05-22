@@ -81,6 +81,20 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
     <div class="conteneur">
         <form action="page_recherche.php" method="get" class="recherche">
             <input type="text" name="q" id="recherche" placeholder="Rechercher..." onkeyup="Suggestions(this.value)">
+            <select name="filtre">
+                <option value="">Pseudo</option>
+                <option value="nom">Nom</option>
+                <option value="prenom">Prenom</option>
+                <option value="date">Date de naissance</option>
+                <option value="genre">Genre</option>
+                <option value="ville">Ville</option>
+                <option value="pays">Pays</option>
+                <option value="situation">situation</option>
+                <option value="couleur_des_yeux">Couleur des yeux</option>
+                <option value="couleur_des_cheveux">Couleur des cheveux</option>
+                <option value="taille">Taille</option>
+                <option value="poids">Poids</option>
+            </select>
             <button type="submit">Rechercher</button>
         </form>
         <div id="res"></div>
@@ -119,6 +133,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
     }
 
         function Suggestions(str) {
+            var filtre = document.querySelector('select[name="filtre"]').value; // Récupérer la valeur sélectionnée du champ select
             var xhttp;
             if (str.length == 0) {
                 document.getElementById("res").innerHTML = "";
@@ -141,7 +156,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
                     });
                 }
             };
-            xhttp.open("GET", "recherche.php?q=" + str + "&limit=true", true);
+            xhttp.open("GET", "recherche.php?q=" + str + "&filtre=" + filtre + "&limit=true", true);
             xhttp.send();
         }
     </script>
