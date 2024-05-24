@@ -31,6 +31,29 @@ foreach ($data['profils'] as $profil) {
     }
 }
 session_start();
+
+if (!isset($_SESSION['nom'])) {
+    foreach ($data['profils'] as $profil) {
+        if ($profil['id'] == $id_utilisateur) {
+            $_SESSION['nom'] = $profil['nom'];
+            $_SESSION['prenom'] = $profil['prenom'];
+            $_SESSION['date'] = $profil['date'];
+            $_SESSION['genre'] = $profil['genre'];
+            $_SESSION['pseudo'] = $profil['pseudo'];
+            $_SESSION['situation'] = $profil['situation'];
+            $_SESSION['adresse'] = $profil['adresse'];
+            $_SESSION['ville'] = $profil['ville'];
+            $_SESSION['pays'] = $profil['pays'];
+            $_SESSION['couleur_des_yeux'] = $profil['couleur_des_yeux'];
+            $_SESSION['couleur_des_cheveux'] = $profil['couleur_des_cheveux'];
+            $_SESSION['taille'] = $profil['taille'];
+            $_SESSION['poids'] = $profil['poids'];
+            $_SESSION['statut'] = $profil['statut'];
+            break;
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +119,7 @@ session_start();
                             if ($count % 2 == 0) {
                                 echo "<a id=\"res\" href=\"suppression_message.php?id_utilisateur=$id_utilisateur&id_destinataire=$id_destinataire&id_message=$count\"> $message : ";
                             } else {
-                                echo "$message</a>";
+                                echo "$message</a></br>";
                             }
                             $count++;
                         }
