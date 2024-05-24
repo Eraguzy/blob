@@ -1,2 +1,33 @@
 @import url("global.css");
 @import url("bandeau.css");
+
+h1 {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.bouton {
+    position: relative;
+    left : 38%;
+}
+
+/*classe pour le conteneur et centre image*/
+.poisson {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 3%; 
+    margin-bottom: 3%;
+}
+
+/*classe pour l'image et réduis taille image*/
+.poisson-img {
+    width: 25%; 
+    height: auto; 
+}
