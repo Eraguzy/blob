@@ -78,9 +78,11 @@ p {
     text-align: center;
 }
 
-.boutons2 {
-    position: absolute;
-    top: 79%;
-    right: 36%
+ul {
+    margin-bottom: 5%;
+}
 
+.bouton3 {
+    display: flex;
+    justify-content: center;
 }
