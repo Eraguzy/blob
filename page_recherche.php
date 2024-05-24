@@ -83,7 +83,7 @@ if (isset($_COOKIE['user_id'])) {
                     });
                 }
             };
-            xhttp.open("GET", "recherche.php?q=" + str + "&filtre=" + filtre + "&limit=true", true);
+            xhttp.open("GET", "recherche.php?q=" + str + "&filtre=" + filtre);
             xhttp.send();
         }
 
