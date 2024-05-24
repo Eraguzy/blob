@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h1>STATUT EXPIRÉ</h1>
     <p>Souhaitez-vous étendre votre durée d'abonnement ?</p>
+    <p>Vous pouvez rajouter à votre temps de session la durée que vous avez choisie lors de l'inscription. Par exemple, si vous avez choisi l'offre découverte, votre temps de session sera augmenté d'une minute.</p>
     <form method="POST" action="">
         <button type="submit" class="bouton">Étendre l'abonnement</button>
         <input type="button" class="bouton" value="Ne pas reconduire" onclick="linkopener('deconnexion.php')" />
