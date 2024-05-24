@@ -76,9 +76,9 @@ session_start();
                     ) {
                         foreach ($discussion['messages'] as $message) {
                             if ($count % 2 == 0) {
-                                echo "<div id=\"res\"> $message : ";
+                                echo "<a id=\"res\" href=\"suppression_message.php?id_utilisateur=$id_utilisateur&id_destinataire=$id_destinataire&id_message=$count\"> $message : ";
                             } else {
-                                echo "$message</div>";
+                                echo "$message</a>";
                             }
                             $count++;
                         }
