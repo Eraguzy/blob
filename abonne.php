@@ -168,13 +168,12 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
             <?php foreach ($derniers_utilisateurs as $utilisateur) : ?>
                 <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
             <?php endforeach; ?>
-
+            </ul>
+            <div class="bouton3">
         <input type="button" class="bouton" value="Liste des bloqués" onclick="linkopener('liste_bloque.php')" />
         <input type="button" class="bouton" value="Vues de mon profil" onclick="linkopener('liste_vues.php')" />
         <input type="button" class="bouton" value="Extension du statut" onclick="linkopener('extension_statut.php')" />
-        </ul>
         </div>
-        
     <script src="script.js" type="text/javascript"></script>
 </body>
 
