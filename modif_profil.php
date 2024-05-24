@@ -62,6 +62,22 @@ function changement_info($nom, $information)
         function linkopener(a) {
             window.open(a, '_self');
         }
+        //fonction qui vérifie le statut toutes les 5 secondes
+        function checkStatut() {
+            fetch('verif_statut.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                } else if (data.error) {
+                    console.error('Erreur:', data.error);
+                } else if (data.valid) {
+                    console.log(data.message);
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+        setInterval(checkStatut, 5000);
     </script>
 </head>
 

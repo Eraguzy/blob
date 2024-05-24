@@ -1,4 +1,10 @@
 <?php
+$statuts = [
+    'decouverte' => 30,
+    'classique' => 60,
+    'vip' => 150,
+    'admin' => 2000000
+];
 session_start();
 
 //vérifie si on est connecté
@@ -12,14 +18,15 @@ $user_id = $_COOKIE['user_id'];
 $fichier = "compte.json";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $temps_ajoute = intval($_POST['temps']);
     $json_content = file_get_contents($fichier);
     $data = json_decode($json_content, true);
 
     //récupération des profils, ajout du temps souhaité à la valeur de début 
     foreach ($data['profils'] as &$profil) {
         if ($profil['id'] == $user_id) {
-            $profil['statut_starter_time'] += $temps_ajoute; 
+            $statut = $profil['statut'];
+            $duree = $statuts[$statut];
+            $profil['statut_starter_time'] = time() + $duree ; 
             break;
         }
     }
@@ -47,11 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
 <body>
     <h1>STATUT EXPIRÉ</h1>
-    <p>Souhaitez-vous rajouter de la durée à votre statut ?</p>
+    <p>Souhaitez-vous étendre votre durée d'abonnement ?</p>
     <form method="POST" action="">
-        <label for="temps">Durée à ajouter (en secondes) :</label>
-        <input type="number" id="temps" name="temps" required><br>
-        <button type="submit" class="bouton">Ajouter du temps</button>
+        <button type="submit" class="bouton">Étendre l'abonnement</button>
+        <input type="button" class="bouton" value="Ne pas reconduire" onclick="linkopener('deconnexion.php')" />
     </form>
+    
+    <script src="script.js" type="text/javascript"></script>
 </body>
 </html>

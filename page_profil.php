@@ -93,6 +93,24 @@ function affichage_info($nom, $information, $id_utilisateur)
     <link rel="stylesheet" type="text/css" href="styles/page_profil.css">
     <link rel="icon" href="logo.png">
     <title>Blob</title>
+    <script>
+        //fonction qui vérifie le statut toutes les 5 secondes
+        function checkStatut() {
+            fetch('verif_statut.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                } else if (data.error) {
+                    console.error('Erreur:', data.error);
+                } else if (data.valid) {
+                    console.log(data.message);
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+        setInterval(checkStatut, 5000);
+    </script>
 </head>
 <body>
 <nav class="bandeau">
