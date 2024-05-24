@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="donnees">
                     <div class="container">
                     <input type="radio" id="vip" name="abo" value="vip" />
-                    <label for="vip" class="privilege">Offre VIP : 29,90 euros par mois id</label>
+                    <label for="vip" class="privilege">Offre VIP : 5 minutes</label>
                     <div class="encart3">Avec cette super offre VIP, vous bénéficiez de toutes les fonctionnalités de Blob pendant un maximum de temps (5 minutes)!!!!</div>
                     </div>
                 </div>
