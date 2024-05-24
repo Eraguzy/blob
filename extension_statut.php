@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
 <body>
     <h1>EXTENSION DU STATUT</h1>
+    <p>Vous pouvez rajouter à votre temps de session la durée que vous avez choisie lors de l'inscription. Par exemple, si vous avez choisi l'offre découverte, votre temps de session sera augmenté d'une minute.</p>
     <form method="POST" action="">
         <div class="ajouter">
         <button type="submit" class="bouton">Ajouter du temps</button>
