@@ -150,7 +150,16 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         <p class="para">Afin d'échanger avec tous les utilisateurs de Blob, cliquez sur le bouton en bas afin de
             découvrir toutes nos offres d'abonnement !</p>
     </div>
-    <input type="button" class="bouton" id="souscription" value="Souscrire" onclick="linkopener('souscription.php')" />
+
+    <div class="conteneurdubas">
+        <input type="button" class="bouton souscription" value="Souscrire" onclick="linkopener('souscription.php')" />
+
+        <?php 
+        if (isset($_SESSION['statut']) && $_SESSION['statut'] == 'admin'){
+            echo '<input type="button" class="bouton souscription" value="Interface admin" onclick="linkopener(`admin/adminmenu.php`)" />'; // faut mettre le `à l'intérieur pas pour les guillemets extérieurs jsp pq sinon ça marche pas
+        }
+        ?>
+    </div>
 
     <script src="script.js" type="text/javascript"></script>
 </body>

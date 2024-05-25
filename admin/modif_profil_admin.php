@@ -209,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="autre" <?php echo $profilutilisateur['couleur_des_cheveux'] == 'autre' ? 'selected' : ''; ?>>Autre</option>
                 </select>
                 <select name="couleur_des_yeux" id="couleur_des_yeux" required>
-                    <option value="VIP" <?php echo $profilutilisateur['couleur_des_yeux'] == 'bleu' ? 'selected' : ''; ?>>Bleu</option>
+                    <option value="bleu" <?php echo $profilutilisateur['couleur_des_yeux'] == 'bleu' ? 'selected' : ''; ?>>Bleu</option>
                     <option value="vert" <?php echo $profilutilisateur['couleur_des_yeux'] == 'vert' ? 'selected' : ''; ?>>Vert</option>
                     <option value="marron" <?php echo $profilutilisateur['couleur_des_yeux'] == 'marron' ? 'selected' : ''; ?>>Marron</option>
                     <option value="autre" <?php echo $profilutilisateur['couleur_des_yeux'] == 'autre' ? 'selected' : ''; ?>>Autre</option>
@@ -225,6 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="classique" <?php echo $profilutilisateur['statut'] == 'classique' ? 'selected' : ''; ?>>Classique</option>
                     <option value="VIP" <?php echo $profilutilisateur['statut'] == 'VIP' ? 'selected' : ''; ?>>VIP</option>
                     <option value="Utilisateur" <?php echo $profilutilisateur['statut'] == 'Utilisateur' ? 'selected' : ''; ?>>Utilisateur (sans offre)</option>
+                    <option value="admin" <?php echo $profilutilisateur['statut'] == 'admin' ? 'selected' : ''; ?>>admin</option>
                 </select>
             </div>
             <div class="donnees">

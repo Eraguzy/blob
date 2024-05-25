@@ -31,6 +31,13 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
+session_start();
+if (isset($_SESSION['statut']) && $_SESSION['statut'] == 'utilisateur') {
+    // Redirection vers la page abonne.php si l'utilisateur est abonné
+    header("Location: accueil.php");
+    exit;
+}
+
 // Trier les profils par ID en supposant que les IDs sont ordonnés chronologiquement
 usort($data['profils'], function ($a, $b) {
     return strcmp($a['id'], $b['id']);
@@ -163,17 +170,27 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
 
     <div class="contenu">
         
-<p>Les trois derniers profils inscrits sur Blob :</p><br>
-<ul id="utilisateurs">
+        <p>Les trois derniers profils inscrits sur Blob :</p><br>
+        <ul id="utilisateurs">
             <?php foreach ($derniers_utilisateurs as $utilisateur) : ?>
                 <li><?php echo htmlspecialchars($utilisateur['nom'] . ' ' . $utilisateur['prenom']); ?></li>
             <?php endforeach; ?>
-            </ul>
-            <div class="bouton3">
-        <input type="button" class="bouton" value="Liste des bloqués" onclick="linkopener('liste_bloque.php')" />
-        <input type="button" class="bouton" value="Vues de mon profil" onclick="linkopener('liste_vues.php')" />
-        <input type="button" class="bouton" value="Extension du statut" onclick="linkopener('extension_statut.php')" />
+        </ul>
+        <div class="bouton3">
+            <input type="button" class="bouton" value="Liste des bloqués" onclick="linkopener('liste_bloque.php')" />
+            <input type="button" class="bouton" value="Vues de mon profil" onclick="linkopener('liste_vues.php')" />
+            <input type="button" class="bouton" value="Extension du statut" onclick="linkopener('extension_statut.php')" />
         </div>
+    </div>
+
+    <div class="conteneurdubas">
+        <?php 
+        if (isset($_SESSION['statut']) && $_SESSION['statut'] == 'admin'){
+            echo '<input type="button" class="bouton" id="interfaceadmin" value="Interface admin" onclick="linkopener(`admin/adminmenu.php`)" />'; // faut mettre le `à l'intérieur pas pour les guillemets extérieurs jsp pq sinon ça marche pas
+        }
+        ?>
+    </div>
+
     <script src="script.js" type="text/javascript"></script>
 </body>
 

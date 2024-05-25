@@ -86,3 +86,10 @@ ul {
     display: flex;
     justify-content: center;
 }
+
+.conteneurdubas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
