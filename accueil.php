@@ -1,19 +1,23 @@
 <?php
-// Vérification si le cookie existe
+//Vérification si le cookie de connexion existe et si l'utilisateur s'est crée son profil
 if (isset($_COOKIE['user_id'])) {
     if (!isset($_COOKIE['creation_profil']) || $_COOKIE['creation_profil'] == 0) {
         $profil_cree = 0;
+        //On récupère l'id utilisateur
         $id_utilisateur = $_COOKIE['user_id'];
+        //On vérifie dans la base de donnée si le profil est crée si on a pas de cookie prouvant que l'utilisateur s'est crée un profil
         $fichier = "compte.json";
         $json_content = file_get_contents($fichier);
         $data = json_decode($json_content, true);
         foreach ($data['profils'] as $profile) {
+            // Profil trouvé, on crée un cookie avec la valeur 1
             if ($profile['id'] == $id_utilisateur) {
                 $profil_cree = 1;
                 setcookie("creation_profil", 1, time() + (30 * 24 * 3600), "/");
                 break;
             }
         }
+        //Pas de profil trouvé donc on crée le cookie avec la valeur 0
         if ($profil_cree == 0) {
             setcookie("creation_profil", 0, time() + (30 * 24 * 3600), "/");
             header("Location: creation_profil.php");
@@ -21,25 +25,25 @@ if (isset($_COOKIE['user_id'])) {
         }
     }
 } else {
-    // Redirection vers la page de connexion si le cookie n'est pas présent
+    //Redirection vers la page de connexion si le cookie n'est pas présent
     header("Location: page_connexion.php");
     exit;
 }
 
-// Charger les données du fichier JSON
+//Charger les données du fichier JSON
 $fichier = "compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
-//si on veut accéder à accueil.php, on ne doit pas être un abonné 
+//Si on veut accéder à accueil.php, on ne doit pas être un abonné 
 session_start();
 if (isset($_SESSION['statut']) && ($_SESSION['statut'] == 'decouverte' || $_SESSION['statut'] == 'vip' || $_SESSION['statut'] == 'classique')) {
-    // Redirection vers la page abonne.php si l'utilisateur est abonné
+    //Redirection vers la page abonne.php si l'utilisateur est abonné
     header("Location: abonne.php");
     exit;
 }
 
-// Trier les profils par ID en supposant que les IDs sont ordonnés chronologiquement
+//Trier les profils par ID en supposant que les IDs sont ordonnés chronologiquement
 usort($data['profils'], function ($a, $b) {
     return strcmp($a['id'], $b['id']);
 });
@@ -59,6 +63,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
 </head>
 
 <body>
+    <!-- Bandeau de page avec les boutons de redirection pour se déconnecter et modifier son profil -->
     <nav class="bandeau">
         <img src="logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
@@ -71,6 +76,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         des mots-clés sur la barre de recherche.</p>
 
     <div class="conteneur">
+        <!-- Barre de recherche avec filtre -->
         <form action="page_recherche.php" method="get" class="recherche">
             <input type="text" name="q" id="recherche" placeholder="Rechercher..." onkeyup="Suggestions(this.value)">
             <select name="filtre">
@@ -92,6 +98,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         <div id="res"></div>
     </div>
     <script>
+        //On ajuste le padding en fonction du nombre de résultats
         function adjustContentPadding(resultsCount) {
             console.log("Nombre de résultats:", resultsCount);
             var contentElement = document.querySelector(".contenu");
@@ -100,30 +107,34 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
             contentElement.style.paddingTop = paddingTop + "px";
         }
 
+        //Le nombre de profil affiché
         function getResultsCount() {
             var profileElements = document.querySelectorAll(".profile");
             return profileElements.length;
         }
 
+        //Redirection vers la page du profil ciblé en question
         function viewProfile(id_utilisateur) {
             window.location.href = 'page_resume.php?id_utilisateur=' + id_utilisateur;
         }
 
         function Suggestions(str) {
-            var filtre = document.querySelector('select[name="filtre"]').value; // Récupérer la valeur sélectionnée du champ select
+            var filtre = document.querySelector('select[name="filtre"]').value; //Récupérer la valeur sélectionnée du champ select
             var xhttp;
+            //Si la barre de recherche est vide ça n'affiche rien dans le cas contraire ça 
             if (str.length == 0) {
                 document.getElementById("res").innerHTML = "";
-                adjustContentPadding(0); // Pas de résultats
+                adjustContentPadding(0); //Pas de résultats
                 return;
             }
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("res").innerHTML = this.responseText;
+                    //On ajuste le padding en fonction du nombre de résultats
                     adjustContentPadding(getResultsCount());
-
-                    // Ajouter un gestionnaire d'événements de clic pour chaque profil
+                    //Gestionnaire d'événements de clic pour chaque profil
+                    //Lorsque l'utilisateur clique sur un profil, il est redirigé vers la page du profil en question
                     var profileElements = document.querySelectorAll(".profile");
                     profileElements.forEach(function (element) {
                         element.addEventListener('click', function () {
@@ -133,6 +144,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
                     });
                 }
             };
+            //On envoie le champ de la barre de recherche, le filtre et si il y a une limite au nombre de résultats ou non à un algorithme de recherche
             xhttp.open("GET", "recherche.php?q=" + str + "&filtre=" + filtre + "&limit=true", true);
             xhttp.send();
         }
@@ -140,7 +152,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
 
     <div class="contenu">
 
-
+        <!-- On affiche les 3 derniers profils inscrits -->
         <p>Les trois derniers profils inscrits sur Blob :</p><br>
         <ul id="utilisateurs">
             <?php foreach ($derniers_utilisateurs as $utilisateur): ?>
@@ -151,9 +163,11 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
             découvrir toutes nos offres d'abonnement !</p>
     </div>
 
+    <!-- Bouton pour souscrire aux divers abonnements proposés -->
     <div class="conteneurdubas">
         <input type="button" class="bouton souscription" value="Souscrire" onclick="linkopener('souscription.php')" />
 
+        <!-- Si l'utilisateur est un administrateur il est renvoyé vers le menu administrateur -->
         <?php 
         if (isset($_SESSION['statut']) && $_SESSION['statut'] == 'admin'){
             echo '<input type="button" class="bouton souscription" value="Interface admin" onclick="linkopener(`admin/adminmenu.php`)" />'; // faut mettre le `à l'intérieur pas pour les guillemets extérieurs jsp pq sinon ça marche pas
@@ -161,6 +175,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         ?>
     </div>
 
+    <!-- Le script pour les boutons de redirection vers une page annexe -->
     <script src="script.js" type="text/javascript"></script>
 </body>
 
