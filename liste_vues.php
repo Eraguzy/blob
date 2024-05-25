@@ -1,6 +1,6 @@
 <?php
 $jsonFile = "compte.json";
-
+//fonction qui lit le fichier json
 function loadJson($filePath) {
     if (!file_exists($filePath)) {
         return false;
@@ -18,14 +18,14 @@ if ($data === false) {
 $userID = $_COOKIE['user_id'];
 $vues = [];
 $vuesPseudos = [];
-
+//remplissage du tableau "vues" avec la liste des stallkers
 foreach ($data['profils'] as $profil) {
     if ($profil['id'] === $userID) {
         $vues = $profil['stalkers'];
         break;
     }
 }
-
+//récupération des pseudos des stalkers à partir de leur ID
 foreach ($vues as $vuesID) {
     foreach ($data['profils'] as $profil) {
         if ($profil['id'] === $vuesID) {
@@ -74,6 +74,7 @@ foreach ($vues as $vuesID) {
         <div class="Connexion-boite">
             <h2>Mes stalkers :</h2>
             <ul>
+                <!-- affichage des pseudos des stalkers -->
                 <?php foreach ($vuesPseudos as $pseudos) : ?>
                     <li><?php echo $pseudos; ?></li>
                 <?php endforeach; ?>
