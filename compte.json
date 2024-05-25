@@ -364,14 +364,14 @@
             "genre": "femme",
             "pseudo": "eraguzy",
             "situation": "celib",
-            "adresse": "t",
+            "adresse": "verduere",
             "ville": "cergyzer",
             "pays": "france",
             "couleur_des_cheveux": "brun",
-            "couleur_des_yeux": "bleu",
+            "couleur_des_yeux": "VIP",
             "taille": "181",
             "poids": "70",
-            "statut": "admin",
+            "statut": "decouverte",
             "utilisateurs_bloques": [
                 "salut",
                 "coucou"
