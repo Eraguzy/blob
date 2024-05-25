@@ -1,6 +1,6 @@
 <?php
 $jsonFile = "compte.json";
-
+//ouverture du fichier json
 function loadJson($filePath) {
     if (!file_exists($filePath)) {
         return false;
@@ -14,18 +14,19 @@ $data = loadJson($jsonFile);
 if ($data === false) {
     die("Erreur : Impossible de charger le fichier JSON.");
 }
-
+//on récup l'id de l'utilisateur actuel
 $userID = $_COOKIE['user_id'];
 $bloques = [];
 $bloquesPseudos = [];
 
+//on remplit le tableau bloques avec tous les ID des gens bloqués de la liste de la personne
 foreach ($data['profils'] as $profil) {
     if ($profil['id'] === $userID) {
         $bloques = $profil['utilisateurs_bloques'];
         break;
     }
 }
-
+//on récupère le pseudo de l'utilisateur bloqué afin de ne pas afficher l'ID (inutile)
 foreach ($bloques as $bloqueID) {
     foreach ($data['profils'] as $profil) {
         if ($profil['id'] === $bloqueID) {
@@ -74,6 +75,7 @@ foreach ($bloques as $bloqueID) {
         <div class="Connexion-boite">
             <h2>Utilisateurs bloqués :</h2>
             <ul>
+                <!-- affiche les bloqués par leur pseudo -->
                 <?php foreach ($bloquesPseudos as $pseudos) : ?>
                     <li><?php echo $pseudos; ?></li>
                 <?php endforeach; ?>
