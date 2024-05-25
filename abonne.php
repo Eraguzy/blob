@@ -210,6 +210,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         ?>
     </div>
 
+    <!-- Le script pour les boutons de redirection vers une page annexe -->
     <script src="script.js" type="text/javascript"></script>
 </body>
 
