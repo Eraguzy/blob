@@ -11,7 +11,14 @@ if (isset($_COOKIE['user_id'])) {
 }
 
 $id_destinataire = $_GET['id_cible'];
-$id_utilisateur = $_COOKIE['user_id'];
+
+if(isset($GET['user_id']) && $_GET['id_main'] != ""){ // vérifie si on a appelé avec un deuxième id pour éviter message d'erreur
+    $id_utilisateur = $_GET['id_main'];
+}
+else{
+    $id_utilisateur = $_COOKIE['user_id'];
+}
+//ici on a bien défini un destinataire et un sender pour tous les cas (soit il y a un id_main dans GET et l'appel a été fait depuis listeconvs.php, soit ça vient de la page de profil classique et y'a pas de id_main)
 
 $fichier = "../database/compte.json";
 if (file_exists($fichier)) {
