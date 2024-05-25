@@ -1,9 +1,10 @@
 <?php
-// Vérification si le cookie existe
+// on vérifie si la personne est connecté
 if (!isset($_COOKIE['user_id'])) {
     header("Location: accueil.php");
     exit;
 }
+//on récup l'user, ainsi que l'abonnement choisi par la méthode post, ouverture du fichier json
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_utilisateur = $_COOKIE['user_id'];
     $abo = $_POST['abo'];
@@ -15,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $data = ["profils" => []];
     }
-
+//on remplace le statut par défaut par l'offre choisie, on lance le compteur avec la fonction time()
     foreach ($data['profils'] as &$profil) {
         if ($profil['id'] == $id_utilisateur) {
             $profil['statut'] = $abo;
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             break;
         }
     }
-
+//on remet tous les changements dans le fichier json
     $json_new_contenue = json_encode($data, JSON_PRETTY_PRINT);
     file_put_contents($fichier, $json_new_contenue);
 
@@ -81,10 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <script>
-          
+          //fonction qui permet la redirection vers les autres pages
     function linkopener(a){
     window.open(a,'_self');
 }
+        //permet d'afficher un encart quand on survole la proposition d'abonnement
 const element1 = document.querySelector('.discover');
 const encart1 = document.querySelector('.encart1');
 
