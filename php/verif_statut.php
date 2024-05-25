@@ -8,7 +8,7 @@ $statuts = [
 ];
 //début session, ouverture fichier, lecture du fichier, récupération du cookie utilisateur
 session_start();
-$fichier = "compte.json";
+$fichier = "../database/compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 $user_id = $_COOKIE['user_id'];

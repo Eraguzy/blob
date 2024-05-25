@@ -1,5 +1,5 @@
 <?php
-$jsonFile = "compte.json";
+$jsonFile = "../database/compte.json";
 //ouverture du fichier json
 function loadJson($filePath) {
     if (!file_exists($filePath)) {
@@ -42,8 +42,8 @@ foreach ($bloques as $bloqueID) {
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/bloque.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/bloque.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Liste des utilisateurs bloqués</title>
     <script>
         //fonction qui vérifie le statut toutes les 5 secondes
@@ -66,7 +66,7 @@ foreach ($bloques as $bloqueID) {
 </head>
 <body>
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Liste des utilisateurs bloqués</div>
         <input type="button" class="bouton" value="Retour" onclick="linkopener('abonne.php')" />
@@ -82,6 +82,6 @@ foreach ($bloques as $bloqueID) {
             </ul>
         </div>
     </div>
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 </html>

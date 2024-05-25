@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Initialisation des variables
     $email = $_POST["email"];
     $mdp = $_POST["mdp"];
-    $fichier = "compte.json";
+    $fichier = "../database/compte.json";
 
     //On vérifie si le fichier existe si c'est le cas on charge le données dans une variables sinon on crée le fichier 
     if (!file_exists($fichier)) {
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($statut_utilisateur == 'classique' || $statut_utilisateur == 'vip' || $statut_utilisateur == 'decouverte') {
             header("Location: abonne.php");
         } else if ($statut_utilisateur == 'admin') {
-            header("Location: admin/adminmenu.php");
+            header("Location: ../admin/adminmenu.php");
         }
         else if($statut_utilisateur == 'utilisateur'){
             header("Location: accueil.php");
@@ -79,15 +79,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/page_connexion.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/page_connexion.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Blob</title>
 </head>
 
 <body>
     <!-- Bandeau de page avec le bouton de redirection pour l'accueil-->
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Déjà membre</div>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')" />
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="Connexion-page">
         <div class="Connexion-boite">
             <h2 class="legende">Connexion</h2>
-            <form name="connexion" method="post" action="page_connexion.php">
+            <form name="connexion" method="post" action="../php/page_connexion.php">
                 <div class="donnees">
                     <label for="email">Email :</label>
                     <input type="text" name="email" class="champ" placeholder="Email" required>
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <!-- Le script pour le bouton d'accueil pour rediriger vers la page -->
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 
 </html>

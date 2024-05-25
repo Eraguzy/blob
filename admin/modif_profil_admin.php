@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 'admin'){
     // si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    header("Location: ../accueil.php");
+    header("Location: ../php/accueil.php");
     exit();
 }
 
@@ -12,17 +12,17 @@ $id_utilisateur = $_GET['id_utilisateur']; // appel du code depuis modif profil 
 if($id_utilisateur == ""){ // cas où l'admin souhaiterait modifier son propre profil : alors on met son identifiant si l'appel n'a pas d'identifiant
     if (isset($_COOKIE['user_id'])){
         if ($_COOKIE['creation_profil'] == 0) {
-            header("Location: creation_profil.php");
+            header("Location: ../php/creation_profil.php");
             exit;
         }
         $id_utilisateur = $_COOKIE['user_id'];
     } else {
-        header("Location: page_connexion.php");
+        header("Location: ../php/page_connexion.php");
         exit;
     }
 }
 
-$fichier = "../compte.json";
+$fichier = "../database/compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
@@ -76,7 +76,7 @@ function changement_info($nom, $information){
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fichier = "../compte.json";
+    $fichier = "../database/compte.json";
     $json_contenue = file_get_contents($fichier);
     $data = json_decode($json_contenue, true);
 
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $profilutilisateur[$nom] = $_POST[$nom];
             
             // Mise à jour des données dans le tableau $data
-            $fichier = "../compte.json";
+            $fichier = "../database/compte.json";
             $json_contenue = file_get_contents($fichier);
             $data = json_decode($json_contenue, true);
 
@@ -151,15 +151,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <script src="../script.js" type="text/javascript"></script> <!--l'inclusion est mise au début car sinon les inkopener ne focntionnent pas-->
+    <script src="../scripts/script.js" type="text/javascript"></script> <!--l'inclusion est mise au début car sinon les inkopener ne focntionnent pas-->
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../styles/modif_profil.css"> <!-- on garde le même affichage que la modif profil classique -->
-    <link rel="icon" href="../logo.png">
+    <link rel="icon" href="../images/logo.png">
     <title>Blob</title>
 </head>
 
 <nav class="bandeau">
-    <img src="../logo.png" class="img">
+    <img src="../images/logo.png" class="img">
     <div class="bandeautitle">BLOB</div>
     <div class="titrebandeau">Modifier un profil (admin)</div>
     <input type="button" class="bouton" value="Accueil" onclick="linkopener('../accueil.php')" />
@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="Connexion-page">
     <div class="Connexion-boite">
         <img id="profil" src="../photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil" onclick="linkopener('../changement_image.php?id_utilisateur=<?php echo $id_utilisateur; ?>')">
-        <form method="post" action="modif_profil_admin.php?id_utilisateur=<?php echo urlencode($id_utilisateur); ?>" enctype="multipart/form-data">
+        <form method="post" action="../php/modif_profil_admin.php?id_utilisateur=<?php echo urlencode($id_utilisateur); ?>" enctype="multipart/form-data">
             <?php
             changement_info("nom", $profilutilisateur['nom']);
             changement_info("prenom", $profilutilisateur['prenom']);

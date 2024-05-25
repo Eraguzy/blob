@@ -3,12 +3,12 @@
 session_start();
 //vérif du cookie utilisateur
 if (!isset($_COOKIE['user_id'])) {
-    header("Location: page_connexion.php");
+    header("Location: ../php/page_connexion.php");
     exit;
 }
 //récupération de l'id de l'user actuel
 $user_id = $_COOKIE['user_id'];
-$fichier = "compte.json";
+$fichier = "../database/compte.json";
 //ouverture du fichier
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $json_content = file_get_contents($fichier);
@@ -40,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/bloque.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/bloque.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Extension du statut</title>
 </head>
 <body>
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Extension du statut</div>
         <input type="button" class="bouton" value="Retour" onclick="linkopener('abonne.php')" />
@@ -60,9 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="bouton">Ajouter du temps</button>
         </div>
         <div class="poisson">
-            <img src="poisson_montre.jpeg" class="poisson-img">
+            <img src="../images/poisson_montre.jpeg" class="poisson-img">
         </div>
     </form>
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 </html>

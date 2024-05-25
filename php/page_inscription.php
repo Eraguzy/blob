@@ -11,15 +11,15 @@ if (isset($_COOKIE['user_id'])) {
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/page_inscription.css">
+    <link rel="stylesheet" type="text/css" href="../styles/page_inscription.css">
     <title>Blob</title>
-    <link rel="icon" href="logo.png">
+    <link rel="icon" href="../images/logo.png">
 </head>
 
 <body>
     <!-- Bandeau de page avec le bouton de redirection pour l'accueil -->
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Nouveau membre</div>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')" />
@@ -58,7 +58,7 @@ if (isset($_COOKIE['user_id'])) {
                 $confirm_email = $_POST["confirm_email"];
                 $mdp = $_POST["mdp"];
                 $confirm_mdp = $_POST["confirm_mdp"];
-                $fichier = "compte.json";
+                $fichier = "../database/compte.json";
 
                 //On vérifie si les adresses mails et mdp correspondent à ceux des champs de confirmation
                 if ($email != $confirm_email || $mdp != $confirm_mdp) {
@@ -81,7 +81,7 @@ if (isset($_COOKIE['user_id'])) {
                 }
 
                 //On vérifie si le compte est bannie t si oui on affiche un message d'erreur et empêche l'inscription
-                $jsonbans = file_get_contents('admin/json/bannissements.json'); //vérifie si l'email est banni lors de l'inscription
+                $jsonbans = file_get_contents('../admin/json/bannissements.json'); //vérifie si l'email est banni lors de l'inscription
                 $datajson = json_decode($jsonbans, true);
                 foreach($datajson['bannissements'] as $banni){
                     if($banni['email'] == $email){
@@ -125,7 +125,7 @@ if (isset($_COOKIE['user_id'])) {
                 setcookie("creation_profil", 0, time() + (30 * 24 * 3600), "/");
 
                 //Redirection vers la page de création de profil
-                header("Location: creation_profil.php");
+                header("Location: ../php/creation_profil.php");
                 exit();
             }
             ?>
@@ -133,7 +133,7 @@ if (isset($_COOKIE['user_id'])) {
     </div>
 
     <!-- Le script pour le bouton d'accueil pour rediriger vers la page -->
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 
 </html>

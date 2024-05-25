@@ -8,7 +8,7 @@ if (!isset($_COOKIE['user_id'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_utilisateur = $_COOKIE['user_id'];
     $abo = $_POST['abo'];
-    $fichier = "compte.json";
+    $fichier = "../database/compte.json";
 
     if (file_exists($fichier)) {
         $json_contenue = file_get_contents($fichier);
@@ -38,14 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/page_souscription.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/page_souscription.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Blob</title>
 </head>
 
 <body>
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Souscription</div>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')" />

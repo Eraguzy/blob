@@ -8,7 +8,7 @@ body, html {
 
 .Connexion-page {
     height: 100%;
-    background-image: url('../fond.jpeg');
+    background-image: url('../images/fond.jpeg');
     background-size: cover;
     background-position: center;
     display: flex;

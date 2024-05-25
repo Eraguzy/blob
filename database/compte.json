@@ -128,7 +128,8 @@
                 "coucou"
             ],
             "stalkers": [
-                "664bb9a80c026"
+                "664bb9a80c026",
+                "664b6c61475e7"
             ]
         },
         {
@@ -611,6 +612,11 @@
                 null,
                 "er"
             ]
+        },
+        {
+            "id_utilisateur1": "664b6c61475e7",
+            "id_utilisateur2": "6642a521bd7eb",
+            "messages": []
         }
     ]
 }

@@ -6,7 +6,7 @@ if (isset($_COOKIE['user_id'])) {
     $id_utilisateur = $_COOKIE['user_id'];
 } else {
     // Redirection vers la page de connexion si le cookie n'est pas présent
-    header("Location: page_connexion.php");
+    header("Location: ../php/page_connexion.php");
     exit;
 }
 ?>
@@ -16,14 +16,14 @@ if (isset($_COOKIE['user_id'])) {
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/creation_profil.css">
+    <link rel="stylesheet" type="text/css" href="../styles/creation_profil.css">
     <title>Blob</title>
-    <link rel="icon" href="logo.png">
+    <link rel="icon" href="../images/logo.png">
 </head>
 
 <body>
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Création du profil</div>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')">
@@ -128,14 +128,14 @@ if (isset($_COOKIE['user_id'])) {
                 $couleur_des_yeux = $_POST["couleur_des_yeux"];
                 $poids = $_POST["poids"];
                 $taille = $_POST["taille"];
-                $fichier = "compte.json";
+                $fichier = "../database/compte.json";
 
                 $extension = ".jpg";
-                $chemin_destination = "photo_profil_utilisateurs/" . $id_utilisateur . $extension;
+                $chemin_destination = "../photo_profil_utilisateurs/" . $id_utilisateur . $extension;
                 if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
                     $fichier_temporaire = $_FILES["photo"]["tmp_name"];
-                    if (!file_exists("photo_profil_utilisateurs/")) {
-                        mkdir("photo_profil_utilisateurs/", 0777, true);
+                    if (!file_exists("../photo_profil_utilisateurs/")) {
+                        mkdir("../photo_profil_utilisateurs/", 0777, true);
                     }
                     if (move_uploaded_file($fichier_temporaire, $chemin_destination)) {
                         echo '</br><div class="message-erreur">Fichier téléchargé avec succès.</div>';
@@ -192,7 +192,7 @@ if (isset($_COOKIE['user_id'])) {
         </div>
     </div>
 
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 
 </html>

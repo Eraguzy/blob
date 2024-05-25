@@ -8,12 +8,12 @@ if (isset($_COOKIE['user_id'])) {
         exit;
     }
 } else {
-    header("Location: page_connexion.php");
+    header("Location: ../php/page_connexion.php");
     exit;
 }
 $profil_visite = [];
 $id_utilisateur = $_GET['id_utilisateur'];
-$fichier = "compte.json";
+$fichier = "../database/compte.json";
 $isAdmin = false;
 $isabonne = false;
 
@@ -50,13 +50,13 @@ else if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'vip' || ($_SESSIO
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/page_profil.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/page_profil.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Blob</title>
 </head>
 
 <nav class="bandeau">
-    <img src="logo.png" class="img">
+    <img src="../images/logo.png" class="img">
     <div class="bandeautitle">BLOB</div>
     <div class="titrebandeau">Profil résumé</div>
     <input type="button" class="bouton" value="Accueil" onclick="linkopener('accueil.php')" />
@@ -64,7 +64,7 @@ else if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'vip' || ($_SESSIO
 
 <div class="Connexion-page">
     <div class="Connexion-boite">
-        <img id="profil" src="photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil">
+        <img id="profil" src="../photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil">
         <div class='donnees'>
             Nom : <?php echo $profil_visite['nom']; ?>
         </div>
@@ -83,8 +83,8 @@ else if(isset($_SESSION['statut']) && ($_SESSION['statut'] == 'vip' || ($_SESSIO
         </div>
         </div>
     
-<script src="script.js" type="text/javascript"></script>
-<script src="scripts/admin.js" type="text/javascript"></script>
+<script src="../scripts/script.js" type="text/javascript"></script>
+<script src="../scripts/admin.js" type="text/javascript"></script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ if (!isset($_COOKIE['user_id'])) {
 $stalker_id = $_COOKIE['user_id'];
 $target_id = $_POST['target_id'];
 
-$fichier = "compte.json";
+$fichier = "../database/compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
@@ -32,7 +32,7 @@ foreach ($data['profils'] as &$profile) {
         break;
     }
 }
-//on remet tout dans compte.json
+//on remet tout dans ../database/compte.json
 if ($profile_found) {
     file_put_contents($fichier, json_encode($data, JSON_PRETTY_PRINT));
     echo "ID enregistré avec succès";

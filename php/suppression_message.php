@@ -6,7 +6,7 @@ if (isset($_COOKIE['user_id'])) {
         exit;
     }
 } else {
-    header("Location: page_connexion.php");
+    header("Location: ../php/page_connexion.php");
     exit;
 }
 
@@ -20,14 +20,14 @@ $indexMessage = $_GET['id_message'];
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/page_connexion.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/page_connexion.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Blob</title>
 </head>
 
 <body>
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Suppression</div>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')" />
@@ -37,7 +37,7 @@ $indexMessage = $_GET['id_message'];
         <div class="Connexion-boite">
             <?php
             //Chemin de la base de donnée
-            $fichier = 'compte.json';
+            $fichier = '../database/compte.json';
             // Charger le contenu du fichier JSON
             $json_content = file_get_contents($fichier);
 
@@ -96,7 +96,7 @@ $indexMessage = $_GET['id_message'];
         </div>
     </div>
 
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 // vérification si le cookie existe
 if (!isset($_COOKIE['user_id'])) {
-    header("Location: page_connexion.php");
+    header("Location: ../php/page_connexion.php");
     exit;
 }
 //si on a pas réussi à récupérer l'id utilisateur avec get, renvoyer vers accueil.php
@@ -11,7 +11,7 @@ if (!isset($_GET['id_utilisateur'])) {
 }
 
 $id_utilisateur = $_GET['id_utilisateur'];
-$fichier = "compte.json";
+$fichier = "../database/compte.json";
 
 // récupération du contenu du fichier JSON
 $json_content = file_get_contents($fichier);
@@ -59,13 +59,13 @@ if (isset($data['utilisateurs']) && isset($data['profils'])) {
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/bloque.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/bloque.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Débloquer cet utilisateur</title>
 </head>
 <body>
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Débloquer cet utilisateur</div>
         <input type="button" class="bouton" value="Retour" onclick="linkopener('abonne.php')" />

@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/bloque.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/bloque.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Oups !</title>
 </head>
 <body>
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Oups ! L'utilisateur vous a bloqué.</div>
         <input type="button" class="bouton" value="Retour" onclick="linkopener('abonne.php')" />

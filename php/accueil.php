@@ -6,7 +6,7 @@ if (isset($_COOKIE['user_id'])) {
         //On récupère l'id utilisateur
         $id_utilisateur = $_COOKIE['user_id'];
         //On vérifie dans la base de donnée si le profil est crée si on a pas de cookie prouvant que l'utilisateur s'est crée un profil
-        $fichier = "compte.json";
+        $fichier = "../database/compte.json";
         $json_content = file_get_contents($fichier);
         $data = json_decode($json_content, true);
         foreach ($data['profils'] as $profile) {
@@ -20,18 +20,18 @@ if (isset($_COOKIE['user_id'])) {
         //Pas de profil trouvé donc on crée le cookie avec la valeur 0
         if ($profil_cree == 0) {
             setcookie("creation_profil", 0, time() + (30 * 24 * 3600), "/");
-            header("Location: creation_profil.php");
+            header("Location: ../php/creation_profil.php");
             exit;
         }
     }
 } else {
     //Redirection vers la page de connexion si le cookie n'est pas présent
-    header("Location: page_connexion.php");
+    header("Location: ../php/page_connexion.php");
     exit;
 }
 
 //Charger les données du fichier JSON
-$fichier = "compte.json";
+$fichier = "../database/compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
@@ -57,15 +57,15 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/accueil.css">
+    <link rel="stylesheet" type="text/css" href="../styles/accueil.css">
     <title>Blob</title>
-    <link rel="icon" href="logo.png">
+    <link rel="icon" href="../images/logo.png">
 </head>
 
 <body>
     <!-- Bandeau de page avec les boutons de redirection pour se déconnecter et modifier son profil -->
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Bonjour</div>
         <input id="boutonmodif" type="button" class="bouton" value="Modifier mon profil"
@@ -170,13 +170,13 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         <!-- Si l'utilisateur est un administrateur il est renvoyé vers le menu administrateur -->
         <?php 
         if (isset($_SESSION['statut']) && $_SESSION['statut'] == 'admin'){
-            echo '<input type="button" class="bouton souscription" value="Interface admin" onclick="linkopener(`admin/adminmenu.php`)" />'; // faut mettre le `à l'intérieur pas pour les guillemets extérieurs jsp pq sinon ça marche pas
+            echo '<input type="button" class="bouton souscription" value="Interface admin" onclick="linkopener(`../admin/adminmenu.php`)" />'; // faut mettre le `à l'intérieur pas pour les guillemets extérieurs jsp pq sinon ça marche pas
         }
         ?>
     </div>
 
     <!-- Le script pour les boutons de redirection vers une page annexe -->
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 
 </html>

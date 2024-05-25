@@ -39,7 +39,7 @@
 
         if (isset($_POST['action']) && $_POST['action'] === 'ban'){ // 4 actions : vérif pas admin, ajout du ban, suppression des signalements liés à cet email, suppression du compte
             //vérif d'abord qu'on est pas en train de ban un admin
-            $json_content = file_get_contents('../compte.json');
+            $json_content = file_get_contents('../database/compte.json');
             $data = json_decode($json_content, true);
 
             foreach($data["utilisateurs"] as $user){
@@ -81,7 +81,7 @@
 
 
             // suppression du compte
-            $json_content = file_get_contents('../compte.json');
+            $json_content = file_get_contents('../database/compte.json');
             $data = json_decode($json_content, true);
 
             foreach($data['utilisateurs'] as $key => $user){ // recherche et suppression du compte associé
@@ -95,7 +95,7 @@
                         array_splice($data['utilisateurs'], $key, 1);
                 }
             }
-            file_put_contents('../compte.json', json_encode($data, JSON_PRETTY_PRINT));
+            file_put_contents('../database/compte.json', json_encode($data, JSON_PRETTY_PRINT));
         }
 
         if (isset($_POST['action']) && $_POST['action'] === 'supp'){ //supp un signalement
@@ -126,7 +126,7 @@
         }
 
         if (isset($_POST['action']) && $_POST['action'] === 'suppacc'){ // supprimer un compte
-            $json_content = file_get_contents('../compte.json');
+            $json_content = file_get_contents('../database/compte.json');
             $data = json_decode($json_content, true);
 
             foreach($data['utilisateurs'] as $key => $user){ // recherche et suppression du compte associé
@@ -148,7 +148,7 @@
                         }
                 }
             }
-            file_put_contents('../compte.json', json_encode($data, JSON_PRETTY_PRINT));
+            file_put_contents('../database/compte.json', json_encode($data, JSON_PRETTY_PRINT));
         }
     }
 
@@ -160,14 +160,14 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="../styles/admin.css">
         <title>Administrateur</title>
-        <link rel="icon" href="../logo.png">
+        <link rel="icon" href="../images/logo.png">
     </head>
     <body>
         <nav class="bandeau">
-            <img src="../logo.png" class="img" onclick="linkopener('../accueil.php')">
+            <img src="../images/logo.png" class="img" onclick="linkopener('../php/accueil.php')">
             <div class="bandeautitle">BLOB</div>
             <div class="titrebandeau">Tableau de bord administrateur</div>
-            <input type="button" class="bouton" value="Accueil" onclick="linkopener('../index.php')"/>
+            <input type="button" class="bouton" value="Accueil" onclick="linkopener('../php/index.php')"/>
         </nav>
 
         <div class="titre">
@@ -178,7 +178,7 @@
         <div id="temporarycontent">
         </div>
 
-        <script src="../script.js" type="text/javascript"></script>
+        <script src="../scripts/script.js" type="text/javascript"></script>
         <script src="../scripts/admin.js" type="text/javascript"></script>
         <script src="../scripts/recherche.js" type="text/javascript"></script>
     </body>

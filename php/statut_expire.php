@@ -9,13 +9,13 @@ session_start();
 
 //vérifie si on est connecté
 if (!isset($_COOKIE['user_id'])) {
-    header("Location: page_connexion.php");
+    header("Location: ../php/page_connexion.php");
     exit;
 }
 
 //ouverture de la base de donnée json
 $user_id = $_COOKIE['user_id'];
-$fichier = "compte.json";
+$fichier = "../database/compte.json";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $json_content = file_get_contents($fichier);
@@ -42,13 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/bloque.css">
-    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="../styles/bloque.css">
+    <link rel="icon" href="../images/logo.png">
     <title>Statut expiré</title>
 </head>
 <body>
     <nav class="bandeau">
-        <img src="logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Statut expiré</div>
     </nav>
@@ -61,6 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="button" class="bouton" value="Ne pas reconduire" onclick="linkopener('deconnexion.php')" />
     </form>
     
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 </html>
