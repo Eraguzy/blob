@@ -11,12 +11,12 @@ function modifprofils(bouton){ // il y a un div vide dans le html, on remplace l
     var html =
         `
         <div class="conteneur">
-            <button class="redirectrecherche" onclick="linkopener('../page_recherche.php?q=')">Rechercher</button>
+            <button class="redirectrecherche" onclick="linkopener('../php/page_recherche.php?q=')">Rechercher</button>
         </div>
         <div id="res"></div>
         <div class="vuescontainer">
-            <input type="button" class="bouton boutonvue" value="Accès interface non-abonné" onclick="linkopener('../accueil.php')"/>
-            <input type="button" class="bouton boutonvue" value="Accès interface abonné" onclick="linkopener('../abonne.php')"/>
+            <input type="button" class="bouton boutonvue" value="Accès interface non-abonné" onclick="linkopener('../php/accueil.php')"/>
+            <input type="button" class="bouton boutonvue" value="Accès interface abonné" onclick="linkopener('../php/abonne.php')"/>
         </div>`
 
     let tempdiv = document.getElementById('temporarycontent');
@@ -56,7 +56,7 @@ function bannissements(bouton){
         }
     }
 
-    ajax.open("GET", "json/bannissements.json", true);
+    ajax.open("GET", "../admin/json/bannissements.json", true);
     ajax.send();
 }
 
@@ -92,7 +92,7 @@ function signalements(bouton){
         }
     }
 
-    ajax.open("GET", "json/signalements.json", true);
+    ajax.open("GET", "../admin/json/signalements.json", true);
     ajax.send();
 }
 
