@@ -1,0 +1,31 @@
+@import url("global.css");
+@import url("bandeau.css");
+@import url("forms.css");
+@import url("page_recherche.css");
+
+.Connexion-boite {
+    margin: 0px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Messages-boite {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#res{
+    position: initial;
+    margin: 0px;
+}
+
+.recherche {
+    position: sticky;
+    margin: 0px;
+    bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}

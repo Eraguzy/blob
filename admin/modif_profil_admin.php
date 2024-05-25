@@ -237,7 +237,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="taille">Taille :</label>
                 <input type="number" id="taille" name="taille" placeholder="Taille" value=<?php echo $profilutilisateur['taille'] ?> required min="100" max="250">
             </div>
-            <input type="submit" value="Enregistrer et retourner à l'interface admin" />       
+            <div class="conteneurflex">
+                <input type='button' class='bouton' value='Envoyer un message' onclick="linkopener('../page_discussion.php?id_cible=<?php echo $id_utilisateur;?>')" />  
+                <input type='button' class='bouton' value='Accéder aux conversations' onclick="linkopener('listeconvs.php?id_cible=<?php echo $id_utilisateur;?>')" />  
+            </div>
+            <br>
+            <input type="submit" value="Enregistrer et retourner à l'interface admin" />     
         </form>
     </div>
 </div>

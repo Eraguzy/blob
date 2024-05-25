@@ -40,3 +40,8 @@
     display: inline-block; /* Affiche les selects sur la même ligne */
     margin-right: 20px; /* Espacement entre les selects */
 }
+
+.conteneurflex{
+    display: flex;
+    justify-content: center;
+}
