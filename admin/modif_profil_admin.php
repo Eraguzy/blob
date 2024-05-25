@@ -9,6 +9,19 @@ if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 'admin'){
 
 $id_utilisateur = $_GET['id_utilisateur']; // appel du code depuis modif profil classique (redirection admin)
 
+if($id_utilisateur == ""){ // cas où l'admin souhaiterait modifier son propre profil : alors on met son identifiant si l'appel n'a pas d'identifiant
+    if (isset($_COOKIE['user_id'])){
+        if ($_COOKIE['creation_profil'] == 0) {
+            header("Location: creation_profil.php");
+            exit;
+        }
+        $id_utilisateur = $_COOKIE['user_id'];
+    } else {
+        header("Location: page_connexion.php");
+        exit;
+    }
+}
+
 $fichier = "../compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
@@ -196,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="autre" <?php echo $profilutilisateur['couleur_des_cheveux'] == 'autre' ? 'selected' : ''; ?>>Autre</option>
                 </select>
                 <select name="couleur_des_yeux" id="couleur_des_yeux" required>
-                    <option value="VIP" <?php echo $profilutilisateur['couleur_des_yeux'] == 'bleu' ? 'selected' : ''; ?>>Bleu</option>
+                    <option value="bleu" <?php echo $profilutilisateur['couleur_des_yeux'] == 'bleu' ? 'selected' : ''; ?>>Bleu</option>
                     <option value="vert" <?php echo $profilutilisateur['couleur_des_yeux'] == 'vert' ? 'selected' : ''; ?>>Vert</option>
                     <option value="marron" <?php echo $profilutilisateur['couleur_des_yeux'] == 'marron' ? 'selected' : ''; ?>>Marron</option>
                     <option value="autre" <?php echo $profilutilisateur['couleur_des_yeux'] == 'autre' ? 'selected' : ''; ?>>Autre</option>
@@ -212,6 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="classique" <?php echo $profilutilisateur['statut'] == 'classique' ? 'selected' : ''; ?>>Classique</option>
                     <option value="VIP" <?php echo $profilutilisateur['statut'] == 'VIP' ? 'selected' : ''; ?>>VIP</option>
                     <option value="Utilisateur" <?php echo $profilutilisateur['statut'] == 'Utilisateur' ? 'selected' : ''; ?>>Utilisateur (sans offre)</option>
+                    <option value="admin" <?php echo $profilutilisateur['statut'] == 'admin' ? 'selected' : ''; ?>>admin</option>
                 </select>
             </div>
             <div class="donnees">

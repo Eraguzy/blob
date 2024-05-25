@@ -36,15 +36,6 @@ p {
     margin: 0; 
 }
 
-#souscription { 
-    position: absolute;
-    top: 95%;
-    left: 45%;
-    font-size: 18px;
-    margin-top: -20px;
-    margin-bottom: -5px;
-}
-
 .profile {
     display: flex;
     align-items: center;
@@ -64,6 +55,16 @@ p {
 
 .conteneur{
     position: relative;
+}
+
+.conteneurdubas{
+    display: flex;
+    justify-content: center;
+}
+
+.souscription{
+    position: relative;
+    margin-top: 20%;
 }
 
 #res {

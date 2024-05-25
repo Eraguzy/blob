@@ -101,11 +101,6 @@
             "mot_de_passe": "$2y$10$DZidHrdbud\/jYKUn7JmhAOt.Ea98lfZcqXKtVjE2qq4buEIRjAFC6"
         },
         {
-            "id": "664bb9a80c026",
-            "email": "laura2.johnson@example.com",
-            "mot_de_passe": "$2y$10$hE6zXpe7Otq\/Zq6m6L3MZOzK6JZUrvrbUYHUFvU0r6gC9GxmyAnJi"
-        },
-        {
             "id": "66507d05e553c",
             "email": "ray@gmail.com",
             "mot_de_passe": "$2y$10$\/g7nZOPoeunbcU0EbSeGR.9wdTxfLz\/CBmBjXYJzqlVD0dEiS9OFu"
@@ -364,7 +359,7 @@
             "genre": "femme",
             "pseudo": "eraguzy",
             "situation": "celib",
-            "adresse": "t",
+            "adresse": "verdu",
             "ville": "cergyzer",
             "pays": "france",
             "couleur_des_cheveux": "brun",
@@ -378,7 +373,7 @@
             ],
             "stalkers": [],
             "statut_start_time": 1716234962,
-            "statut_starter_time": 1716283436
+            "statut_starter_time": 1716648511
         },
         {
             "id": "664a09d1b1249",
@@ -544,7 +539,7 @@
             "couleur_des_yeux": "bleu",
             "taille": "190",
             "poids": "85",
-            "statut": "decouverte",
+            "statut": "admin",
             "utilisateurs_bloques": [],
             "stalkers": []
         },
@@ -553,9 +548,9 @@
             "nom": "chekhab",
             "prenom": "elias",
             "date": "2004-09-14",
-            "genre": "homme",
+            "genre": "femme",
             "pseudo": "eraguzy2",
-            "situation": "en couple",
+            "situation": "celib",
             "adresse": "dzidzj",
             "ville": "cergy",
             "pays": "france",
@@ -571,12 +566,12 @@
                 "6642a521bd7eb",
                 "66507d05e553c"
             ],
-            "statut_starter_time": 1716551239
+            "statut_starter_time": 1716648313
         },
         {
             "id": "66507d05e553c",
             "nom": "Quaza",
-            "prenom": "test1",
+            "prenom": "Ray",
             "date": "1900-12-21",
             "genre": "homme",
             "pseudo": "Rayquazala",
@@ -585,7 +580,7 @@
             "ville": "port yoneuve",
             "pays": "Unys",
             "couleur_des_cheveux": "roux",
-            "couleur_des_yeux": "VIP",
+            "couleur_des_yeux": "bleu",
             "taille": "200",
             "poids": "125",
             "statut": "VIP",
