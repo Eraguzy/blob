@@ -11,6 +11,17 @@ if (isset($_COOKIE['user_id'])) {
     header("Location: page_connexion.php");
     exit;
 }
+
+if (isset($_SESSION['statut']) && $_SESSION['statut'] == 'admin'){
+    if (isset($_GET['id_utilisateur'])) {
+        $id_utilisateur = $_GET['id_utilisateur'];
+    }
+} else {
+    if (!isset($_SESSION['nom'])) {
+        header('Location: modif_profil.php');
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +59,14 @@ if (isset($_COOKIE['user_id'])) {
                             if (!file_exists("photo_profil_utilisateurs/")) {
                                 mkdir("photo_profil_utilisateurs/", 0777, true);
                             }
-                            if (move_uploaded_file($fichier_temporaire, $chemin_destination)) {
+
+                            
+                            if ($_SESSION['statut'] == 'admin' && move_uploaded_file($fichier_temporaire, $chemin_destination)) {
+                                echo '</br><div class="message-erreur">Fichier téléchargé avec succès.</div>';
+                                header("Location: admin/modif_profil_admin.php?id_utilisateur=" . urlencode($id_utilisateur));
+                                exit;
+                            }
+                            else if (move_uploaded_file($fichier_temporaire, $chemin_destination)) {
                                 echo '</br><div class="message-erreur">Fichier téléchargé avec succès.</div>';
                                 header('Location: modif_profil.php?' . time());
                                 exit;

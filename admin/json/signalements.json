@@ -1,13 +1,6 @@
 {
     "signalements": [
         {
-            "case": 1,
-            "description": "trop moche",
-            "suspect": {
-                "id": "user1@example.com"
-            }
-        },
-        {
             "case": 3,
             "description": "comportement suspect",
             "suspect": {
