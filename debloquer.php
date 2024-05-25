@@ -1,10 +1,10 @@
 <?php
-// Vérification si le cookie existe
+// vérification si le cookie existe
 if (!isset($_COOKIE['user_id'])) {
     header("Location: page_connexion.php");
     exit;
 }
-
+//si on a pas réussi à récupérer l'id utilisateur avec get, renvoyer vers accueil.php
 if (!isset($_GET['id_utilisateur'])) {
     header("Location: accueil.php");
     exit;
@@ -13,14 +13,14 @@ if (!isset($_GET['id_utilisateur'])) {
 $id_utilisateur = $_GET['id_utilisateur'];
 $fichier = "compte.json";
 
-// Récupération du contenu du fichier JSON
+// récupération du contenu du fichier JSON
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
-// Récupération de l'ID de l'utilisateur actuel à partir du cookie
+// récupération de l'ID de l'utilisateur actuel à partir du cookie
 $current_user_id = $_COOKIE['user_id'];
 
-// Vérification si l'utilisateur actuel existe dans le fichier JSON
+// vérification si l'utilisateur actuel existe dans le fichier JSON
 if (isset($data['utilisateurs']) && isset($data['profils'])) {
     $current_user_profile = null;
     foreach ($data['profils'] as &$profil) {
@@ -31,16 +31,16 @@ if (isset($data['utilisateurs']) && isset($data['profils'])) {
     }
 
     if ($current_user_profile !== null) {
-        // Suppression de l'utilisateur de la liste des utilisateurs bloqués
+        // suppression de l'utilisateur de la liste des utilisateurs bloqués
         if (in_array($id_utilisateur, $current_user_profile['utilisateurs_bloques'])) {
             $index = array_search($id_utilisateur, $current_user_profile['utilisateurs_bloques']);
             if ($index !== false) {
                 unset($current_user_profile['utilisateurs_bloques'][$index]);
-                // Réindexation du tableau après suppression
+                // réindexation du tableau après suppression
                 $current_user_profile['utilisateurs_bloques'] = array_values($current_user_profile['utilisateurs_bloques']);
             }
 
-            // Sauvegarde des modifications dans le fichier JSON
+            // sauvegarde des modifications dans le fichier JSON
             file_put_contents($fichier, json_encode($data, JSON_PRETTY_PRINT));
 
             echo "Utilisateur débloqué avec succès !";
