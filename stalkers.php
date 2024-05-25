@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-// Vérifier si l'utilisateur est connecté
+// on vérifie si l'utilisateur est connecté
 if (!isset($_COOKIE['user_id'])) {
     http_response_code(403);
     echo "Non autorisé";
     exit;
 }
 
-// Récupérer l'ID de l'utilisateur et l'ID de la cible
+// on récupère l'ID de l'utilisateur et l'ID de la cible grâce à la méthode post
 $stalker_id = $_COOKIE['user_id'];
 $target_id = $_POST['target_id'];
 
@@ -18,13 +18,14 @@ $data = json_decode($json_content, true);
 
 $profile_found = false;
 
-// Trouver l'utilisateur cible et on écrit notre ID dans sa liste de stalkers
+// Trouver l'utilisateur cible et on écrit l'ID de l'utilisateur actuel dans sa liste de stalkers
 foreach ($data['profils'] as &$profile) {
     if ($profile['id'] == $target_id) {
         $profile_found = true;
         if (!isset($profile['stalkers'])) {
             $profile['stalkers'] = [];
         }
+        //évite les doublons d'ID
         if (!in_array($stalker_id, $profile['stalkers'])) {
             $profile['stalkers'][] = $stalker_id;
         }
