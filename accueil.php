@@ -10,7 +10,7 @@ if (isset($_COOKIE['user_id'])) {
         $json_content = file_get_contents($fichier);
         $data = json_decode($json_content, true);
         foreach ($data['profils'] as $profile) {
-            // Profil trouvé, on crée un cookie avec la valeur 1
+            //Profil trouvé, on crée un cookie avec la valeur 1
             if ($profile['id'] == $id_utilisateur) {
                 $profil_cree = 1;
                 setcookie("creation_profil", 1, time() + (30 * 24 * 3600), "/");
@@ -35,10 +35,10 @@ $fichier = "compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
-//Si on veut accéder à accueil.php, on ne doit pas être un abonné 
+//On démarre la session pour récupérer les variables de la session
 session_start();
+//Redirection vers la page abonne.php si l'utilisateur est abonné
 if (isset($_SESSION['statut']) && ($_SESSION['statut'] == 'decouverte' || $_SESSION['statut'] == 'vip' || $_SESSION['statut'] == 'classique')) {
-    //Redirection vers la page abonne.php si l'utilisateur est abonné
     header("Location: abonne.php");
     exit;
 }
@@ -121,7 +121,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
         function Suggestions(str) {
             var filtre = document.querySelector('select[name="filtre"]').value; //Récupérer la valeur sélectionnée du champ select
             var xhttp;
-            //Si la barre de recherche est vide ça n'affiche rien dans le cas contraire ça 
+            //Si la barre de recherche est vide ça n'affiche rien
             if (str.length == 0) {
                 document.getElementById("res").innerHTML = "";
                 adjustContentPadding(0); //Pas de résultats
