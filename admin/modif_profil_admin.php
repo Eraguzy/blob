@@ -167,8 +167,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="Connexion-page">
     <div class="Connexion-boite">
-        <img id="profil" src="../photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil" onclick="linkopener('../changement_image.php?id_utilisateur=<?php echo $id_utilisateur; ?>')">
-        <form method="post" action="../php/modif_profil_admin.php?id_utilisateur=<?php echo urlencode($id_utilisateur); ?>" enctype="multipart/form-data">
+        <img id="profil" src="../photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil" onclick="linkopener('../php/changement_image.php?id_utilisateur=<?php echo $id_utilisateur; ?>')">
+        <form method="post" action="../admin/modif_profil_admin.php?id_utilisateur=<?php echo urlencode($id_utilisateur); ?>" enctype="multipart/form-data">
             <?php
             changement_info("nom", $profilutilisateur['nom']);
             changement_info("prenom", $profilutilisateur['prenom']);
@@ -238,7 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="number" id="taille" name="taille" placeholder="Taille" value=<?php echo $profilutilisateur['taille'] ?> required min="100" max="250">
             </div>
             <div class="conteneurflex">
-                <input type='button' class='bouton' value='Envoyer un message' onclick="linkopener('../page_discussion.php?id_cible=<?php echo $id_utilisateur;?>')" />  
+                <input type='button' class='bouton' value='Envoyer un message' onclick="linkopener('../php/page_discussion.php?id_cible=<?php echo $id_utilisateur;?>')" />  
                 <input type='button' class='bouton' value='Accéder aux conversations' onclick="linkopener('listeconvs.php?id_cible=<?php echo $id_utilisateur;?>')" />  
             </div>
             <br>

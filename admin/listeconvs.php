@@ -35,13 +35,13 @@ if (file_exists($fichier)) {
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../styles/listeconvs.css">
-    <link rel="icon" href="../logo.png">
+    <link rel="icon" href="../images/logo.png">
     <title>Blob</title>
 </head>
 
 <body>
     <nav class="bandeau">
-        <img src="../logo.png" class="img">
+        <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Messages</div>
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('../abonne.php')" />
