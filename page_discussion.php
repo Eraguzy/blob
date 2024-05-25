@@ -154,7 +154,8 @@ if (!isset($_SESSION['nom'])) {
                     $data['discussions'][] = $nouvel_discussion;
                 }
 
-                file_put_contents($fichier, json_encode($data));
+                $json_modifie = json_encode($data, JSON_PRETTY_PRINT);
+                file_put_contents($fichier, $json_modifie);
 
                 header("Location: page_discussion.php?id_cible=$id_destinataire");
                 exit;
