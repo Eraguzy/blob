@@ -5,12 +5,12 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+/*gérer le survol du bouton*/
 .bouton:hover, .boutongauche:hover, .boutondroit:hover, input[type="submit"]:hover{
     background-color: #ffcc00;
     cursor: pointer;
 }
-
+/*esthétique du bouton classique*/
 .bouton{
     background-color: orange;
     color: black;
@@ -25,7 +25,7 @@
     width: auto;
     height: auto;
 }
-
+/*gestion message erreur*/
 .message-erreur {
     color: orange; /* Couleur du texte */
     font-size: 24px; /* Taille de police */
