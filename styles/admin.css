@@ -3,6 +3,7 @@
 @import url("forms.css");
 @import url("accueil.css");
 
+/*titre et boutonadmin permettent de display sur la largeur les boutons*/
 .titre{
     display: flex;
     justify-content: space-between;
@@ -13,7 +14,7 @@
     margin-top: 20px;
 }
 
-.encadre{
+.encadre{ /*encadré des signalements/bannissements (admin.js)*/
     border-radius: 2px;
     border: 1px solid;
     margin: 20px;
@@ -21,28 +22,28 @@
     background-color: #f4f4f4;
 }
 
-.encadreheader{ /*contient le titre ainsi que les boutons*/
+.encadreheader{ /*contient le titre ainsi que les boutons des signalements/bannissements (admin.js)*/
     display: flex;
     justify-content: space-between;
 }
 
-.boutonvue{
+.boutonvue{ /*pour les boutons "voir profil abonné et non abonné" (admin.js)*/
     margin: 1%;
 }
 
-.vuescontainer{
+.vuescontainer{ /*conteneur des boutonvue pour les centrer (admin.js)*/
     display: flex;
     justify-content: center;
     margin-top: 12%;
 }
 
-.conteneur { 
+.conteneur { /*conteneur avec contenu centré (admin.js)*/
     display: flex;
     justify-content: center; 
     margin: 20px;
 }
 
-.redirectrecherche{
+.redirectrecherche{ /*pour barre de recherche (admin.js)*/
     padding: 12px 20px;
     border: none;
     border-radius: 5px; 
