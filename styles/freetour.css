@@ -2,14 +2,14 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
-
+//positionner l'image
 .image1 {
     width: 25%; /* Largeur souhaitée */
     height: auto; /* Hauteur ajustée automatiquement pour conserver les proportions de l'image */
     margin-left: 3%;
     margin-bottom: 5%;
 }
-
+//positionner l'autre image
 .image2 {
     width: 25%;
     height: auto;
@@ -17,15 +17,15 @@
     
 }
 
-p { /*accueil.php*/
+p { 
     display: flex;
     justify-content: center; /* Centre horizontalement dans le conteneur */
     height: 10vh; /* Utilisez une hauteur pour voir l'effet du centrage */
     align-items: center; /* Centre verticalement dans le conteneur */
     margin: 0; /* Supprime les marges par défaut */
 }
-
-#souscription { /*accueil.php*/
+//bouton de souscription
+#souscription { 
     position: absolute;
     top: 110%;
     left: 45%;
@@ -33,26 +33,26 @@ p { /*accueil.php*/
     margin-top: -20px;
     margin-bottom: 3%;
 }
-
+//positionner le texte
 .text1 {
     position:absolute;
     top: 30%;
     left: 30%;
     text-align: center;
 }
-
+//positionner le 2e texte
 .text2 {
     position: absolute;
     left: 40%;
     bottom: 25%;
     text-align: center;
 }
-
+//positionner le témoignage
 .temoi1 {
     text-align: center;
     margin-top: 20px;
 }
-
+//positionner l'autre témoignage
 .temoi2 {
     text-align: center;
     position: absolute;
