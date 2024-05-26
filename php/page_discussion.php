@@ -43,10 +43,10 @@ foreach ($data['profils'] as $profil) {
 // On démarre la session pour avoir accès aux variables de session
 session_start();
 // On regarde si l'utilisateur a une session avec des variables de profil définies en vérifiant si la variable 'nom' de la session existe
-if (!isset($_SESSION['nom'])) {
+if (!isset($_SESSION['nom']) && !isset($_GET['id_main'])) {
     // Sinon on cherche dans la base de données le profil de l'utilisateur
     foreach ($data['profils'] as $profil) {
-        if ($profil['id'] == $id_utilisateur) {
+        if ($profil['id'] == $_COOKIE['user_id']) {
             // Et on récupère ses informations qu'on donne à des variables
             $_SESSION['nom'] = $profil['nom'];
             $_SESSION['prenom'] = $profil['prenom'];
@@ -142,11 +142,13 @@ if (!isset($_SESSION['nom'])) {
                 ?>
             </div>
             <!-- Espace pour écrire un nouveau message -->
-            <form action="#" method="post" class="recherche">
-                <input type="text" name="message" id="recherche" placeholder="Envoyer un message" required>
-                <button type="submit">Envoyer</button>
-            </form>
-            <?php
+            <?php 
+            if (!isset($_GET['id_main']) || $_GET['id_main'] == $_COOKIE['user_id']) {
+                echo '<form action="#" method="post" class="recherche">
+                    <input type="text" name="message" id="recherche" placeholder="Envoyer un message" required>
+                    <button type="submit">Envoyer</button>
+                </form>';
+            }                
             // Après soumission du formulaire
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // On récupère le message saisi
