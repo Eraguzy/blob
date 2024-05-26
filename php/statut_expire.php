@@ -60,6 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="bouton">Étendre l'abonnement</button>
         <input type="button" class="bouton" value="Ne pas reconduire" onclick="linkopener('deconnexion.php')" />
     </form>
+    <div class="poisson">
+            <img src="../images/poisson_triste.jpeg" class="poisson-img">
+        </div>
     
     <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
