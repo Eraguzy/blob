@@ -61,7 +61,6 @@ if (!isset($_SESSION['nom'])) {
             $_SESSION['couleur_des_cheveux'] = $profil['couleur_des_cheveux'];
             $_SESSION['taille'] = $profil['taille'];
             $_SESSION['poids'] = $profil['poids'];
-            $_SESSION['statut'] = $profil['statut'];
             break;
         }
     }
