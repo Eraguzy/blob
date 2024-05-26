@@ -2,16 +2,19 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
+/* La page prend bien tout l'espace */
 .Connexion-page {
     width: auto;
 }
 
+/* Mise en forme et positionnement de la boîte */
 .Connexion-boite {
     position: relative;
     padding: 20px;
     width: 40%;
 }
 
+/* L'image de profil en format standardisé et mise en haut à gauche */
 #profil {
     float: left;
     top: 0;
@@ -20,15 +23,16 @@
     height: 26%;
     margin-right: 20px;
 }
-
+ /* Le texte mis en orange */
 .donnees{
     color: orange;
 }
 
+/* Boutons décalé à droite */
 input.bouton{
     margin-left: 30%;
 } 
-
+ /* Positionnement du bouton de signalement à droite */
 input[name="reportbutton"]{
     position: absolute;
     right: 1.2%;
