@@ -1,25 +1,25 @@
 @import url("global.css");
 @import url("bandeau.css");
-
+/*position du titre*/
 h2 { 
     text-align: center;
     margin-bottom: 50px;
     margin-top: -20px;
 }
-
+/*esthétique recherche*/
 .recherche { 
     display: flex;
     justify-content: center; 
     margin: 20px 0;
 }
-
+/*esthétique recherche*/
 .recherche input[type="text"] {
     width: 50%;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 5px 0 0 5px; 
 }
-
+/*esthétique bouton recherche*/
 .recherche button {
     padding: 12px 20px;
     border: none;
@@ -27,7 +27,7 @@ h2 {
     background-color: #4CAF50;
     color: white;
 }
-
+/*centrer le paragraphe*/
 p { 
     display: flex;
     justify-content: center; 
@@ -35,7 +35,7 @@ p {
     align-items: center; 
     margin: 0; 
 }
-
+/*esthétique affichage profils*/
 .profile {
     display: flex;
     align-items: center;
@@ -61,7 +61,7 @@ p {
     display: flex;
     justify-content: center;
 }
-
+/*bouton soucription*/
 .souscription{
     position: relative;
     margin-top: 20%;
@@ -72,7 +72,7 @@ p {
     left: 21%; /* Aligne les résultats à gauche de la barre de recherche */
     margin-top: -12px;
 }
-
+/*affichage liste utilisateurs*/
 #utilisateurs {
     list-style-type: none;
     padding: 0;
