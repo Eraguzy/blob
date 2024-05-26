@@ -22,13 +22,6 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
-
-if (!isset($_SESSION['statut']) && $_SESSION['statut'] == 'admin') {
-    // si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    header("Location: ../accueil.php");
-    exit();
-}
-
 //On récupère les données de la base de données
 $fichier = "../database/compte.json";
 $json_content = file_get_contents($fichier);
