@@ -82,9 +82,14 @@ function calculerAge($dateNaissance)
 function affichage_info($nom, $information, $id_utilisateur)
 {
     $nom = ucfirst($nom);
+    $bouton_message = '';
+    if ($nom == 'Poids') {
+        $bouton_message = "<input type='button' class='bouton' value='Envoyer un message' onclick=\"linkopener('page_discussion.php?id_cible=$id_utilisateur')\" />";
+    }
     echo "<div class='donnees'>
             $nom : $information
-          </div>";
+            </div>
+            $bouton_message";
 }
 ?>
 
@@ -118,7 +123,7 @@ function affichage_info($nom, $information, $id_utilisateur)
 </head>
 
 <body>
-    <!-- Bandeau de page avec le bouton de redirection pour l'accueil-->    
+    <!-- Bandeau de page avec le bouton de redirection pour l'accueil-->
     <nav class="bandeau">
         <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
@@ -147,8 +152,8 @@ function affichage_info($nom, $information, $id_utilisateur)
             affichage_info("poids", $profil_visite['poids'], $id_utilisateur_visite);
             ?>
             <!-- Les différents boutons -->
-            <input type='button' class='bouton' value='Envoyer un message' onclick="linkopener('page_discussion.php?id_cible=$id_utilisateur')" />
-            <input type="button" value="Signaler" name="reportbutton" onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
+            <input type="button" value="Signaler" name="reportbutton"
+                onclick="boutonaction(0, 'report', this, '<?php echo $emailuser; ?>')" />
             <?php if (!$utilisateur_courant_bloque): ?>
                 <!-- Bouton pour bloquer l'utilisateur -->
                 <form action="blocage.php" method="get">
@@ -156,7 +161,7 @@ function affichage_info($nom, $information, $id_utilisateur)
                     <input type="submit" value="Bloquer cet utilisateur">
                 </form>
             <?php endif; ?>
-               <!-- Bouton pour débloquer l'utilisateur --> 
+            <!-- Bouton pour débloquer l'utilisateur -->
             <?php if ($utilisateur_courant_bloque): ?>
                 <form action="debloquer.php" method="get">
                     <input type="hidden" name="id_utilisateur" value="<?php echo htmlspecialchars($id_utilisateur_visite); ?>">
