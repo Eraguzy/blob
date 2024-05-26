@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <img src="../images/logo.png" class="img">
     <div class="bandeautitle">BLOB</div>
     <div class="titrebandeau">Modifier un profil (admin)</div>
-    <input type="button" class="bouton" value="Accueil" onclick="linkopener('../accueil.php')" />
+    <input type="button" class="bouton" value="Accueil" onclick="linkopener('../php/accueil.php')" />
 </nav>
 
 <div class="Connexion-page">
