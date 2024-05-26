@@ -1,17 +1,17 @@
 @import url("global.css");
 @import url("bandeau.css");
-
+//titre centré
 h1 {
     text-align: center;
     margin-top: 2%;
     margin-bottom: 2%;
 }
-
+//paragraphe centré
 p {
     text-align: center;
     margin-bottom: 2%;
 }
-
+//position du bouton
 .bouton {
     position: relative;
     left : 38%;
