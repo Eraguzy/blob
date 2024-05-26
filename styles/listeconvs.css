@@ -30,11 +30,11 @@ a {
     text-decoration: none;
 }
 
-.conteneur{
+.conteneur{ /*contient les différents liens vers les conv de la personne, set la couleur de base du texte*/
     color: orange;
 }
 
-.lienversdiscu:hover{
+.lienversdiscu:hover{ /*juste esthétique quand hover*/
     text-decoration: underline;
     color: rgb(255, 119, 0);
     cursor: pointer;

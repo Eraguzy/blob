@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 'admin'){ // tej si c'est pas un admin
+if (!isset($_SESSION['statut']) || $_SESSION['statut'] != 'admin'){ // redirige si c'est pas un admin
     header("Location: ../php/accueil.php");
     exit();
 }
@@ -63,7 +63,7 @@ function idtopseudo($id, $data) {
         <div class="Connexion-boite">
             <div class="conteneur">
                 <?php   
-                    foreach ($data['discussions'] as $discussion){ // parcourt toute la bdd à la recherche de toutes les conv impliquant l'id sélectionné
+                    foreach ($data['discussions'] as $discussion){ // parcourt toute la bdd à la recherche de toutes les conv impliquant l'id sélectionné, et redirige vers la discussion demandée avec l'id du sender et du destinataire
                         if ($discussion['id_utilisateur1'] == $id_utilisateur){
                             $idmiroir = $discussion['id_utilisateur2']; // recup l'id avec lequel la personne a une conversation
                             echo "<p onclick=\"linkopener('../php/page_discussion.php?id_cible=" . $idmiroir . "&id_main=" . $id_utilisateur . "')\" class='lienversdiscu'>discussion entre " . idtopseudo($idmiroir, $data) . " et ". idtopseudo($id_utilisateur, $data) ."</p>";

@@ -1,4 +1,5 @@
 function setopacitybutton(bouton){ // il faut que le conteneur en question ait la classe "titre" pour pouvoir utiliser ceci correctement
+    // purement visuel pour mettre tous les boutons transparents.. puis on remet le sélectionné à 100%
     var allboutons = document.querySelectorAll(".titre input[type='button']");
 
     for (var i=0; i<allboutons.length; i++) {
@@ -21,11 +22,11 @@ function modifprofils(bouton){ // il y a un div vide dans le html, on remplace l
 
     let tempdiv = document.getElementById('temporarycontent');
     tempdiv.innerHTML = html;
-    document.body.appendChild(tempdiv);
+    document.body.appendChild(tempdiv); // ajoute dans le fichier le nouveau contenu
 }
 
 function bannissements(bouton){
-    var ajax = new XMLHttpRequest();
+    var ajax = new XMLHttpRequest(); // charge tous les bannissements dans la bdd
     ajax.onreadystatechange = function(){
         if (this.readyState === 4 && this.status === 200) {
             
@@ -60,7 +61,7 @@ function bannissements(bouton){
     ajax.send();
 }
 
-function signalements(bouton){
+function signalements(bouton){ // charge tous les signalements dans la bdd
     var ajax = new XMLHttpRequest();
     ajax.onreadystatechange = function(){
         if (this.readyState === 4 && this.status === 200) {

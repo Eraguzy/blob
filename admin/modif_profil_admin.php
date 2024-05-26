@@ -165,12 +165,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="button" class="bouton" value="Accueil" onclick="linkopener('../php/accueil.php')" />
 </nav>
 
-<div class="Connexion-page">
+<div class="Connexion-page"> <!--fonctionnement : form post qui enregistre toutes les modifs et redirige vers elle même-->
     <div class="Connexion-boite">
         <img id="profil" src="../photo_profil_utilisateurs/<?php echo $id_utilisateur; ?>.jpg" alt="Photo de profil" onclick="linkopener('../php/changement_image.php?id_utilisateur=<?php echo $id_utilisateur; ?>')">
         <form method="post" action="../admin/modif_profil_admin.php?id_utilisateur=<?php echo urlencode($id_utilisateur); ?>" enctype="multipart/form-data">
             <?php
-            changement_info("nom", $profilutilisateur['nom']);
+            changement_info("nom", $profilutilisateur['nom']); // affichage pur
             changement_info("prenom", $profilutilisateur['prenom']);
             changement_info("pseudo", $profilutilisateur['pseudo']);
             changement_info("adresse", $profilutilisateur['adresse']);

@@ -148,7 +148,7 @@
                         }
                 }
             }
-            file_put_contents('../database/compte.json', json_encode($data, JSON_PRETTY_PRINT));
+            file_put_contents('../database/compte.json', json_encode($data, JSON_PRETTY_PRINT)); // remet dans le fichier json
         }
     }
 
@@ -170,7 +170,7 @@
             <input type="button" class="bouton" value="Accueil" onclick="linkopener('../php/index.php')"/>
         </nav>
 
-        <div class="titre">
+        <div class="titre"> <!--boutons à cliquer pour naviguer dans le menu, tous les affichages dynamiques se font avec admin.js-->
             <input type="button" class="bouton boutonadmin" value="Signalements" onclick="setopacitybutton(this); signalements(this);"/>
             <input type="button" class="bouton boutonadmin" value="Bannissements" onclick="setopacitybutton(this); bannissements(this);"/>
             <input type="button" class="bouton boutonadmin" value="Modifier/Supprimer un profil" onclick="setopacitybutton(this); modifprofils(this)"/>
