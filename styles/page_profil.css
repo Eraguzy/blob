@@ -23,7 +23,8 @@
     height: 26%;
     margin-right: 20px;
 }
- /* Le texte mis en orange */
+
+/* Le texte mis en orange */
 .donnees{
     color: orange;
 }
@@ -31,8 +32,9 @@
 /* Boutons décalé à droite */
 input.bouton{
     margin-left: 30%;
-} 
- /* Positionnement du bouton de signalement à droite */
+}
+
+/* Positionnement du bouton de signalement à droite */
 input[name="reportbutton"]{
     position: absolute;
     right: 1.2%;
