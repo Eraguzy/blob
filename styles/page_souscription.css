@@ -1,22 +1,22 @@
 @import url("global.css");
 @import url("bandeau.css");
 @import url("forms.css");
-//texte centré
+/*texte centré*/
 .Connexion-boite {
     padding: 40px;
     text-align: center;
     
 }
-//mettre de la marge en bas
+/*mettre de la marge en bas*/
 .donnees label {
     margin-bottom: 5px;
 }
-//positionner le container
+/*positionner le container*/
 .container {
     position: relative;
 }
   
-  //css pour les encarts de texte
+  /*css pour les encarts de texte*/
 .encart1, .encart2, .encart3 {
     position: absolute;
     top: 0;
