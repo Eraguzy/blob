@@ -1,8 +1,9 @@
-/*fichier global à inclure*/
 /*gestion du bandeau et de ses éléments*/
+
+/* L'intérieur du bandeau est noir et couleur du texte par défaut en orange */
 .bandeau {
     background-color: black;
-    color: white;
+    color: orange;
     height: 100px;
     display: flex;
     align-items: center; /* align vertical*/
@@ -13,9 +14,9 @@
     margin: 20px;
 }
 
+/* Blob du bandeau serrer à gauche avec un nom et une taille de police */
 .bandeautitle {
     font-size: xx-large;
-    color: orange;
     font-family: helvetica;
     font-weight: bold;
     font-size: 65px;
@@ -23,10 +24,9 @@
     margin-left: -10px; /*sert à compenser l'écart trop grand entre le logo et le titre*/
 }
 
-
+/* Titre centrale avec nom de police et couleur orange */ 
 .titrebandeau { /*index.php*/
     font-size: 50px;
-    color: orange;
     font-family: helvetica;
     font-weight: bold;
     position: absolute;
@@ -36,15 +36,18 @@
     text-align: center; /* Centrage horizontal */
 }
 
+/* Image à gauche avec sa taille */
 .img {
     width: 80px;
     left: 0;
 }
 
+/* Coller les deux boutons */
 #deuxboutons { /*à utiliser si on a deux boutons côte à côte dans un nav*/
     margin-right: 0px; /*évite l'espacement pas égal si y'a 2 boutons dans le bandeau (les margin s'additionnent*/
 }
 
+/* Serrer le bouton modif */
 #boutonmodif {
     margin-right: 0px;
 }

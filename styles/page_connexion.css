@@ -2,6 +2,7 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
+/* On rajoute un peu plus d'espaces entre les labels et les inputs pour l'esthétique */
 .donnees label {
     margin-bottom: 5px;
 }

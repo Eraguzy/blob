@@ -1,40 +1,40 @@
 @import url("global.css");
 @import url("bandeau.css");
 
-.imagelogo {/*index.php*/
-    display: flex; /* centrer image au milieu */
+.imagelogo {    /* centrer image au milieu de la page */
+    display: flex;
     justify-content: center; 
     align-items: center; 
 }
 
-h1 { /* centrer le texte index.php*/ 
+h1 { /* centrer le titre */ 
     display: flex;
     justify-content: center;
     margin-top: 50px;
 }
 
-h2 { /*accueil.php*/
+h2 { /* centrer le texte avec un espace pour ne pas déborder sur l'image */ 
     text-align: center;
     margin-bottom: 50px;
     margin-top: -20px;
 }
 
-p { /*accueil.php*/
+p { /* Centré en bas de la page */
     display: flex;
     justify-content: center; /* Centre horizontalement dans le conteneur */
-    height: 10vh; /* Utilisez une hauteur pour voir l'effet du centrage */
+    height: 10vh;
     align-items: center; /* Centre verticalement dans le conteneur */
     margin: 0; /* Supprime les marges par défaut */
 }
 
-#boutongauche {/*index.php*/
+/*Mettre les bouton bien à gauche et à droite avec la bonne taille*/
+#boutongauche {
     position: absolute;
     top: 55%;
     left: 20%;
     font-size: 18px;
 }
 
-/*mettre le bouton bien à droite et gauche*//*index.php*/
 #boutondroit {
     position: absolute;
     top: 55%;

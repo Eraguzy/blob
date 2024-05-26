@@ -1,16 +1,17 @@
-/*fichier global à inclure*/
 /*gestion des boutons et des styles globaux*/
-* {
+* { /* On met une police de base et on fixe le bandeau de sorte à ce qu'il touche les bordures de la page*/
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Lors du survol des boutons on change la couleur du bouton et le curseur */
 .bouton:hover, .boutongauche:hover, .boutondroit:hover, input[type="submit"]:hover{
     background-color: #ffcc00;
     cursor: pointer;
 }
 
+/* Définition standard du bouton avec sa couleur et la couleur du texte à l'intérieur et centré*/
 .bouton{
     background-color: orange;
     color: black;

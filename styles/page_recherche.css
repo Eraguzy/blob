@@ -3,6 +3,7 @@
 @import url("forms.css");
 @import url("accueil.css");
 
+/* La boite prend par défaut cette taille de l'écran */
 .Connexion-boite {
     height: 80%;
     width: 50%;
@@ -10,23 +11,27 @@
 }
 
 .recherche {
-    width: 100%; /* La barre de recherche prendra toute la largeur de .Connexion-boite */
+    width: 100%; /* La barre de recherche avec le bouton prendra toute la largeur de .Connexion-boite */
 }
 
+/* La barre de recherche prend la majorité de la ligne */
 .recherche input[type="text"] {
     width: 83.3%;
 }
 
+/* Le bouton le reste même si il est poussé par la sélection du filtre */
 .recherche button {
     width: 16.7%;
 }
 
+/* Les profils sont fixés à gauche de la boîte et les profils sont en orange*/
 #res{
     color: orange;
     left: 0%;
     overflow-y: auto; /* Ajout d'un défilement vertical si nécessaire */
 }
 
+/* Espaces entre les profils */
 .profile{
     margin-bottom: 10px;
 }

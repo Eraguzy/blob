@@ -1,11 +1,13 @@
 /*fichier global à inclure*/
 /*gestion du bandeau et de ses éléments*/
 
+/* Permettre le côté dynamique des pages pour s'adapter à tout les écrans en évitant les espaces blancs */
 body, html {
     height: calc(100% - 50px);
     margin: 0;
 }
 
+/* Mise en forme de la page avec image de fond */
 .Connexion-page {
     height: 100%;
     background-image: url('../images/fond.jpeg');
@@ -16,6 +18,7 @@ body, html {
     align-items: center;
 }
 
+/* Boîte où les informations sont contenues */
 .Connexion-boite {
     background-color: black;
     border-radius: 8px;
@@ -23,22 +26,26 @@ body, html {
     padding: 40px;
 }
 
+/* Titre dans la boîte centré avec marge en bas */
 .legende {
     color: orange;
     text-align: center;
     margin-bottom: 20px;
 }
 
+/* Espace en bas et à droite pour éviter de tout serrer dans les formulaires et affichages*/
 .donnees {
     margin-bottom: 20px;
     margin-right: 20px;
 }
 
+/* On met en orange les écritures */
 .donnees label {
     color: orange;
     display: block;
 }
 
+/* Les champs à remplir prennent la place restante de la ligne */
 .donnees input {
     width: 100%;
     padding: 10px;
@@ -46,6 +53,7 @@ body, html {
     border-radius: 5px;
 }
 
+/* Le bouton submit pour qu'il prenne toute la ligne et les bonnes couleurs */
 input[type="submit"] {
     width: 100%;
     padding: 10px;
@@ -56,6 +64,7 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+/* Changer la couleur lorsqu'on le survol */
 input[type="submit"]:hover {
     background-color: #ffcc00;
 }
