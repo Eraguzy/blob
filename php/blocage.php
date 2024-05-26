@@ -53,7 +53,7 @@ if (isset($data['utilisateurs']) && isset($data['profils'])) {
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../styles/bloque.css">
+    <link rel="stylesheet" type="text/css" href="../styles/abonne.css">
     <link rel="icon" href="../images/logo.png">
     <title>Bloquer cet utilisateur</title>
 </head>
@@ -62,7 +62,7 @@ if (isset($data['utilisateurs']) && isset($data['profils'])) {
         <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Bloquer cet utilisateur</div>
-        <input type="button" value="Retour" onclick="linkopener('abonne.php')" />
+        <input type="button" class="bouton" value="Retour" onclick="linkopener('abonne.php')" />
     </nav>
     <h1>Utilisateur bloqué avec succès !</h1>
     <script>
