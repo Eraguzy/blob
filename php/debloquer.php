@@ -68,7 +68,7 @@ if (isset($data['utilisateurs']) && isset($data['profils'])) {
         <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
         <div class="titrebandeau">Débloquer cet utilisateur</div>
-        <input type="button" class="bouton" value="Retour" onclick="linkopener('abonne.php')" />
+        <input type="button" value="Retour" onclick="linkopener('abonne.php')" />
     </nav>
     <h1>Utilisateur débloqué avec succès !</h1>
     <script>
