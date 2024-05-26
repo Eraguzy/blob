@@ -19,7 +19,7 @@ if (isset($_COOKIE['user_id'])) {
 $id_utilisateur = $_GET['id_cible'];
 $idmiroir = "";
 
-$fichier = "../database/compte.json";
+$fichier = "../database/compte.json"; //extrait contenu du fichier base de données
 if (file_exists($fichier)) {
     $json_contenue = file_get_contents($fichier);
     $data = json_decode($json_contenue, true);
