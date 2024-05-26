@@ -63,71 +63,74 @@ if (isset($_COOKIE['user_id'])) {
 
                 //On vérifie si les adresses mails et mdp correspondent à ceux des champs de confirmation
                 if ($email != $confirm_email || $mdp != $confirm_mdp) {
-                    echo '</br><div class="message-erreur">Les champs de confirmation ne correspondent pas.</div>';
-                    exit;
-                }
-
-                //On vérifie si l'email est un email valide
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    echo '</br><div class="message-erreur">Merci de saisir un email valide.</div>';
-                    exit;
-                }
-
-                //On vérifie si le fichier existe si c'est le cas on charge le données dans une variables sinon on crée le fichier
-                if (!file_exists($fichier)) {
-                    $data = ["utilisateurs" => []];
+                    echo '<div class="message-erreur">Les champs de confirmation ne correspondent pas.</div>';
+                } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    //On vérifie si l'email est un email valide
+                    echo '<div class="message-erreur">Merci de saisir un email valide.</div>';
                 } else {
-                    $json_content = file_get_contents($fichier);
-                    $data = json_decode($json_content, true);
-                }
+                    //On vérifie si le fichier existe, si c'est le cas on charge le données dans une variables sinon on crée le fichier
+                    if (!file_exists($fichier)) {
+                        $data = ["utilisateurs" => []];
+                    } else {
+                        $json_content = file_get_contents($fichier);
+                        $data = json_decode($json_content, true);
+                    }
 
-                //On vérifie si le compte est bannie t si oui on affiche un message d'erreur et empêche l'inscription
-                $jsonbans = file_get_contents('../admin/json/bannissements.json'); //vérifie si l'email est banni lors de l'inscription
-                $datajson = json_decode($jsonbans, true);
-                foreach($datajson['bannissements'] as $banni){
-                    if($banni['email'] == $email){
-                        echo '</br><div class="message-erreur">Cet email est banni.</div>';
-                        exit;
+                    //On vérifie si le compte est banni et si oui on affiche un message d'erreur et empêche l'inscription
+                    $jsonbans = file_get_contents('../admin/json/bannissements.json'); //vérifie si l'email est banni lors de l'inscription
+                    $datajson = json_decode($jsonbans, true);
+                    foreach($datajson['bannissements'] as $banni){
+                        if($banni['email'] == $email){
+                            echo '<div class="message-erreur">Cet email est banni.</div>';
+                            $email_banni = true;
+                            break;
+                        }
+                    }
+
+                    if (!isset($email_banni)) {
+                        //On vérifie si l'email est déjà utilisé et si oui on affiche un message d'erreur et empêche l'inscription
+                        $email_utilisé = false;
+                        foreach ($data['utilisateurs'] as $utilisateur) {
+                            if ($utilisateur['email'] == $email) {
+                                echo '<div class="message-erreur">Cet email est déjà utilisé.</div>';
+                                $email_utilisé = true;
+                                break;
+                            }
+                        }
+
+                        if (!$email_utilisé) {
+                            //On crypte le mot de passe
+                            $hash = password_hash($mdp, PASSWORD_BCRYPT);
+
+                            //On crée un id unique
+                            $id_utilisateur = uniqid();
+
+                            //On crée un tableau associatif avec l'id nouvellement généré, l'email saisi et le mot de passe saisi crypté
+                            $nouvel_utilisateur = [
+                                'id' => $id_utilisateur,
+                                'email' => $email,
+                                'mot_de_passe' => $hash
+                            ];
+
+                            //On ajoute l'utilisateur et ses données dans la base de données en php
+                            $data['utilisateurs'][] = $nouvel_utilisateur;
+
+                            //Passage en json
+                            $json_data = json_encode($data, JSON_PRETTY_PRINT);
+
+                            //Mise à jour dans le fichier json
+                            file_put_contents($fichier, $json_data);
+
+                            //Création d'un cookie avec l'id utilisateur pour montrer qu'il est connecté et l'identifier, ainsi qu'un cookie montrant que l'utilisateur n'a pas encore crée son profil
+                            setcookie("user_id", $id_utilisateur, time() + (30 * 24 * 3600), "/");
+                            setcookie("creation_profil", 0, time() + (30 * 24 * 3600), "/");
+
+                            //Redirection vers la page de création de profil
+                            header("Location: ../php/creation_profil.php");
+                            exit();
+                        }
                     }
                 }
-
-                //On vérifie si l'email est déjà utilisé et si oui on affiche un message d'erreur et empêche l'inscription
-                foreach ($data['utilisateurs'] as $utilisateur) {
-                    if ($utilisateur['email'] == $email) {
-                        echo '</br><div class="message-erreur">Cet email est déjà utilisé.</div>';
-                        exit;
-                    }
-                }
-
-                //On crypte le mot de passe
-                $hash = password_hash($mdp, PASSWORD_BCRYPT);
-
-                //On crée un id unique
-                $id_utilisateur = uniqid();
-
-                //On crée un tableau associatif avec l'id nouvellement généré, l'email saisi et le mot de passe saisi crypté
-                $nouvel_utilisateur = [
-                    'id' => $id_utilisateur,
-                    'email' => $email,
-                    'mot_de_passe' => $hash
-                ];
-
-                //On ajoute l'utilisateur et ses données dans la base de données en php
-                $data['utilisateurs'][] = $nouvel_utilisateur;
-
-                //Passage en json
-                $json_data = json_encode($data, JSON_PRETTY_PRINT);
-
-                //Mise à jour dans le fichier json
-                file_put_contents($fichier, $json_data);
-
-                //Création d'un cookie avec l'id utilisateur pour montrer qu'il est connecté et l'identifier, ainsi qu'un cookie montrant que l'utilisateur n'a pas encore crée son profil
-                setcookie("user_id", $id_utilisateur, time() + (30 * 24 * 3600), "/");
-                setcookie("creation_profil", 0, time() + (30 * 24 * 3600), "/");
-
-                //Redirection vers la page de création de profil
-                header("Location: ../php/creation_profil.php");
-                exit();
             }
             ?>
         </div>
