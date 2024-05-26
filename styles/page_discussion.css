@@ -3,6 +3,7 @@
 @import url("forms.css");
 @import url("page_recherche.css");
 
+/* Mise en forme de la boîte et des standards pour les éléments intérieurs*/
 .Connexion-boite {
     margin: 0px;
     padding: 10px;
@@ -10,22 +11,26 @@
     flex-direction: column;
 }
 
+/* Si il y a trop de messages mettre un curseur */
 .Messages-boite {
     flex-grow: 1;
     overflow-y: auto;
 }
 
+/* Les messages à gauche */
 #res{
     position: initial;
     margin: 0px;
 }
 
+/* Mettre la barre de recherche en bas */
 .recherche {
     position: sticky;
     margin: 0px;
     bottom: 0;
 }
 
+/* Enlever le soulignement automatique des liens cliquables */
 a {
     text-decoration: none;
 }
