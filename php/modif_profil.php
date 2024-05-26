@@ -34,7 +34,7 @@ $fichier = "../database/compte.json";
 $json_content = file_get_contents($fichier);
 $data = json_decode($json_content, true);
 
-//On regarde si l'utilisateur a une session active en vérifiant si la variable 'nom' de la session existe
+//On regarde si l'utilisateur a une session avec des variables de profil définies en vérifiant si la variable 'nom' de la session existe
 if (!isset($_SESSION['nom'])) {
     //Sinon on cherche dans la base de données le profil de l'utilisateur
     foreach ($data['profils'] as $profil) {
