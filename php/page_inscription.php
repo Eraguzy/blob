@@ -10,6 +10,7 @@ if (isset($_COOKIE['user_id'])) {
 <html>
 
 <head>
+    <!-- CSS, icône, titre de page -->
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../styles/page_inscription.css">
     <title>Blob</title>
@@ -50,7 +51,7 @@ if (isset($_COOKIE['user_id'])) {
             </form>
             <?php
 
-            //Lors de la soumission du formulaire
+            //Après la soumission du formulaire
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 //Initialisation des variables

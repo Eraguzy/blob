@@ -1,11 +1,11 @@
 <?php
 ob_start();
 
-// Vérification si le cookie existe
+//Si l'utilisateur est connecté on récupère son id
 if (isset($_COOKIE['user_id'])) {
     $id_utilisateur = $_COOKIE['user_id'];
 } else {
-    // Redirection vers la page de connexion si le cookie n'est pas présent
+    //Redirection vers la page de connexion si l'utilisateur n'est pas connecté
     header("Location: ../php/page_connexion.php");
     exit;
 }
@@ -15,6 +15,7 @@ if (isset($_COOKIE['user_id'])) {
 <html lang="en">
 
 <head>
+    <!-- CSS, icône, titre de page -->
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../styles/creation_profil.css">
     <title>Blob</title>
@@ -22,6 +23,7 @@ if (isset($_COOKIE['user_id'])) {
 </head>
 
 <body>
+    <!-- Bandeau de page avec le bouton de redirection pour l'accueil-->
     <nav class="bandeau">
         <img src="../images/logo.png" class="img">
         <div class="bandeautitle">BLOB</div>
@@ -29,6 +31,7 @@ if (isset($_COOKIE['user_id'])) {
         <input type="button" class="bouton" value="Accueil" onclick="linkopener('index.php')">
     </nav>
 
+    <!-- Formulaire de création de profil avec demandes de multiples champs à remplir ainsi que d'une image de profil, les champs ne peuvent rester vides -->
     <div class="Connexion-page">
         <div class="Connexion-boite">
             <h2 class="legende">Création du profil</h2>
@@ -114,7 +117,11 @@ if (isset($_COOKIE['user_id'])) {
                 <input type="submit" value="Création du profil" />
             </form>
             <?php
+
+            //On attend l'envoi du formulaire avant d'éxécuter le code
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+                //On récupère les informations saisies qu'on stock dans des variables
                 $nom = $_POST["nom"];
                 $prenom = $_POST["prenom"];
                 $date = $_POST["date"];
@@ -130,13 +137,17 @@ if (isset($_COOKIE['user_id'])) {
                 $taille = $_POST["taille"];
                 $fichier = "../database/compte.json";
 
+                //On crée une chemin dynamique pour stocker l'image
                 $extension = ".jpg";
                 $chemin_destination = "../photo_profil_utilisateurs/" . $id_utilisateur . $extension;
+                //On vérifie qu'une image a bien été téléchargé
                 if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
                     $fichier_temporaire = $_FILES["photo"]["tmp_name"];
+                    //Si le dossier contenant les images n'existe pas, on le crée
                     if (!file_exists("../photo_profil_utilisateurs/")) {
                         mkdir("../photo_profil_utilisateurs/", 0777, true);
                     }
+                    //On le télécharge dans le dossier et on vérifie que le téléchargement c'est bien fait sinon on affiche un message d'erreur à l'utilisateur
                     if (move_uploaded_file($fichier_temporaire, $chemin_destination)) {
                         echo '</br><div class="message-erreur">Fichier téléchargé avec succès.</div>';
                     } else {
@@ -146,16 +157,20 @@ if (isset($_COOKIE['user_id'])) {
                     echo '</br><div class="message-erreur">Une erreur s\'est produite lors du téléchargement du fichier.</div>';
                 }
 
+                //On vérifie que le fichier json servant de base de données existe avec une liste de profils sinon on le crée
                 if (file_exists($fichier)) {
                     $json_contenue = file_get_contents($fichier);
                     $data = json_decode($json_contenue, true);
                     if (!isset($data['profils'])) {
+                        //Seul la liste des profils n'existe pas
                         $data['profils'] = [];
                     }
                 } else {
+                    //On crée le fichier car il n'existe pas
                     $data = ["profils" => []];
                 }
 
+                //On crée une structure profil avec toutes les informations saisies par l'utilisateur des variables initialiser précédemment
                 $nouveau_profil = [
                     'id' => $id_utilisateur,
                     'nom' => $nom,
@@ -176,13 +191,14 @@ if (isset($_COOKIE['user_id'])) {
                     'stalkers' => [],
                 ];
 
-
+                //On ajoute le nouveau profil dans la liste des profils
                 $data['profils'][] = $nouveau_profil;
 
+                //On injecte la liste de profil actualisé dans la base de donnée json
                 $json_new_profil = json_encode($data, JSON_PRETTY_PRINT);
-
                 file_put_contents($fichier, $json_new_profil);
 
+                //On crée un cookie prouvant que l'utilisateur a bien crée son compte et on le redirige vers l'accueil pour les utilisateurs connectés.
                 $expiration = time() + (30 * 24 * 60 * 60);
                 setcookie("creation_profil", 1, $expiration, "/");
                 header("Location: accueil.php");
@@ -192,6 +208,7 @@ if (isset($_COOKIE['user_id'])) {
         </div>
     </div>
 
+    <!-- Le script pour le bouton d'accueil pour rediriger vers la page -->
     <script src="../scripts/script.js" type="text/javascript"></script>
 </body>
 

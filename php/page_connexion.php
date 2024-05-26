@@ -9,7 +9,7 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
-//Lors de la soumission du formulaire
+//Après la soumission du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Initialisation des variables
@@ -78,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
+    <!-- CSS, icône, titre de page -->
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../styles/page_connexion.css">
     <link rel="icon" href="../images/logo.png">

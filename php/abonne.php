@@ -56,6 +56,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
 <html lang="fr">
 
 <head>
+    <!-- CSS, icône, titre de page -->
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../styles/abonne.css">
     <title>Blob</title>
