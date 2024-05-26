@@ -17,6 +17,7 @@ if (isset($_COOKIE['user_id'])) {
 }
 
 $id_utilisateur = $_GET['id_cible'];
+$idmiroir = "";
 
 $fichier = "../database/compte.json";
 if (file_exists($fichier)) {
@@ -24,6 +25,11 @@ if (file_exists($fichier)) {
     $data = json_decode($json_contenue, true);
 } else {
     $data = ["discussions" => [], "profils" => []];
+}
+
+//créer ici une fonction qui prend en param un id et qui renvoie le pseudo de l'utilisateur
+function idtopseudo(){
+    
 }
 ?>
 
@@ -52,18 +58,13 @@ if (file_exists($fichier)) {
                 <?php   
                     foreach ($data['discussions'] as $discussion){ // parcourt toute la bdd à la recherche de toutes les conv impliquant l'id sélectionné
                         if ($discussion['id_utilisateur1'] == $id_utilisateur){
-
-
-
-                            // à compléter
+                            $idmiroir = $discussion['id_utilisateur2'];
+                            echo "<p onclick=\"linkopener('../php/page_discussion.php?id_cible=" . $idmiroir . "&id_main=" .$id_utilisateur. "')\" class='lienversdiscu'>discussion entre " . $idmiroir . " et ". $id_utilisateur ."</p>";
                         }
-                        if ($discussion['id_utilisateur2'] == $id_utilisateur){
-
-
-
-                            // à compléter
+                        else if ($discussion['id_utilisateur2'] == $id_utilisateur){
+                            $idmiroir = $discussion['id_utilisateur1'];
+                            echo "<p onclick=\"linkopener('../php/page_discussion.php?id_cible=" . $idmiroir . "&id_main=" .$id_utilisateur. "')\" class='lienversdiscu'>discussion entre " . $idmiroir . " et ". $id_utilisateur ."</p>";
                         }
-                        echo "<p onclick=\"linkopener('../php/page_discussion.php?id_cible=" . $id_utilisateur . "&id_main=" .time(). "')\" class='lienversdiscu'>test</p>";
                     }
                 ?>
             </div>
