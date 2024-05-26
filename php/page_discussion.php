@@ -1,7 +1,7 @@
 <?php
-//Si l'utilisateur n'est pas connecté il est redirigé vers la page de connexion
+// Si l'utilisateur n'est pas connecté, il est redirigé vers la page de connexion
 if (isset($_COOKIE['user_id'])) {
-    //On vérifie si on a un paramètre avec l'id de l'utilisateur à qui on souhaite envoyer un message sinon on le renvoie vers la page d'accueil
+    // On vérifie si on a un paramètre avec l'id de l'utilisateur à qui on souhaite envoyer un message, sinon on le renvoie vers la page d'accueil
     if (!isset($_GET['id_cible'])) {
         header("Location: accueil.php");
         exit;
@@ -11,18 +11,16 @@ if (isset($_COOKIE['user_id'])) {
     exit;
 }
 
-//On prend l'id cible qu'on donne à une variable
+// On prend l'id cible qu'on donne à une variable
 $id_destinataire = $_GET['id_cible'];
 
-if(isset($GET['user_id']) && $_GET['id_main'] != ""){ // vérifie si on a appelé avec un deuxième id pour éviter message d'erreur
+if (isset($_GET['id_main']) && $_GET['id_main'] != "") { // vérifie si on a appelé avec un deuxième id pour éviter message d'erreur
     $id_utilisateur = $_GET['id_main'];
-}
-else{
+} else {
     $id_utilisateur = $_COOKIE['user_id'];
 }
-//ici on a bien défini un destinataire et un sender pour tous les cas (soit il y a un id_main dans GET et l'appel a été fait depuis listeconvs.php, soit ça vient de la page de profil classique et y'a pas de id_main)
 
-//On récupère les données de la base de donnée si elle existe pas on l'a crée
+// On récupère les données de la base de données, sinon on la crée
 $fichier = "../database/compte.json";
 if (file_exists($fichier)) {
     $json_contenue = file_get_contents($fichier);
@@ -30,7 +28,8 @@ if (file_exists($fichier)) {
 } else {
     $data = ["discussions" => [], "profils" => []];
 }
-//verifier si l'utilisateur nous a bloqué, si oui redirection vers une page de message d'erreur
+
+// Vérifier si l'utilisateur nous a bloqué, si oui redirection vers une page de message d'erreur
 foreach ($data['profils'] as $profil) {
     if ($profil['id'] == $id_destinataire) {
         if (isset($profil['utilisateurs_bloques']) && in_array($id_utilisateur, $profil['utilisateurs_bloques'])) {
@@ -40,14 +39,15 @@ foreach ($data['profils'] as $profil) {
         break;
     }
 }
-//On démarre la session pour avoir accès aux variables de session
+
+// On démarre la session pour avoir accès aux variables de session
 session_start();
-//On regarde si l'utilisateur a une session avec des variables de profil définies en vérifiant si la variable 'nom' de la session existe
+// On regarde si l'utilisateur a une session avec des variables de profil définies en vérifiant si la variable 'nom' de la session existe
 if (!isset($_SESSION['nom'])) {
-    //Sinon on cherche dans la base de données le profil de l'utilisateur
+    // Sinon on cherche dans la base de données le profil de l'utilisateur
     foreach ($data['profils'] as $profil) {
         if ($profil['id'] == $id_utilisateur) {
-            //Et on récupère ses informations qu'on donne à des variables
+            // Et on récupère ses informations qu'on donne à des variables
             $_SESSION['nom'] = $profil['nom'];
             $_SESSION['prenom'] = $profil['prenom'];
             $_SESSION['date'] = $profil['date'];
@@ -79,7 +79,7 @@ if (!isset($_SESSION['nom'])) {
     <link rel="icon" href="../images/logo.png">
     <title>Blob</title>
     <script>
-        //fonction qui vérifie le statut toutes les 5 secondes
+        // Fonction qui vérifie le statut toutes les 5 secondes
         function checkStatut() {
             fetch('verif_statut.php')
             .then(response => response.json())
@@ -111,8 +111,7 @@ if (!isset($_SESSION['nom'])) {
         <div class="Connexion-boite">
             <div class="Messages-boite">
                 <?php
-                $fichier = "../database/compte.json";
-                //On vérifie que la base de données existe et qu'elle contient la liste 'discussions', on crée le fichier et/ou la liste suivant les besoins
+                // On vérifie que la base de données existe et qu'elle contient la liste 'discussions', on crée le fichier et/ou la liste suivant les besoins
                 if (file_exists($fichier)) {
                     $json_contenue = file_get_contents($fichier);
                     $data = json_decode($json_contenue, true);
@@ -125,7 +124,7 @@ if (!isset($_SESSION['nom'])) {
 
                 $count = 0;
 
-                //On affiche les messages de la discussion entre l'utilisateur et l'utilisateur ciblé
+                // On affiche les messages de la discussion entre l'utilisateur et l'utilisateur ciblé
                 foreach ($data['discussions'] as $discussion) {
                     if (
                         ($discussion['id_utilisateur1'] == $id_utilisateur && $discussion['id_utilisateur2'] == $id_destinataire) ||
@@ -149,13 +148,13 @@ if (!isset($_SESSION['nom'])) {
                 <button type="submit">Envoyer</button>
             </form>
             <?php
-            //Après soumission du formulaire
+            // Après soumission du formulaire
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                //On récupère le message saisi
+                // On récupère le message saisi
                 $nouveau_message = $_POST["message"];
                 $discussion_existe = false;
 
-                //On recherche la discussion et si elle existe on ajoute le pseudo de l'utilisateur et le message envoyé
+                // On recherche la discussion et si elle existe on ajoute le pseudo de l'utilisateur et le message envoyé
                 foreach ($data['discussions'] as &$discussion) {
                     if (($discussion['id_utilisateur1'] == $id_utilisateur && $discussion['id_utilisateur2'] == $id_destinataire) || ($discussion['id_utilisateur2'] == $id_utilisateur && $discussion['id_utilisateur1'] == $id_destinataire)) {
                         $discussion['messages'][] = $_SESSION['pseudo'];
@@ -165,7 +164,7 @@ if (!isset($_SESSION['nom'])) {
                     }
                 }
 
-                //Si la discussion n'existe pas on ajoute le pseudo de l'utilisateur et le message envoyé dans une structure 'nouvel_discussion' et on crée la discussion
+                // Si la discussion n'existe pas, on ajoute le pseudo de l'utilisateur et le message envoyé dans une structure 'nouvel_discussion' et on crée la discussion
                 if (!$discussion_existe) {
                     $nouvel_discussion = [
                         'id_utilisateur1' => $id_utilisateur,
@@ -175,12 +174,16 @@ if (!isset($_SESSION['nom'])) {
                     $data['discussions'][] = $nouvel_discussion;
                 }
 
-                //Ensuite on met à jour la base de données avec le nouveau message ou la nouvelle discussion
+                // Ensuite on met à jour la base de données avec le nouveau message ou la nouvelle discussion
                 $json_modifie = json_encode($data, JSON_PRETTY_PRINT);
                 file_put_contents($fichier, $json_modifie);
 
-                //On rafraichit la page pour afficher le nouveau message
-                header("Location: page_discussion.php?id_cible=$id_destinataire");
+                // On rafraîchit la page pour afficher le nouveau message
+                if (isset($_GET['id_main']) && $_GET['id_main'] != "") { // cas où la variable du sender est définie
+                    header("Location: page_discussion.php?id_cible=$id_destinataire&id_main=$id_utilisateur");
+                } else {
+                    header("Location: page_discussion.php?id_cible=$id_destinataire");
+                }
                 exit;
             }
             ?>

@@ -597,7 +597,7 @@
             "id_utilisateur1": "664a09d1b1249",
             "id_utilisateur2": "6642a521bd7eb",
             "messages": [
-                "664a09d1b1249",
+                "clara",
                 "coucou"
             ]
         },
@@ -605,18 +605,11 @@
             "id_utilisateur1": "66507d05e553c",
             "id_utilisateur2": "664bb9a80c026",
             "messages": [
-                null,
+                "ray",
                 "Salut bebou je t''aime",
-                null,
-                "elias le meilleur",
-                null,
+                "ray",
                 "er"
             ]
-        },
-        {
-            "id_utilisateur1": "664b6c61475e7",
-            "id_utilisateur2": "6642a521bd7eb",
-            "messages": []
         },
         {
             "id_utilisateur1": "664674387ae19",
@@ -631,7 +624,11 @@
             "id_utilisateur2": "66507d05e553c",
             "messages": [
                 "eraguzy",
-                "test avec ray"
+                "test avec ray",
+                "eraguzy",
+                "test",
+                "eraguzy",
+                "kk"
             ]
         },
         {
@@ -643,7 +640,9 @@
                 "eraguzy",
                 "LUCAAAS",
                 "eraguzy",
-                "discu avec lucas"
+                "discu avec lucas",
+                "eraguzy",
+                "test"
             ]
         },
         {
@@ -656,10 +655,24 @@
         },
         {
             "id_utilisateur1": "664674387ae19",
-            "id_utilisateur2": "66458980abcdg",
+            "id_utilisateur2": "664bb9a80c026",
             "messages": [
                 "eraguzy",
-                "discu avec lucas7"
+                "test du bug",
+                "eraguzy",
+                "test",
+                "eraguzy",
+                "tesr",
+                "eraguzy",
+                "ohlala"
+            ]
+        },
+        {
+            "id_utilisateur1": "664674387ae19",
+            "id_utilisateur2": "664b1d1d33502",
+            "messages": [
+                "eraguzy",
+                "dfv"
             ]
         }
     ]

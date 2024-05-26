@@ -28,8 +28,15 @@ if (file_exists($fichier)) {
 }
 
 //créer ici une fonction qui prend en param un id et qui renvoie le pseudo de l'utilisateur
-function idtopseudo(){
-    
+function idtopseudo($id, $data) {
+    if (isset($data['profils'])) {
+        foreach ($data['profils'] as $profil) {
+            if ($profil['id'] === $id) {
+                return $profil['pseudo'];
+            }
+        }
+    }
+    return null; // Retourne null si rien n'est trouvé
 }
 ?>
 
@@ -58,12 +65,12 @@ function idtopseudo(){
                 <?php   
                     foreach ($data['discussions'] as $discussion){ // parcourt toute la bdd à la recherche de toutes les conv impliquant l'id sélectionné
                         if ($discussion['id_utilisateur1'] == $id_utilisateur){
-                            $idmiroir = $discussion['id_utilisateur2'];
-                            echo "<p onclick=\"linkopener('../php/page_discussion.php?id_cible=" . $idmiroir . "&id_main=" .$id_utilisateur. "')\" class='lienversdiscu'>discussion entre " . $idmiroir . " et ". $id_utilisateur ."</p>";
+                            $idmiroir = $discussion['id_utilisateur2']; // recup l'id avec lequel la personne a une conversation
+                            echo "<p onclick=\"linkopener('../php/page_discussion.php?id_cible=" . $idmiroir . "&id_main=" . $id_utilisateur . "')\" class='lienversdiscu'>discussion entre " . idtopseudo($idmiroir, $data) . " et ". idtopseudo($id_utilisateur, $data) ."</p>";
                         }
-                        else if ($discussion['id_utilisateur2'] == $id_utilisateur){
+                        else if ($discussion['id_utilisateur2'] == $id_utilisateur){ // else if pour éviter la redondance des discus avec soi même
                             $idmiroir = $discussion['id_utilisateur1'];
-                            echo "<p onclick=\"linkopener('../php/page_discussion.php?id_cible=" . $idmiroir . "&id_main=" .$id_utilisateur. "')\" class='lienversdiscu'>discussion entre " . $idmiroir . " et ". $id_utilisateur ."</p>";
+                            echo "<p onclick=\"linkopener('../php/page_discussion.php?id_cible=" . $id_utilisateur . "&id_main=" . $idmiroir . "')\" class='lienversdiscu'>discussion entre " . idtopseudo($idmiroir, $data) . " et ". idtopseudo($id_utilisateur, $data) ."</p>";
                         }
                     }
                 ?>

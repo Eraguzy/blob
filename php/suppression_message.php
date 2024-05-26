@@ -103,7 +103,7 @@ $indexMessage = $_GET['id_message'];
             </form>
 
             <!-- Redirection vers la page de discussion -->
-            <input type="submit" value="Retour à la discussion" onclick="linkopener('page_discussion.php?id_cible=<?php echo $id_destinataire; ?>')" />
+            <input type="submit" value="Retour à la discussion" onclick="linkopener('page_discussion.php?id_cible=<?php echo $id_destinataire; ?>&id_main=<?php echo $id_utilisateur; ?>')" />
 
         </div>
     </div>
