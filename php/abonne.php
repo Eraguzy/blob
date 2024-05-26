@@ -91,7 +91,7 @@ $derniers_utilisateurs = array_slice($data['profils'], -3);
             onclick="linkopener('modif_profil.php')" />
         <input type="button" class="bouton" value="Déconnexion" onclick="linkopener('deconnexion.php')" />
     </nav>
-    <p class="para">Cher abonné Blob, vous pouvez rechercher dès à présent des personnes en tapant le pseudo sur la
+    <p class="para">Cher abonné Blob, vous pouvez rechercher dès à présent des personnes en tapant un critère sur la
         barre de recherche, visualiser le profil complet, envoyer un mesage à quelqu'un, et bloquer une personne !</p>
 
     <div class="conteneur">
