@@ -2,30 +2,36 @@
 @import url("bandeau.css");
 @import url("forms.css");
 
+/* Prendre la totalité de la page */
 .Connexion-page{
 	height: auto;
 }
 
+/* Positionner la boîte */
 .Connexion-boite {
     padding: 18px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
+/* Mettre les noms des infos en orange */
 .donnees {
     color: orange;
 }
 
+/* Que les inputs prennent toute la largeur disponibles restantes + éviter de trop serrer les infos*/
 .donnees input:not([name='nom']):not([name='prenom']){
     width:100%;
     margin-top: 10px;
 }
 
+/* Gérer avec l'image */
 .donnees input[name='nom'], .donnees input[name='prenom'] {
     width: calc(65%);
     margin-top: 10px;
 }
 
+/* Mettre l'image de profil dans un format standard */
 #profil {
     float: left;
     top: 0;
