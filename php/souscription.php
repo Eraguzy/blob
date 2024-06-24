@@ -16,12 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $data = ["profils" => []];
     }
-//on remplace le statut par défaut par l'offre choisie, on lance le compteur avec la fonction time()
+
+    
+    //on remplace le statut par défaut par l'offre choisie, on lance le compteur avec la fonction time()
     foreach ($data['profils'] as &$profil) {
         if ($profil['id'] == $id_utilisateur) {
-            $profil['statut'] = $abo;
-            $profil['statut_starter_time'] = time();
-            break;
+
+            // si c'est un admin pour pas lui changer son statut on le redirige direct vers la page admin
+            if($profil['statut'] == 'admin'){
+                header("Location: ../admin/adminmenu.php");
+                exit; // exit car sinon le code va continuer à s'éxécuter même après le redirect
+            }
+            else{
+                $profil['statut'] = $abo;
+                $profil['statut_starter_time'] = time();
+                break;
+            }
         }
     }
 //on remet tous les changements dans le fichier json
